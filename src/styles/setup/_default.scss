@@ -6,10 +6,96 @@ h1{
   height: 100vh;
 }
 
-.btn { 
+.form-control {
   cursor: pointer;
- }
+}
 
- .form-control {
-   cursor: pointer;
- }
+.heavyTextButton {
+  font-weight: 600;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+button {
+  border-radius: 5px;
+  outline-style: none;
+  border-style: none;
+  color: $black2;
+  padding: 15px;
+  // box-shadow: 0px 5px 15px $default-gray2;
+  cursor: pointer;
+}
+
+input, select {
+  border: none;
+  border-radius: 4px;
+  height: 30px;
+  background: $light-gray;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  font-family: $main-font;
+}
+
+.error {
+  color: $red;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+  text-align: left;
+}
+
+.mainContent {
+  min-width: 600px;
+  min-height: 306px;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0px 5px 15px $default-gray;
+  border-radius: 10px;
+  margin: auto;
+  outline-style: none;
+  border-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.progress-bar {
+  width: 400px;
+  margin: auto;
+	border-radius: 9999px;
+	position: relative;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	height: 12px;
+	background: $default-gray
+}
+
+.progress-bar > div {
+	border-radius: 9999px;
+	position: absolute;
+	height: 100%;
+	background-color: $dark-blue;
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease
+}
+
+.thankYouContainer {
+  h1, h2 {
+    margin: 20px 0;
+  }
+
+  div {
+    font-size: 2.5em;
+  }
+}
+
+//change font to the notification component
+.vt-notification {
+  font-family: Avenir, Helvetica, Arial, sans-serif !important;
+}
