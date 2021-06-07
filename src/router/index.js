@@ -8,7 +8,27 @@ const routes = [
     path: '/',
     name: 'Login',
     component: () =>
-      import(/* webpackChunkName: "registerVaccine" */ '../views/Login.vue')
+      import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+  },
+  {
+    path: '/appAdm',
+    name: 'AppAdm',
+    component: () =>
+      import(/* webpackChunkName: "AppAdm" */ '../views/AppAdm/AppAdm.vue')
+  },
+  {
+    path: '/restaurantAdm',
+    name: 'RestaurantAdm',
+    component: () =>
+      import(
+        /* webpackChunkName: "RestaurantAdm" */ '../views/RestaurantAdm.vue'
+      )
+  },
+  {
+    path: '/worker',
+    name: 'Worker',
+    component: () =>
+      import(/* webpackChunkName: "Worker" */ '../views/Worker.vue')
   }
 ];
 

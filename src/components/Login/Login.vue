@@ -1,5 +1,5 @@
 <template>
-  <div class="mainContent">
+  <div>
     <div class="goBackIcon" v-if="!loginScreen">
       <chevron-left-icon
         size="2x"
@@ -213,7 +213,7 @@
 <script>
 import { required, email } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
-import { ChevronLeftIcon } from 'vue-feather-icons'
+import { ChevronLeftIcon } from 'vue-feather-icons';
 
 export default {
   name: 'Login',
@@ -232,17 +232,17 @@ export default {
       registerUserScreen: false,
       userTypes: {
         restaurantAdm: {
-          name: "Administrador de restaurante",
-          value: "restaurantAdm"
+          name: 'Administrador de restaurante',
+          value: 'restaurantAdm'
         },
         worker: {
-          name: "Funcionário",
-          value: "worker"
+          name: 'Funcionário',
+          value: 'worker'
         },
         appAdm: {
-          name: "Administrador da aplicação",
-          value: "appAdm"
-        },
+          name: 'Administrador da aplicação',
+          value: 'appAdm'
+        }
       },
       user: {
         name: null,
@@ -258,11 +258,11 @@ export default {
       password: { required }
     },
     user: {
-        name: { required },
-        email: { required, email },
-        type: { required },
-        password: { required }
-      }
+      name: { required },
+      email: { required, email },
+      type: { required },
+      password: { required }
+    }
   },
   computed: {},
   created() {
@@ -270,21 +270,20 @@ export default {
   },
   methods: {
     loginUser() {
-      if(this.$v.$touch()) {
-      api
-        .post('/TODO', this.login)
-        .then((response) => {
-          if (response.status == 200) {
-            this.$vToastify.success('Bem vindo!');
-          } else {
+      if (this.$v.$touch()) {
+        api
+          .post('/TODO', this.login)
+          .then((response) => {
+            if (response.status == 200) {
+              this.$vToastify.success('Bem vindo!');
+            } else {
+              this.$vToastify.error('Não foi possível fazer Login...');
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
             this.$vToastify.error('Não foi possível fazer Login...');
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-          this.$vToastify.error('Não foi possível fazer Login...');
-        });
-
+          });
       }
     },
     reset() {
@@ -298,7 +297,7 @@ export default {
     },
     screenMediator(whereTo) {
       this.reset();
-      switch(whereTo) {
+      switch (whereTo) {
         case 'loginScreen':
           this.loginScreen = true;
           this.registerUserScreen = false;
