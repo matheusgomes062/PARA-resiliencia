@@ -22,6 +22,12 @@ h1{
   cursor: pointer;
 }
 
+.main-btn {
+  width: 100%;
+  background-color: $orange;
+  font-weight: 700;
+}
+
 button {
   border-radius: 5px;
   outline-style: none;
@@ -55,11 +61,11 @@ input, select {
 }
 
 .mainContent {
-  min-width: 600px;
+  min-width: 500px;
   min-height: 306px;
   padding: 30px;
   background-color: white;
-  box-shadow: 0px 5px 15px $default-gray;
+  // box-shadow: 0px 5px 15px $default-gray;
   border-radius: 10px;
   margin: auto;
   outline-style: none;

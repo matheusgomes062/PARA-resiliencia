@@ -16,6 +16,7 @@ import Profile from '@/components/AppAdm/Profile/Profile.vue';
 import RegisterRestaurant from '@/components/AppAdm/RegisterRestaurant/RegisterRestaurant.vue';
 import QuizAnswers from '@/components/AppAdm/QuizAnswers/QuizAnswers.vue';
 import Configurations from '@/components/AppAdm/Configurations/Configurations.vue';
+import ChangePassword from '@/components/AppAdm/Configurations/ChangePassword/ChangePassword.vue';
 import EditQuiz from '@/components/AppAdm/EditQuiz/EditQuiz.vue';
 import { mapGetters } from 'vuex';
 
@@ -27,12 +28,19 @@ export default {
     RegisterRestaurant,
     QuizAnswers,
     Configurations,
+    ChangePassword,
     EditQuiz
   },
   data() {
     return {
       currentScreenSelected: 'Dashboard',
-      screens: ['Dashboard', 'Profile', 'Configurations'],
+      screens: [
+        'Dashboard',
+        'Profile',
+        'Configurations',
+        'ChangePassword',
+        'RegisterRestaurant'
+      ],
       whereTo: null
     };
   },

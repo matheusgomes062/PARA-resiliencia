@@ -27,6 +27,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-image: url('assets/Background.svg');
 }
 #logo {
   font-size: 3em;

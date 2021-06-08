@@ -16,7 +16,7 @@
             Cadastrar restaurante
           </div>
           <div @click="screenMediator('Configurations')">Configuração</div>
-          <div @click="screenMediator('Quit')">Sair</div>
+          <div @click="logout">Sair</div>
         </div>
       </div>
     </div>
@@ -42,6 +42,9 @@ export default {
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
+    },
+    logout() {
+      this.$router.push('/');
     }
   }
 };

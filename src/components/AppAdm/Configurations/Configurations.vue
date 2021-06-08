@@ -7,12 +7,17 @@
         @click="screenMediator('Dashboard')"
       ></chevron-left-icon>
     </div>
-    <div class="configurationPictureContainer">
-      <p>Configuração</p>
-    </div>
+    <h2>Configuração</h2>
     <div class="configurationGroupContainer">
-      <button>Alterar senha</button>
-      <button>Ativar nofiticação</button>
+      <button @click="screenMediator('ChangePassword')">Alterar senha</button>
+      <button
+        @click="changeButtonColor"
+        :class="isNotificationActive ? 'active' : 'disable'"
+      >
+        {{
+          isNotificationActive ? 'Ativar nofiticação' : 'Desativar notificação'
+        }}
+      </button>
     </div>
   </div>
 </template>
@@ -27,7 +32,9 @@ export default {
     ChevronLeftIcon
   },
   data() {
-    return {};
+    return {
+      isNotificationActive: true
+    };
   },
   computed: {
     ...mapGetters(['getWhereTo'])
@@ -37,6 +44,9 @@ export default {
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
+    },
+    changeButtonColor() {
+      this.isNotificationActive = !this.isNotificationActive;
     }
   }
 };
