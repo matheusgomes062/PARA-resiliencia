@@ -11,7 +11,8 @@ Vue.use(vuelidate);
 Vue.use(VueToastify, {
   canTimeout: true,
   duration: 2000,
-  hideProgressbar: true
+  hideProgressbar: true,
+  theme: 'light'
 });
 
 Vue.config.productionTip = false;

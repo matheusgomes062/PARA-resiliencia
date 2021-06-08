@@ -270,21 +270,23 @@ export default {
   },
   methods: {
     loginUser() {
-      if (this.$v.$touch()) {
-        api
-          .post('/TODO', this.login)
-          .then((response) => {
-            if (response.status == 200) {
-              this.$vToastify.success('Bem vindo!');
-            } else {
-              this.$vToastify.error('Não foi possível fazer Login...');
-            }
-          })
-          .catch((error) => {
-            console.log(error.response);
-            this.$vToastify.error('Não foi possível fazer Login...');
-          });
-      }
+      this.$vToastify.success('Bem vindo!', 'Sucesso!');
+      this.$router.push('appAdm');
+      // if (this.$v.$touch()) {
+      //   api
+      //     .post('/TODO', this.login)
+      //     .then((response) => {
+      //       if (response.status == 200) {
+      //         this.$vToastify.success('Bem vindo!');
+      //       } else {
+      //         this.$vToastify.error('Não foi possível fazer Login...');
+      //       }
+      //     })
+      //     .catch((error) => {
+      //       console.log(error.response);
+      //       this.$vToastify.error('Não foi possível fazer Login...');
+      //     });
+      // }
     },
     reset() {
       this.login.email = null;

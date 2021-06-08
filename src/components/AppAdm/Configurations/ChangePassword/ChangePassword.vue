@@ -73,6 +73,7 @@ export default {
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
+      this.$vToastify.success('Senha alterada com sucesso!', 'Sucesso!');
     },
     changePassword() {}
   }

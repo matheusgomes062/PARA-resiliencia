@@ -109,6 +109,10 @@ export default {
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
+      this.$vToastify.success(
+        'Restaurante Cadastrado com sucesso!',
+        'Sucesso!'
+      );
     }
   }
 };
