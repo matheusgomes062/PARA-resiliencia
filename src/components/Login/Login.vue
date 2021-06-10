@@ -7,7 +7,7 @@
         @click="screenMediator('loginScreen')"
       ></chevron-left-icon>
     </div>
-    <h1 v-if="loginScreen" class="cardTitle">Resiliência</h1>
+    <h1 v-if="loginScreen" class="cardTitle">PARA Resiliência</h1>
     <div class="inputContainer" v-if="loginScreen">
       <div>
         <div class="login-group">

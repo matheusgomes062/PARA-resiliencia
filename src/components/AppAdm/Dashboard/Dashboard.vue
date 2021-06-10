@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="cardTitle">Resiliência</h1>
+    <h1 class="cardTitle">PARA Resiliência</h1>
     <div>
       <h3 class="subtitle">Seja bem vindo(a)!</h3>
       <div class="optionsContainer">
