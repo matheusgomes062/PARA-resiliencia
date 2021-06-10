@@ -21,14 +21,14 @@ const routes = [
     name: 'RestaurantAdm',
     component: () =>
       import(
-        /* webpackChunkName: "RestaurantAdm" */ '../views/RestaurantAdm.vue'
+        /* webpackChunkName: "RestaurantAdm" */ '../views/RestaurantAdm/RestaurantAdm.vue'
       )
   },
   {
     path: '/worker',
     name: 'Worker',
     component: () =>
-      import(/* webpackChunkName: "Worker" */ '../views/Worker.vue')
+      import(/* webpackChunkName: "Worker" */ '../views/Worker/Worker.vue')
   }
 ];
 

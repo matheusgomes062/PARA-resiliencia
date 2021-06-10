@@ -28,6 +28,7 @@ export default {
   align-items: center;
   min-height: 100vh;
   background-image: url('assets/Background.svg');
+  // padding: 40px 0;
 }
 #logo {
   font-size: 3em;

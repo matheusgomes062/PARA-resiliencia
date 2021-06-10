@@ -1,0 +1,35 @@
+.cardTitle {
+  font-weight: 900;
+  color:$orange;
+  margin-bottom: 30px;
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.configurationGroupContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  button {
+    margin: 15px 0;
+    font-size: 1em;
+  }
+}
+
+.configurationsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 270px;
+}
+
+.active {
+  color: $orange;
+}
+
+.disable {
+  color: $dark-blue;
+}

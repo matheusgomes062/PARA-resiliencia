@@ -1,0 +1,66 @@
+.cardTitle {
+  font-weight: 900;
+  color:$orange;
+  margin-bottom: 30px;
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.registerRestaurantGroupContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  button {
+    margin: 15px 0;
+    font-size: 1em;
+  }
+}
+
+.registerRestaurantContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 270px;
+}
+
+.registerRestaurant-group {
+  display: flex;
+  width: 100%;
+  margin: 15px 0;
+  flex-direction: column;
+  text-align: left;
+  label {
+    margin-bottom: 5px;
+  }
+}
+
+.addressRestaurant-group {
+  display: flex;
+  flex-direction: column;
+  h3 {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+}
+
+.numberDistrictContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
+  #addressNumberContainer {
+    width: 20%;
+    margin-right: 15px;
+  }
+}
+
+hr {
+  height:2px;
+  border-width:0;
+  color: $gray;
+  background-color: $gray;
+  width: 100%;
+}

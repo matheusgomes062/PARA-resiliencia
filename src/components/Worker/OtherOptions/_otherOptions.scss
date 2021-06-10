@@ -1,0 +1,35 @@
+.cardTitle {
+  font-weight: 900;
+  color:$orange;
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  margin: 15px 0;
+}
+
+.subtitleContentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 270px;
+  justify-content: space-evenly;  
+}
+
+.otherOptionsGroupContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  button {
+    background-color: $default-gray;
+    font-family: $main-font;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+  }
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
