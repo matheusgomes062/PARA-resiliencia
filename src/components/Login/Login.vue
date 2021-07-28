@@ -47,7 +47,7 @@
           </div>
         </div>
         <button
-          @click="loginUser"
+          @click="LoginUser"
           class="btn-outlined heavyTextButton main-btn"
         >
           VAMOS LÁ!
@@ -146,7 +146,7 @@
             <option disabled selected :value="null" hidden>"Eu sou..."</option>
             <option
               v-for="(userType, index) in userTypes"
-              :value="userType.id"
+              :value="userType.value"
               :key="index"
               class="form-control"
             >
@@ -177,21 +177,27 @@
         </div>
         <div class="login-group">
           <input
-            v-model="user.password"
+            v-model="user.passwordConfirm"
             type="password"
             placeholder="Confirmar senha"
             class="login-control"
-            id="password"
+            id="passwordConfirm"
           />
           <div
-            v-if="$v.user.password.$error && !$v.user.password.required"
+            v-if="$v.user.passwordConfirm.$error && !$v.user.passwordConfirm.required"
             class="error"
           >
-            Senha necessária!
+            Confirmação de senha necessária!
+          </div>
+          <div
+            v-if="$v.user.passwordConfirm.$error && !$v.user.passwordConfirm.sameAsPassword"
+            class="error"
+          >
+            Senhas diferentes!
           </div>
         </div>
         <button
-          @click="loginUser"
+          @click="createUser"
           class="btn-outlined heavyTextButton main-btn"
         >
           CADASTRAR
@@ -211,9 +217,10 @@
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators';
+import { required, email, sameAs } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
 import { ChevronLeftIcon } from 'vue-feather-icons';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Login',
@@ -233,22 +240,23 @@ export default {
       userTypes: {
         restaurantAdm: {
           name: 'Administrador de restaurante',
-          value: 'restaurantAdm'
+          value: 'admin' // restaurantAdm
         },
         worker: {
           name: 'Funcionário',
-          value: 'worker'
+          value: 'employee' // worker
         },
         appAdm: {
           name: 'Administrador da aplicação',
-          value: 'appAdm'
+          value: 'owner' //appAdm
         }
       },
       user: {
         name: null,
         email: null,
         type: null,
-        password: null
+        password: null,
+        passwordConfirm: null
       }
     };
   },
@@ -261,7 +269,8 @@ export default {
       name: { required },
       email: { required, email },
       type: { required },
-      password: { required }
+      password: { required },
+      passwordConfirm: { required, sameAsPassword: sameAs('password') }
     }
   },
   computed: {},
@@ -269,24 +278,46 @@ export default {
     this.reset();
   },
   methods: {
-    loginUser() {
-      this.$vToastify.success('Bem vindo!', 'Sucesso!');
-      this.$router.push('appAdm');
-      // if (this.$v.$touch()) {
-      //   api
-      //     .post('/TODO', this.login)
-      //     .then((response) => {
-      //       if (response.status == 200) {
-      //         this.$vToastify.success('Bem vindo!');
-      //       } else {
-      //         this.$vToastify.error('Não foi possível fazer Login...');
-      //       }
-      //     })
-      //     .catch((error) => {
-      //       console.log(error.response);
-      //       this.$vToastify.error('Não foi possível fazer Login...');
-      //     });
-      // }
+    ...mapActions([ 'loginUser' ]),
+    createUser() {
+      this.$v.$touch()
+      if (!this.$v.user.$invalid) {
+        api
+          .post('/users', this.user)
+          .then((response) => {
+            if (response.status == 201) {
+              this.loginUser(response.data)
+              this.$vToastify.success('Bem vindo!');
+              this.$router.push('appAdm');
+            } else {
+              this.$vToastify.error('Não foi possível criar usuário...');
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+            this.$vToastify.error('Não foi possível criar usuário...');
+          });
+      }
+    },
+    LoginUser() {
+      this.$v.$touch()
+      if (!this.$v.login.$invalid) {
+        api
+          .post('/login', this.login)
+          .then((response) => {
+            if (response.status == 200) {
+              this.loginUser(response.data)
+              this.$vToastify.success('Bem vindo!', 'Sucesso!');
+              this.$router.push('appAdm');
+            } else {
+              this.$vToastify.error('Não foi possível fazer Login...');
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+            this.$vToastify.error('Não foi possível fazer Login...');
+          });
+      }
     },
     reset() {
       this.login.email = null;
