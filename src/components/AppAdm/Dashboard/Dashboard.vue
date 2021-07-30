@@ -9,7 +9,7 @@
           <div @click="screenMediator('QuizAnswer')">
             Respostas do questionário
           </div>
-          <div @click="screenMediator('EditQuiz')">Editar questionário</div>
+          <div @click="screenMediator('EditQuestionary')">Editar questionário</div>
         </div>
         <div>
           <div @click="screenMediator('RegisterRestaurant')">

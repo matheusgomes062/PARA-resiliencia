@@ -1,0 +1,25 @@
+.newQuestionaryContainer {
+  text-align: start;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+button:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.questionary-group {
+  display: flex;
+  width: 100%;
+  margin: 15px 0;
+  flex-direction: column;
+}

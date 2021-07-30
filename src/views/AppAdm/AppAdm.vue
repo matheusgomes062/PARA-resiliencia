@@ -17,7 +17,10 @@ import RegisterRestaurant from '@/components/AppAdm/RegisterRestaurant/RegisterR
 import QuizAnswers from '@/components/AppAdm/QuizAnswers/QuizAnswers.vue';
 import Configurations from '@/components/AppAdm/Configurations/Configurations.vue';
 import ChangePassword from '@/components/AppAdm/Configurations/ChangePassword/ChangePassword.vue';
-import EditQuiz from '@/components/AppAdm/EditQuiz/EditQuiz.vue';
+import EditQuestionary from '@/components/AppAdm/EditQuestionary/EditQuestionary.vue';
+import EditQuestions from '@/components/AppAdm/EditQuestions/EditQuestions.vue';
+import CreateQuestion from '@/components/AppAdm/CreateQuestions/CreateQuestion.vue';
+import CreateQuestionary from '@/components/AppAdm/CreateQuestionary/CreateQuestionary.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -29,7 +32,10 @@ export default {
     QuizAnswers,
     Configurations,
     ChangePassword,
-    EditQuiz
+    EditQuestionary,
+    EditQuestions,
+    CreateQuestion,
+    CreateQuestionary
   },
   data() {
     return {
@@ -39,7 +45,11 @@ export default {
         'Profile',
         'Configurations',
         'ChangePassword',
-        'RegisterRestaurant'
+        'RegisterRestaurant',
+        'EditQuestionary',
+        'EditQuestions',
+        'CreateQuestion',
+        'CreateQuestionary'
       ],
       whereTo: null
     };

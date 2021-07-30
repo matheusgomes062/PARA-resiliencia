@@ -1,0 +1,86 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+button:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.questionsContainer {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  border: 1px black solid;
+  .title {
+    margin: 10px;
+  }
+  .questionary{
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+  }
+}
+
+.questionary:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
+}
+
+.optionsType {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  .question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    input {
+      width: 300px;
+    }
+    p {
+      margin: auto 10px auto 0;
+    }
+  }
+  .options {
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    textarea {
+      width: 315px;
+    }
+    p {
+      margin: auto 30px auto 0;
+    }
+  }
+}
+
+.deleteBtn {
+  width: 10px;
+  display: block;
+  margin: auto 0px auto 10px;
+  cursor: pointer;
+}
+
+.normalType {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.question {
+  display: flex;
+  input {
+      width: 300px;
+    }
+  p {
+    margin: auto 10px auto 0;
+  }
+}
