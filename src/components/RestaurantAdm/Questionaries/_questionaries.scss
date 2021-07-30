@@ -1,0 +1,50 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+button:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.questionariesContainer {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  border: 1px black solid;
+  .title {
+    margin: 10px;
+  }
+  .questionary{
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+  }
+}
+
+.questionary {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  h2 {
+    margin: auto;
+  }
+}
+
+.openBtn {
+  width: 100px;
+  height: 42px;
+  margin: auto 0 auto 0;
+}

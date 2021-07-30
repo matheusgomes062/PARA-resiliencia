@@ -11,7 +11,7 @@
           Cadastre seu restaurante
         </div>
         <div
-          @click="screenMediator('AnswerQuiz')"
+          @click="screenMediator('Questionaries')"
           id="AnswerQuizDashboardButton"
         >
           Responder questionário
