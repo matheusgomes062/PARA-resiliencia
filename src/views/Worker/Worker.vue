@@ -13,7 +13,8 @@
 <script>
 import Dashboard from '@/components/Worker/Dashboard/Dashboard.vue';
 import OtherOptions from '@/components/Worker/OtherOptions/OtherOptions.vue';
-import AnswerQuiz from '@/components/Worker/AnswerQuiz/AnswerQuiz.vue';
+import Questionaries from '@/components/Worker/Questionaries/Questionaries.vue';
+import AnswerQuestions from '@/components/Worker/AnswerQuestions/AnswerQuestions.vue';
 import Profile from '@/components/Worker/OtherOptions/Profile/Profile.vue';
 import Configurations from '@/components/Worker/OtherOptions/Configurations/Configurations.vue';
 import ChangePassword from '@/components/Worker/OtherOptions/Configurations/ChangePassword/ChangePassword.vue';
@@ -24,10 +25,11 @@ export default {
   components: {
     Dashboard,
     OtherOptions,
-    AnswerQuiz,
     Profile,
     Configurations,
-    ChangePassword
+    ChangePassword,
+    AnswerQuestions,
+    Questionaries
   },
   data() {
     return {
@@ -38,7 +40,9 @@ export default {
         'AnswerQuiz',
         'Profile',
         'Configurations',
-        'ChangePassword'
+        'ChangePassword',
+        'AnswerQuestions',
+        'Questionaries'
       ],
       whereTo: null
     };

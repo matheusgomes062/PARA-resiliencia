@@ -34,13 +34,17 @@ export default {
     ...mapGetters(['getWhereTo'])
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo']),
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'logoutUser']),
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
     changeButtonColor() {
       this.isNotificationActive = !this.isNotificationActive;
+    },
+    logout() {
+      this.logoutUser();
+      this.$router.push('/');
     }
   }
 };

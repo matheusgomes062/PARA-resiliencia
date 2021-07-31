@@ -96,7 +96,6 @@ export default {
       this.setWhereTo(whereTo);
     },
     checkType() {
-      console.log('entrou')
       if (this.question.type == 'normal') return this.hasOptions = true
       if (this.question.type == 'options') return this.hasOptions = false
     },
