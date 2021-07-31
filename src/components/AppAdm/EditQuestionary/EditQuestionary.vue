@@ -8,9 +8,12 @@
           @click="screenMediator('Dashboard')"
         ></chevron-left-icon>
       </div>
-      <button @click="screenMediator('CreateQuestionary')">Criar Questionário</button>
+      <div class="buttonsContainer">
+        <button @click="saveChanges" class="saveBtn">Salvar Alterações</button>
+        <button @click="screenMediator('CreateQuestionary')" class="addBtn">Criar Questionário</button>
+      </div>
     </div>
-    <div>
+    <div class="titlePage">
       <h1>Questionários</h1>
     </div>
     <div class="questionariesContainer">
@@ -25,7 +28,7 @@
         <div
             size="2x"
             class="deleteBtn"
-            @click="deleteQuestion()"
+            @click="deleteQuestionary()"
         >X</div>
       </div>
     </div>
@@ -55,6 +58,12 @@ export default {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
+    deleteQuestionary() {
+      this.$vToastify.success('Questionário deletado!');
+    },
+    saveChanges() {
+      this.$vToastify.success('Questionário alterado!');
+    }
   }
 }
 </script>

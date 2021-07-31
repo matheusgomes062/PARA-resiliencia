@@ -8,9 +8,12 @@
         @click="screenMediator('EditQuestionary')"
       ></chevron-left-icon>
     </div>
-    <button @click="screenMediator('CreateQuestion')">Criar nova questão</button>
+    <div class="buttonsContainer">
+        <button @click="saveChanges" class="saveBtn">Salvar Alterações</button>
+        <button @click="screenMediator('CreateQuestion')" class="addBtn">Criar Questão</button>
     </div>
-    <div>
+    </div>
+    <div class="titlePage">
       <h1 class="title">Título</h1>
     </div>
     <div class="questionsContainer">
@@ -71,6 +74,9 @@ export default {
     },
     deleteQuestion() {
       this.$vToastify.success('Questão deletada!');
+    },
+    saveChanges() {
+      this.$vToastify.success('Questão alterada!');
     }
   }
 }

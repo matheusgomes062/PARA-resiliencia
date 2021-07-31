@@ -13,9 +13,19 @@
   justify-content: space-between;
 }
 
+.titlePage {
+  margin: 10px 10px;
+}
+
 button:hover { 
   box-shadow: 0px 0px 15px $default-gray2;
   cursor: pointer;
+}
+
+.buttonsContainer {
+  .saveBtn{
+    margin-right: 10px;
+  }
 }
 
 .goBackIcon {
