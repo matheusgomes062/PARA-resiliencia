@@ -5,7 +5,7 @@
       <chevron-left-icon
         size="2x"
         class="btn"
-        @click="screenMediator('EditQuestionary')"
+        @click="screenMediator('Questionaries')"
       ></chevron-left-icon>
     </div>
     <div class="buttonsContainer">
@@ -17,7 +17,7 @@
       <h1 class="title">Título</h1>
     </div>
     <div class="questionsContainer">
-      <div v-if="true" class="normalType">
+      <div v-if="false" class="normalType">
         <div class="question">
             <p>Questão 1: </p>
             <input value="lorem ipsum">
@@ -28,7 +28,7 @@
             @click="deleteQuestion()"
         >X</div>
       </div>
-      <div v-if="false" class="optionsType">
+      <div v-if="true" class="optionsType">
         <div class="questionContent">
           <div class="question">
             <p>Questão x: </p>

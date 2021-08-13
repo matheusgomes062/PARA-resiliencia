@@ -12,10 +12,11 @@
     <div>
       <h1>Questionários</h1>
     </div>
-    <div class="questionariesContainer">
+    <div v-for="(questionay, index) in questionaries" :key="index" class="questionariesContainer">
       <div class="questionary">
         <div class="title">
-            <h2>TÍTULO</h2>
+            <h2>{{questionay.id}}.</h2>
+            <h2>{{questionay.title}}</h2>
         </div>
         <button class="openBtn" @click="screenMediator('AnswerQuestions')">
           Abrir
@@ -30,13 +31,22 @@ import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'EditQuestionary',
+  name: 'Questionaries',
   components: {
     ChevronLeftIcon
   },
   data() {
     return {
-
+      questionaries: [
+        {
+          id: 1,
+          title: 'TITLE0'
+        },
+        {
+          id: 2,
+          title: 'TITLE1'
+        }
+      ]
     };
   },
   computed: {

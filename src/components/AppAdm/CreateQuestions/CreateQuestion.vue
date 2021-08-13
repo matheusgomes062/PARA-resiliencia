@@ -5,7 +5,7 @@
       <chevron-left-icon
         size="2x"
         class="btn"
-        @click="screenMediator('EditQuestionary')"
+        @click="screenMediator('Questionaries')"
       ></chevron-left-icon>
     </div>
     <button @click="isFormValid">Criar</button>
@@ -26,7 +26,16 @@
       </div>
       <div class="question-group">
         <label class="form-label" for="type">Tipo</label>
-        <select
+        <div class="question-options-container">
+          <div v-for="(questionsType, index) in questionsType" :key="index" class="toggles-container">
+            <label class="switch">
+              <input type="checkbox" :value="questionsType.value" @click="checkType(questionsType.value)">
+              <span class="slider round"></span>
+            </label>
+            {{ questionsType.name }}
+          </div>
+        </div>
+        <!-- <select
           v-model="question.type"
           class="profile-control"
           @click="checkType()"
@@ -40,7 +49,7 @@
             >
               {{ questionsType.name }}
             </option>
-        </select>
+        </select> -->
       </div>
       <div class="question-group">
         <label class="form-label" for="options">Options</label>
@@ -95,7 +104,8 @@ export default {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
-    checkType() {
+    checkType(payload) {
+      this.question.type = payload
       if (this.question.type == 'normal') return this.hasOptions = true
       if (this.question.type == 'options') return this.hasOptions = false
     },

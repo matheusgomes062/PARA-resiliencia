@@ -16,13 +16,15 @@ button:hover {
 
 .questionariesContainer {
   display: flex;
-  padding: 10px;
+  padding: 5px;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
-  border: 1px black solid;
+  margin-top: 8px;
   .title {
     margin: 10px;
+    h2:first-child {
+      margin-right: 10px;
+    }
   }
   .questionary{
     margin: 10px 0px 10px 0px;

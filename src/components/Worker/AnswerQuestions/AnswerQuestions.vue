@@ -13,20 +13,24 @@
     <div>
       <h1 class="title">Título</h1>
     </div>
-    <div class="questionsContainer">
-      <div class="optionsType">
-        <div class="questionContent">
-          <div class="question">
-            <p>Questão 1: </p>
-            <h3>Lorem Ipsum</h3>
+    <div class="mainContainer">
+      <div class="questionContainer">
+        <div class="questionContent" v-for="(question, index) in QuestionsList" :key="index">
+          <div class="titleContainer">
+            <h3>{{question.id}}.</h3>
+            <p>{{question.title}}</p>
           </div>
-          <div class="options">
-            <p>Resposta:</p>
-            <textarea v-if="false"></textarea>
-            <select v-if="true" class="questionOptions">
-              <option>sim</option>
-              <option>não</option>
-            </select>
+          <div v-if="true" class="optionsContainer">
+            <div v-for="(option, index) in question.options" :key="index" class="toggles-container">
+              <label class="switch">
+                <input type="checkbox" :value="option" @click="checkType(option)">
+                <span class="slider round"></span>
+              </label>
+              <p>{{ option }}</p>
+            </div>
+          </div>
+          <div v-if="false" class="options">
+            <textarea></textarea>
           </div>
         </div>
       </div>
@@ -45,7 +49,19 @@ export default {
   },
   data() {
     return {
-      selectedQuestion: false
+      selectedQuestion: false,
+      QuestionsList: [
+        {
+          id: 1,
+          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          options: ['Sim', 'Não']
+        },
+        {
+          id: 2,
+          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          options: ['Sim', 'Não']
+        }
+      ]
     };
   },
   computed: {

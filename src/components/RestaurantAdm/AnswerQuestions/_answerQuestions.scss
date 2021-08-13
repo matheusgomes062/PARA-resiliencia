@@ -13,13 +13,12 @@ button:hover {
   justify-content: flex-start;
 }
 
-.questionsContainer {
+.questionContainer {
   display: flex;
   padding: 10px;
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  border: 1px black solid;
   .title {
     margin: 10px;
   }
@@ -27,31 +26,37 @@ button:hover {
     margin: 10px 0px 10px 0px;
     width: 100%;
   }
-}
-
-.questionary:hover { 
-  box-shadow: 0px 0px 15px $default-gray2;
-  cursor: pointer;
-}
-
-.optionsType {
-  display: flex;
-  width: 100%;
   justify-content: space-between;
-  .question {
+  .questionContent {
     width: 100%;
-    display: flex;
-    h3 {
-      margin: auto;
+    .titleContainer {
+      display: flex;
+    }
+    h3{
+      display: flex;
+      align-items: initial;
+      margin-right: 20px;
     }
     p {
-      margin: auto 10px auto 0;
+      text-align: left;
+      max-width: 800px;
+      margin: auto;
+    }
+    .optionsContainer{
+      width: 300px;
+      align-items: initial;
+      
+      .toggles-container{
+        display: flex;
+        width: 100px;
+        margin: 10px 0px 10px 30px;
+      }
     }
   }
   .options {
     width: 100%;
     display: flex;
-    margin-top: 10px;
+    margin: 10px 0px 10px 0px;
     textarea {
       width: 100%;
     }
@@ -59,6 +64,11 @@ button:hover {
       margin: auto 30px auto 0;
     }
   }
+}
+
+.questionary:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
 }
 
 .questionContent {

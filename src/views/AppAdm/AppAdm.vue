@@ -14,6 +14,7 @@
 import Dashboard from '@/components/AppAdm/Dashboard/Dashboard.vue';
 import Profile from '@/components/AppAdm/Profile/Profile.vue';
 import RegisterRestaurant from '@/components/AppAdm/RegisterRestaurant/RegisterRestaurant.vue';
+import Questionaries from '@/components/AppAdm/Questionaries/Questionaries.vue';
 import QuizAnswers from '@/components/AppAdm/QuizAnswers/QuizAnswers.vue';
 import Configurations from '@/components/AppAdm/Configurations/Configurations.vue';
 import ChangePassword from '@/components/AppAdm/Configurations/ChangePassword/ChangePassword.vue';
@@ -28,6 +29,7 @@ export default {
   components: {
     Dashboard,
     Profile,
+    Questionaries,
     RegisterRestaurant,
     QuizAnswers,
     Configurations,
@@ -43,8 +45,10 @@ export default {
       screens: [
         'Dashboard',
         'Profile',
+        'Questionaries',
         'Configurations',
         'ChangePassword',
+        'QuizAnswers',
         'RegisterRestaurant',
         'EditQuestionary',
         'EditQuestions',
