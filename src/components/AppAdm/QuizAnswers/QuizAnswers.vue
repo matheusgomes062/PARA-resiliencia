@@ -18,7 +18,7 @@
             <h2>{{questionay.id}}.</h2>
             <h2>{{questionay.title}}</h2>
         </div>
-        <button class="openBtn" @click="screenMediator('EditQuestions')">
+        <button class="openBtn" @click="screenMediator('Answers')">
           Abrir
         </button>
       </div>

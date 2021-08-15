@@ -1,0 +1,102 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+button:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
+}
+
+.goBackIcon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.questionContainer {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  .title {
+    margin: 10px;
+  }
+  .questionary{
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+  }
+  justify-content: space-between;
+  .questionContent {
+    width: 100%;
+    .titleContainer {
+      display: flex;
+    }
+    h3{
+      display: flex;
+      align-items: initial;
+      margin-right: 20px;
+    }
+    p {
+      text-align: left;
+      max-width: 800px;
+      margin: auto;
+    }
+    .answersTitle {
+      margin-left: 36px;
+      margin-top: 10px;
+    }
+    .optionsContainer{
+      width: 300px;
+      align-items: initial;
+      
+      .toggles-container{
+        display: flex;
+        width: 100px;
+        margin: 10px 0px 10px 30px;
+      }
+    }
+  }
+  .options {
+    width: 100%;
+    display: flex;
+    margin: 10px 0px 10px 0px;
+    textarea {
+      width: 100%;
+    }
+    p {
+      margin: auto 30px auto 0;
+    }
+  }
+}
+
+.questionary:hover { 
+  box-shadow: 0px 0px 15px $default-gray2;
+  cursor: pointer;
+}
+
+.questionContent {
+  width: 100%;
+}
+.deleteBtn {
+  width: 10px;
+  display: block;
+  margin: auto 0px auto 10px;
+  cursor: pointer;
+}
+
+.normalType {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.questionOptions {
+  width: 100%;
+}
+.question {
+  display: flex;
+  p {
+    margin: auto 10px auto 0;
+  }
+}
