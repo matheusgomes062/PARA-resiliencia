@@ -6,10 +6,10 @@
       <div class="optionsContainer">
         <div>
           <div @click="screenMediator('Profile')">Perfil</div>
-          <div @click="screenMediator('QuizAnswer')">
+          <div @click="screenMediator('QuizAnswers')">
             Respostas do questionário
           </div>
-          <div @click="screenMediator('EditQuiz')">Editar questionário</div>
+          <div @click="screenMediator('Questionaries')">Editar questionário</div>
         </div>
         <div>
           <div @click="screenMediator('RegisterRestaurant')">

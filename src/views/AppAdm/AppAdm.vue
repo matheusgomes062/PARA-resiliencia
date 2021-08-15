@@ -14,10 +14,13 @@
 import Dashboard from '@/components/AppAdm/Dashboard/Dashboard.vue';
 import Profile from '@/components/AppAdm/Profile/Profile.vue';
 import RegisterRestaurant from '@/components/AppAdm/RegisterRestaurant/RegisterRestaurant.vue';
+import Questionaries from '@/components/AppAdm/Questionaries/Questionaries.vue';
 import QuizAnswers from '@/components/AppAdm/QuizAnswers/QuizAnswers.vue';
+import Answers from '@/components/AppAdm/Answers/Answers.vue';
 import Configurations from '@/components/AppAdm/Configurations/Configurations.vue';
 import ChangePassword from '@/components/AppAdm/Configurations/ChangePassword/ChangePassword.vue';
-import EditQuiz from '@/components/AppAdm/EditQuiz/EditQuiz.vue';
+import EditQuestions from '@/components/AppAdm/EditQuestions/EditQuestions.vue';
+import CreateQuestion from '@/components/AppAdm/CreateQuestions/CreateQuestion.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -25,11 +28,14 @@ export default {
   components: {
     Dashboard,
     Profile,
+    Questionaries,
     RegisterRestaurant,
     QuizAnswers,
     Configurations,
+    Answers,
     ChangePassword,
-    EditQuiz
+    EditQuestions,
+    CreateQuestion
   },
   data() {
     return {
@@ -37,9 +43,14 @@ export default {
       screens: [
         'Dashboard',
         'Profile',
+        'Questionaries',
         'Configurations',
         'ChangePassword',
-        'RegisterRestaurant'
+        'QuizAnswers',
+        'RegisterRestaurant',
+        'EditQuestions',
+        'Answers',
+        'CreateQuestion'
       ],
       whereTo: null
     };

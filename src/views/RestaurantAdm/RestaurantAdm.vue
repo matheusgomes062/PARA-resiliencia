@@ -14,7 +14,8 @@
 import Dashboard from '@/components/RestaurantAdm/Dashboard/Dashboard.vue';
 import RegisterRestaurant from '@/components/RestaurantAdm/RegisterRestaurant/RegisterRestaurant.vue';
 import OtherOptions from '@/components/RestaurantAdm/OtherOptions/OtherOptions.vue';
-import AnswerQuiz from '@/components/RestaurantAdm/AnswerQuiz/AnswerQuiz.vue';
+import Questionaries from '@/components/RestaurantAdm/Questionaries/Questionaries.vue';
+import AnswerQuestions from '@/components/RestaurantAdm/AnswerQuestions/AnswerQuestions.vue';
 import Profile from '@/components/RestaurantAdm/OtherOptions/Profile/Profile.vue';
 import Configurations from '@/components/RestaurantAdm/OtherOptions/Configurations/Configurations.vue';
 import ChangePassword from '@/components/RestaurantAdm/OtherOptions/Configurations/ChangePassword/ChangePassword.vue';
@@ -26,10 +27,11 @@ export default {
     Dashboard,
     RegisterRestaurant,
     OtherOptions,
-    AnswerQuiz,
+    Questionaries,
     Profile,
     Configurations,
-    ChangePassword
+    ChangePassword,
+    AnswerQuestions
   },
   data() {
     return {
@@ -38,10 +40,11 @@ export default {
         'Dashboard',
         'RegisterRestaurant',
         'OtherOptions',
-        'AnswerQuiz',
+        'Questionaries',
         'Profile',
         'Configurations',
-        'ChangePassword'
+        'ChangePassword',
+        'AnswerQuestions'
       ],
       whereTo: null
     };

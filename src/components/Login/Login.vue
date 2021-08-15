@@ -257,6 +257,11 @@ export default {
         type: null,
         password: null,
         passwordConfirm: null
+      },
+      routes: {
+        admin: 'restaurantAdm',
+        employee: 'worker',
+        owner: 'appAdm'
       }
     };
   },
@@ -286,9 +291,10 @@ export default {
           .post('/users', this.user)
           .then((response) => {
             if (response.status == 201) {
+              const route = 'owner'// request.data.userType
               this.loginUser(response.data)
               this.$vToastify.success('Bem vindo!');
-              this.$router.push('appAdm');
+              this.$router.push(this.routes[route]);
             } else {
               this.$vToastify.error('Não foi possível criar usuário...');
             }
@@ -306,9 +312,10 @@ export default {
           .post('/login', this.login)
           .then((response) => {
             if (response.status == 200) {
+              const route = 'owner'// request.data.userType
               this.loginUser(response.data)
               this.$vToastify.success('Bem vindo!', 'Sucesso!');
-              this.$router.push('appAdm');
+              this.$router.push(this.routes[route]);
             } else {
               this.$vToastify.error('Não foi possível fazer Login...');
             }

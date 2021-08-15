@@ -5,7 +5,7 @@
       <h3 class="subtitle">Seja bem vindo(a)!</h3>
       <div class="optionsContainer">
         <div
-          @click="screenMediator('AnswerQuiz')"
+          @click="screenMediator('Questionaries')"
           id="AnswerQuizDashboardButton"
         >
           Responder questionário

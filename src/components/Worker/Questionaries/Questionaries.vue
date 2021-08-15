@@ -18,7 +18,7 @@
             <h2>{{questionay.id}}.</h2>
             <h2>{{questionay.title}}</h2>
         </div>
-        <button class="openBtn" @click="screenMediator('Answers')">
+        <button class="openBtn" @click="screenMediator('AnswerQuestions')">
           Abrir
         </button>
       </div>
@@ -31,7 +31,7 @@ import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'QuizAnswers',
+  name: 'Questionaries',
   components: {
     ChevronLeftIcon
   },
@@ -63,5 +63,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './_quizAnswers.scss';
+@import './_questionaries.scss';
 </style>
