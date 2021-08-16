@@ -5,15 +5,25 @@
       <chevron-left-icon
         size="2x"
         class="btn"
-        @click="screenMediator('Questionaries'), resetQuestionary()"
+        @click="screenMediator('EditQuestions'), resetQuestionary()"
       ></chevron-left-icon>
     </div>
-    <button @click="isFormValid">Criar</button>
+    <button @click="isFormValid">Alterar</button>
     </div>
     <div>
-      <h1>Nova questão</h1>
+      <h1>Alterar questão</h1>
     </div>
     <div class="newQuestionContainer">
+      <div class="question-group">
+        <label class="form-label" for="question">Número da Questão</label>
+        <input
+          v-model="question.id"
+          type="text"
+          class="profile-control"
+          placeholder="Ex: 1"
+          id="question"
+        />
+      </div>
       <div class="question-group">
         <label class="form-label" for="question">Questão</label>
         <input
@@ -71,13 +81,14 @@ import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'CreateQuestions',
+  name: 'ChangeQuestions',
   components: {
     ChevronLeftIcon,
   },
   data() {
     return {
       question: {
+        id: '',
         title: '',
         type: '',
         options: []
@@ -113,12 +124,12 @@ export default {
       if (this.question.type == 'options') return this.hasOptions = false
     },
     isFormValid() {
-      this.$vToastify.success('Questão criada!');
+      this.$vToastify.success('Questão Alterada!');
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import './_createQuestions.scss';
+@import './_changeQuestion.scss';
 </style>

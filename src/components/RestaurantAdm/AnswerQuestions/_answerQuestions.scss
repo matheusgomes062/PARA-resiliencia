@@ -13,15 +13,25 @@ button:hover {
   justify-content: flex-start;
 }
 
+.title {
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.description {
+  max-width: 830px;
+  margin-top: 10px;
+}
+
 .questionContainer {
+  overflow:auto;
+  height: 500px;
   display: flex;
   padding: 10px;
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  .title {
-    margin: 10px;
-  }
+
   .questionary{
     margin: 10px 0px 10px 0px;
     width: 100%;
@@ -31,6 +41,7 @@ button:hover {
     width: 100%;
     .titleContainer {
       display: flex;
+      max-width: 830px;
     }
     h3{
       display: flex;
@@ -54,9 +65,11 @@ button:hover {
     }
   }
   .options {
-    width: 100%;
+    // width: 100%;
+    max-width: 750px;
+    height: 100px;
     display: flex;
-    margin: 10px 0px 10px 0px;
+    margin: 10px auto;
     textarea {
       width: 100%;
     }

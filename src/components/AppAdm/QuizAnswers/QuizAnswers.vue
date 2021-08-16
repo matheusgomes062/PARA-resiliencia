@@ -18,7 +18,7 @@
             <h2>{{questionay.id}}.</h2>
             <h2>{{questionay.title}}</h2>
         </div>
-        <button class="openBtn" @click="screenMediator('Answers')">
+        <button class="openBtn" @click="setQuestionary(questionay.id), screenMediator('Answers')">
           Abrir
         </button>
       </div>
@@ -37,6 +37,7 @@ export default {
   },
   data() {
     return {
+      Questionaries: '',
       questionaries: [
         {
           id: 1,
@@ -50,14 +51,24 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getWhereTo'])
+    ...mapGetters(['getWhereTo', 'getQuestionaries'])
+  },
+  created() {
+    this.getAllQuestionaries();
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo']),
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'setSelectedQuestionary', 'resetSelectedQuestionary']),
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
+    getAllQuestionaries() {
+      this.Questionaries = this.getQuestionaries;
+    },
+    setQuestionary(questionaryId) {
+      this.resetSelectedQuestionary()
+      this.setSelectedQuestionary(questionaryId)
+    }
   }
 }
 </script>
