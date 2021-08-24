@@ -20,6 +20,7 @@ import Answers from '@/components/AppAdm/Answers/Answers.vue';
 import Configurations from '@/components/AppAdm/Configurations/Configurations.vue';
 import ChangePassword from '@/components/AppAdm/Configurations/ChangePassword/ChangePassword.vue';
 import EditQuestions from '@/components/AppAdm/EditQuestions/EditQuestions.vue';
+import ChangeQuestion from '@/components/AppAdm/ChangeQuestion/ChangeQuestion.vue';
 import CreateQuestion from '@/components/AppAdm/CreateQuestions/CreateQuestion.vue';
 import { mapGetters } from 'vuex';
 
@@ -35,6 +36,7 @@ export default {
     Answers,
     ChangePassword,
     EditQuestions,
+    ChangeQuestion,
     CreateQuestion
   },
   data() {
@@ -49,6 +51,7 @@ export default {
         'QuizAnswers',
         'RegisterRestaurant',
         'EditQuestions',
+        'ChangeQuestion',
         'Answers',
         'CreateQuestion'
       ],

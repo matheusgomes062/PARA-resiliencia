@@ -18,7 +18,7 @@
             <h2>{{questionay.id}}.</h2>
             <h2>{{questionay.title}}</h2>
         </div>
-        <button class="openBtn" @click="screenMediator('EditQuestions')">
+        <button class="openBtn" @click="screenMediator('EditQuestions'), setQuestionary(questionay)">
           Abrir
         </button>
       </div>
@@ -50,14 +50,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getWhereTo'])
+    ...mapGetters(['getWhereTo', 'getQuestionaries'])
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo']),
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'setSelectedQuestionary', 'resetSelectedQuestionary']),
+    setQuestionary(questionary) {
+      this.resetSelectedQuestionary();
+      this.setSelectedQuestionary(questionary);
+    },
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
-    },
+    }
   }
 }
 </script>

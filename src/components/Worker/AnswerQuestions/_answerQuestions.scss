@@ -14,6 +14,8 @@ button:hover {
 }
 
 .questionContainer {
+  overflow:auto;
+  height: 500px;
   display: flex;
   padding: 10px;
   flex-direction: column;
@@ -31,6 +33,7 @@ button:hover {
     width: 100%;
     .titleContainer {
       display: flex;
+      max-width: 830px;
     }
     h3{
       display: flex;
@@ -54,9 +57,11 @@ button:hover {
     }
   }
   .options {
-    width: 100%;
+    // width: 100%;
+    max-width: 750px;
+    height: 100px;
     display: flex;
-    margin: 10px 0px 10px 0px;
+    margin: 10px auto;
     textarea {
       width: 100%;
     }

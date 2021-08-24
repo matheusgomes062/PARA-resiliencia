@@ -20,7 +20,7 @@
             <h3>{{question.id}}.</h3>
             <p>{{question.title}}</p>
           </div>
-          <div v-if="true" class="optionsContainer">
+          <div v-if="question.type === 'options'" class="optionsContainer">
             <div v-for="(option, index) in question.options" :key="index" class="toggles-container">
               <label class="switch">
                 <input type="checkbox" :value="option" @click="checkType(option)">
@@ -29,7 +29,7 @@
               <p>{{ option }}</p>
             </div>
           </div>
-          <div v-if="false" class="options">
+          <div v-if="question.type === 'normal'" class="options">
             <textarea></textarea>
           </div>
         </div>
@@ -43,7 +43,7 @@ import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'EditQuestions',
+  name: 'AnswerQuestions',
   components: {
     ChevronLeftIcon
   },
@@ -53,13 +53,20 @@ export default {
       QuestionsList: [
         {
           id: 1,
+          type: 'options',
           title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           options: ['Sim', 'Não']
         },
         {
           id: 2,
+          type: 'options',
           title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           options: ['Sim', 'Não']
+        },
+        {
+          id: 2,
+          type: 'normal',
+          title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         }
       ]
     };
