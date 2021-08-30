@@ -19,19 +19,22 @@
             <h3>{{question.id}}.</h3>
             <p>{{question.title}}</p>
           </div>
-          <div v-if="question.type === 'options'" class="optionsContainer">
+          <div v-if="
+            question.type !== 'normal'" 
+            class="optionsContainer"
+          >
             <div v-for="(option, index) in question.options" :key="index" class="toggles-container">
               <label class="switch">
-                <input :id="question.id" type="checkbox" :value="option" @click="fillAnswers(option, question.id)">
+                <input :id="question.id" type="checkbox" :value="option" @click="fillOptions(option, question.id)">
                 <span class="slider round"></span>
               </label>
               <p>{{ option }}</p>
             </div>
           </div>
-          <div v-if="question.type === 'normal'" class="options">
-            <textarea></textarea>
+          <div v-if="question.type === 'normal' || question.type === 'others'" class="options">
+            <textarea v-model="answers[index].text"></textarea>
           </div>
-          <div v-if='isQuestionInvalid() && dirty' class="error"> Campo Requerido</div>
+          <div v-if='dirty' class="error">{{isQuestionInvalid(question.id)}}</div>
         </div>
       </div>
     </div>
@@ -54,13 +57,13 @@ export default {
       QuestionsList: [
         {
           id: 1,
-          type: 'options',
+          type: 'SingleOptions',
           title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           options: ['Sim', 'Não']
         },
         {
           id: 2,
-          type: 'options',
+          type: 'SingleOptions',
           title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           options: ['Sim', 'Não']
         },
@@ -68,12 +71,26 @@ export default {
           id: 3,
           type: 'normal',
           title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+        },
+        {
+          id: 4,
+          type: 'others',
+          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          options: ['Sim', 'Não']
+        },
+        {
+          id: 5,
+          type: 'multipleOptions',
+          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          options: ['Sim', 'Não']
         }
       ],
       answers: [],
       invalidQuestions: [],
       dirty: false,
-      isAllFilled: false
+      isAllFilled: false,
+      invalidAnswers: [],
+      test: ''
     };
   },
   computed: {
@@ -89,54 +106,88 @@ export default {
       this.setWhereTo(whereTo);
     },
     isFormValid() {
+
       this.dirty = true
-      let i = 1
-      while (i <= this.QuestionsList.length) {
-        if (this.answers[i].value === '') {
-          this.invalidQuestions.push(this.answers[i].questionId) 
-          this.isAllFilled = true;
-        } else this.isAllFilled = false;
+
+      if (this.invalidAnswers.length === 0) this.$vToastify.success('Respostas enviadas!');
+      else this.$vToastify.error('Formulário Inválido');
+    },
+    validateAnswers(Id) {
+      let i = 0
+      while (i <= this.invalidAnswers.length) {
+        if (this.invalidAnswers[i] === Id) {
+          this.invalidAnswers.splice(i, 1);
+        }
         i++
       }
-      this.$vToastify.success('Respostas enviadas!');
     },
     isQuestionInvalid(Id) {
-      let i = 1
-      while (i <= this.QuestionsList.length) {
-        if (this.answers[i].value === '' && this.answers[i].id === Id) {
-          return true
-        } else i++
+      let type = this.QuestionsList[Id - 1].type
+
+      if (this.dirty) {
+        switch (type) {
+          case 'SingleOptions':
+            if (this.answers[Id - 1].value.length <=0) return 'Campo Invalido'
+            else if (this.answers[Id - 1].value.length > 1) return 'Campo Invalido'
+            else {
+              this.validateAnswers(Id);
+            }
+            break;
+          case 'multipleOptions':
+            if (this.answers[Id - 1].value.length <=0) return 'Campo Invalido'
+            else {
+              this.validateAnswers(Id);
+            }
+            break;
+          case 'normal':
+            if (!this.answers[Id - 1].text) return 'Campo Invalido'
+            else {
+              this.validateAnswers(Id);
+            }
+            break;
+          case 'others':
+            if (this.answers[Id - 1].value.length <=0) return 'Campo Invalido'
+            if (!this.answers[Id - 1].text) return 'Campo Invalido'
+            else {
+              this.validateAnswers(Id);
+            }
+            break;
+        }
+
+        console.log(this.invalidAnswers)
       }
     },
     buildObjAnswers() {
       let i = 1;
       while (i <= this.QuestionsList.length) {
+        this.invalidAnswers.push(i)
         this.answers.push({
-          "questionId": '',
-          "value": ''
+          "questionId": i,
+          "value": [],
+          "text": ''
         })
         i++
       }
+      console.log(this.invalidAnswers)
       console.log(this.answers)
     },
-    fillAnswers(option, Id) {
+    fillOptions(option, Id) {
       let checkbox = document.getElementById(Id);
-      if (!checkbox.checked) {
-        let i = 0
-        while (i <= this.answers.length) {
-          console.log(this.answers[i].questionId, Id)
-          if (this.answers[i].questionId === Id) {
-            this.answers[i].value = ''
-          }
-          i++
+      let i = 0
+      let removed = false
+
+      while (i <= this.answers[Id - 1].value.length) {
+        if (option === this.answers[Id - 1].value[i]) {
+          this.answers[Id - 1].value.splice(this.answers[Id - 1].value.indexOf(option), 1);
+          removed = true
         }
-      } else {
-        if (this.answers[Id - 1].value != '') {
-          this.answers[Id - 1].value = ''
-        }
-        this.answers[Id - 1].questionId = Id
-        this.answers[Id - 1].value += option
+        i++
       }
+
+      if (!removed) {
+        this.answers[Id - 1].value.push(option)
+      }
+      removed = false
       console.log(this.answers)
     }
   }
