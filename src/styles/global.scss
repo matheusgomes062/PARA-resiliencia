@@ -3,3 +3,7 @@
 @import "setup/mixins";
 @import "setup/grid";
 @import "setup/default.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

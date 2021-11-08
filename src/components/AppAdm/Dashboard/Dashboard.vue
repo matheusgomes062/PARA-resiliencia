@@ -7,7 +7,7 @@
         <div>
           <div @click="screenMediator('Profile')">Perfil</div>
           <div @click="screenMediator('QuizAnswers')">
-            Respostas do questionário
+            Editais
           </div>
           <!-- <div @click="screenMediator('Questionaries')">Editar questionário</div> -->
           <div @click="screenMediator('RegisterRestaurant')">
@@ -43,20 +43,25 @@ export default {
     this.getQuestionaries();
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo', 'logoutUser', 'setAllQuestionaries']),
-    getQuestionaries() { 
+    ...mapActions([
+      'setWhereTo',
+      'resetWhereTo',
+      'logoutUser',
+      'setAllQuestionaries'
+    ]),
+    getQuestionaries() {
       api
-          .get('/questionary')
-          .then((response) => {
-            if (response.status == 200) {
-              this.setAllQuestionaries(response.data);
-            } else {
-              console.log('error')
-            }
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
+        .get('/questionary')
+        .then((response) => {
+          if (response.status == 200) {
+            this.setAllQuestionaries(response.data);
+          } else {
+            console.log('error');
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     },
     screenMediator(whereTo) {
       this.resetWhereTo();

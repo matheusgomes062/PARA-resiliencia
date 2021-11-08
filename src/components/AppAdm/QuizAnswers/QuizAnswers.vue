@@ -1,29 +1,30 @@
-<template>
-  <div>
-    <div class="header">
-      <div class="goBackIcon">
-        <chevron-left-icon
+<template lang="pug">
+  div
+    div(class="header")
+      div(class="goBackIcon")
+        chevron-left-icon(
           size="2x"
           class="btn"
-          @click="screenMediator('Dashboard')"
-        ></chevron-left-icon>
-      </div>
-    </div>
-    <div>
-      <h1>Questionários</h1>
-    </div>
-    <div v-for="(questionay, index) in questionaries" :key="index" class="questionariesContainer">
-      <div class="questionary">
-        <div class="title">
-            <h2>{{questionay.id}}.</h2>
-            <h2>{{questionay.title}}</h2>
-        </div>
-        <button class="openBtn" @click="setQuestionary(questionay.id), screenMediator('Answers')">
-          Abrir
-        </button>
-      </div>
-    </div>
-  </div>
+          @click="screenMediator('Dashboard')")
+    div
+      h1 Editais
+
+    h3.mx-4 Questionários
+    el-collapse(accordion v-model="activeQuestion")
+      el-collapse-item(title="Questionário 1" name="1")
+        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
+      el-collapse-item(title="Questionário 2" name="2")
+        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
+      el-collapse-item(title="Questionário 3" name="3")
+        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
+
+    div(v-for="(questionaries, index) in questionaries" :key="index" class="questionariesContainer")
+      div(class="questionary")
+        div(class="title")
+            h2 {{questionaries.id}}
+            h2 {{questionaries.title}}
+        button(class="openBtn" @click="setQuestionary(questionaries.id), screenMediator('Answers')")
+        |  Abrir
 </template>
 
 <script>
@@ -47,7 +48,8 @@ export default {
           id: 2,
           title: 'TITLE1'
         }
-      ]
+      ],
+      activeQuestion: ''
     };
   },
   computed: {
@@ -57,7 +59,12 @@ export default {
     this.getAllQuestionaries();
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo', 'setSelectedQuestionary', 'resetSelectedQuestionary']),
+    ...mapActions([
+      'setWhereTo',
+      'resetWhereTo',
+      'setSelectedQuestionary',
+      'resetSelectedQuestionary'
+    ]),
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
@@ -66,11 +73,11 @@ export default {
       this.Questionaries = this.getQuestionaries;
     },
     setQuestionary(questionaryId) {
-      this.resetSelectedQuestionary()
-      this.setSelectedQuestionary(questionaryId)
+      this.resetSelectedQuestionary();
+      this.setSelectedQuestionary(questionaryId);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

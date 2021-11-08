@@ -6,6 +6,10 @@ import vuelidate from 'vuelidate';
 import VueToastify from 'vue-toastify';
 import VueTheMask from 'vue-the-mask';
 
+import ElementConfig from './element-config';
+
+ElementConfig.config();
+
 Vue.use(VueTheMask);
 Vue.use(vuelidate);
 Vue.use(VueToastify, {
