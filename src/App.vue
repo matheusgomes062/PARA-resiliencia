@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <div class="content">
       <router-view />
     </div>
@@ -30,15 +30,9 @@ export default {
   background-image: url('assets/Background.svg');
   // padding: 40px 0;
 }
+
 #logo {
   font-size: 3em;
   padding: 30px;
-}
-.conteiner {
-  background: linear-gradient(
-    0deg,
-    rgba(15, 14, 14, 0.58),
-    rgba(15, 14, 14, 0.58)
-  );
 }
 </style>

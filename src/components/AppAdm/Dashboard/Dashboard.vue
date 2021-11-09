@@ -1,27 +1,16 @@
-<template>
-  <div>
-    <h1 class="cardTitle">PARA Resiliência</h1>
-    <div>
-      <h3 class="subtitle">Seja bem vindo(a)!</h3>
-      <div class="optionsContainer">
-        <div>
-          <div @click="screenMediator('Profile')">Perfil</div>
-          <div @click="screenMediator('QuizAnswers')">
-            Editais
-          </div>
-          <!-- <div @click="screenMediator('Questionaries')">Editar questionário</div> -->
-          <div @click="screenMediator('RegisterRestaurant')">
-            Cadastrar restaurante
-          </div>
-        </div>
-        <div>
-          <div @click="screenMediator('Configurations')">Configuração</div>
-          <div @click="logout">Sair</div>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div
+    h1(class="cardTitle") PARA Resiliência
+    div.d-flex.flex-column.justify-content-center
+      h3(class="subtitle") Seja bem vindo(a)!
+      div(class="optionsContainer")
+        div
+          div(@click="screenMediator('Profile')") Perfil
+          div(@click="screenMediator('QuizAnswers')") Editais
+          div(@click="screenMediator('RegisterRestaurant')") Cadastrar restaurante
+        div.justify-content-start
+          div(@click="screenMediator('Configurations')") Configuração
+          div(@click="logout") Sair
 </template>
 
 <script>

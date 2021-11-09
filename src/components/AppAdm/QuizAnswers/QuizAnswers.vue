@@ -1,35 +1,41 @@
 <template lang="pug">
   div
-    div(class="header")
-      div(class="goBackIcon")
-        chevron-left-icon(
-          size="2x"
-          class="btn"
-          @click="screenMediator('Dashboard')")
-    div
-      h1(class="quizAnswerTitle") Editais
+    Header(routeToGo="Dashboard" title="Editais")
 
-    h3(class="quizAnswerSubTitle") Questionários
+    h4.d-flex.justify-content-start.px-0.w-100 Questionários
 
     div(v-for="(questionaries, index) in questionaries" :key="index" class="questionariesContainer")
       div(class="questionary")
         div(class="questionaryTitle")
-            h2 {{questionaries.id}}
-            h2 {{questionaries.title}}
-        //- button(class="openBtn" @click="setQuestionary(questionaries.id), screenMediator('Answers')") Abrir
+          h5 {{questionaries.title}}
+        
+        div.d-flex.flex-row.justify-content-between
+          div(class="questionarySummary")
+            div
+              p Respondidos
+              p 50
+            
+            div(id="bar")
+            
+            div
+              p Total
+              p 53
+          //- button(class="openBtn" @click="setQuestionary(questionaries.id), screenMediator('Answers')") Abrir
 
-        el-button(icon="el-icon-search" circle).p-0
+          el-button(icon="el-icon-view" @click="setQuestionary(questionaries.id), screenMediator('Answers')" circle)
 
 </template>
 
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'QuizAnswers',
   components: {
-    ChevronLeftIcon
+    ChevronLeftIcon,
+    Header
   },
   data() {
     return {
@@ -37,11 +43,11 @@ export default {
       questionaries: [
         {
           id: 1,
-          title: 'TITLE0'
+          title: 'Questionário 1'
         },
         {
           id: 2,
-          title: 'TITLE1'
+          title: 'Questionário 2'
         }
       ],
       activeQuestion: ''

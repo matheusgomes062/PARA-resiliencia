@@ -18,6 +18,7 @@ button:hover {
 .goBackIcon {
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
 }
 
 .questionContainer {
@@ -127,9 +128,14 @@ button:hover {
 .questionOptions {
   width: 100%;
 }
+
 .question {
   display: flex;
   p {
     margin: auto 10px auto 0;
   }
+}
+
+.questionData {
+  width: 440px;
 }

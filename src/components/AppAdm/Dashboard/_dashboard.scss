@@ -1,16 +1,16 @@
 .optionsContainer {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  width: 100%;
+  margin: 0 auto;
+  
   div {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+
     div {
       margin: 10px;
-      width: 100px;
-      height: 100px;
+      width: 130px;
+      height: 130px;
       padding: 15px;
       background-color: $gray;
       border-radius: 10px;

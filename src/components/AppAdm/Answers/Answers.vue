@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
   //- <div>
   //-   <div class="header">
   //-     <div class="goBackIcon">
@@ -41,26 +41,25 @@
   //- </div>
 
   div
-    div(class="header")
+    div.d-flex.flex-direction-row.pb-3
       div(class="goBackIcon")
         chevron-left-icon(
           size="2x"
-          class="btn"
           @click="screenMediator('Dashboard')")
-    div
-      h1 Questionário
+      div.mx-auto
+        h1(class="quizAnswerTitle") Questionário 1
 
-    h3.mx-4 Questões
+    h4.d-flex.justify-content-start.px-0.w-100 Questões
     
     el-collapse(accordion v-model="activeQuestion" v-for="(question, index) in QuestionsList" :key="index")
       el-collapse-item(name="1")
         template(slot='title')
           div(class='question-container')
             Consistent Questão {{question.id}} 
-            //- div(class='space')
+            
             Consistent 
               b {{question.metrics}}
-        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
+        .questionData Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;
 
 </template>
 
@@ -80,7 +79,8 @@ export default {
       QuestionsList: [
         {
           id: 1,
-          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta) e o conteúdo ensinado nesses treinamentos mudou o seu pensamento em  e o conteúdo ensinado nesses treinamentos mudou o seu pensamento em ',
+          title:
+            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta) e o conteúdo ensinado nesses treinamentos mudou o seu pensamento em  e o conteúdo ensinado nesses treinamentos mudou o seu pensamento em ',
           type: 'options',
           metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
           options: [
@@ -96,7 +96,8 @@ export default {
         },
         {
           id: 2,
-          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          title:
+            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           type: 'options',
           metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
           options: [
@@ -112,32 +113,39 @@ export default {
         },
         {
           id: 3,
-          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          title:
+            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           type: 'normal',
           metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
           answers: [
             {
-              answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+              answer:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
             },
             {
-              answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+              answer:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
             },
             {
-              answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+              answer:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
             }
           ]
         },
         {
           id: 4,
-          title: 'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
+          title:
+            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
           type: 'normal',
           metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
           answers: [
             {
-              answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+              answer:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
             },
             {
-              answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+              answer:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
             }
           ]
         }
@@ -149,8 +157,8 @@ export default {
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo', 'resetSelectedQuestionary']),
-    metrics(){
-      return 'Questionário 1'
+    metrics() {
+      return 'Questionário 1';
     },
     screenMediator(whereTo) {
       this.resetWhereTo();
@@ -158,9 +166,9 @@ export default {
     },
     resetQuestionary() {
       this.resetSelectedQuestionary();
-    } 
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
