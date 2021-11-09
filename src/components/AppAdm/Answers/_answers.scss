@@ -8,6 +8,13 @@ button:hover {
   cursor: pointer;
 }
 
+.question-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between !important;
+  margin-right: 100px;
+}
+
 .goBackIcon {
   display: flex;
   justify-content: flex-start;
