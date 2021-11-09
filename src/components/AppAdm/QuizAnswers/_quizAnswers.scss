@@ -15,37 +15,38 @@ button:hover {
 
 .questionariesContainer {
   display: flex;
-  padding: 5px;
   flex-direction: column;
+  padding: 10px;
   align-items: center;
-  margin-top: 8px;
-  .title {
-    margin: 10px;
-    h2:first-child {
-      margin-right: 10px;
-    }
-  }
-  .questionary{
-    margin: 10px 0px 10px 0px;
-    width: 100%;
-  }
+  margin-top: 10px;
+  border-radius: 10px;
+  background: $default-gray;
 }
 
-.questionary {
+.questionary{
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.title {
+.questionaryTitle {
   display: flex;
-  h2 {
-    margin: auto;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+
+  h2:first-child {
+    margin-right: 10px;
   }
 }
 
 .openBtn {
   width: 100px;
-  height: 42px;
-  margin: auto 0 auto 0;
+}
+
+.quizAnswerSubTitle {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0;
+  width: 100%;
 }

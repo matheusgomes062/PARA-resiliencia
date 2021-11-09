@@ -6,6 +6,15 @@ import vuelidate from 'vuelidate';
 import VueToastify from 'vue-toastify';
 import VueTheMask from 'vue-the-mask';
 
+import { BootstrapVue } from 'bootstrap-vue';
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue);
+
 import ElementConfig from './element-config';
 
 ElementConfig.config();

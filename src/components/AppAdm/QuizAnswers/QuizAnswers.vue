@@ -7,24 +7,19 @@
           class="btn"
           @click="screenMediator('Dashboard')")
     div
-      h1 Editais
+      h1(class="quizAnswerTitle") Editais
 
-    h3.mx-4 Questionários
-    el-collapse(accordion v-model="activeQuestion")
-      el-collapse-item(title="Questionário 1" name="1")
-        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
-      el-collapse-item(title="Questionário 2" name="2")
-        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
-      el-collapse-item(title="Questionário 3" name="3")
-        <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
+    h3(class="quizAnswerSubTitle") Questionários
 
     div(v-for="(questionaries, index) in questionaries" :key="index" class="questionariesContainer")
       div(class="questionary")
-        div(class="title")
+        div(class="questionaryTitle")
             h2 {{questionaries.id}}
             h2 {{questionaries.title}}
-        button(class="openBtn" @click="setQuestionary(questionaries.id), screenMediator('Answers')")
-        |  Abrir
+        //- button(class="openBtn" @click="setQuestionary(questionaries.id), screenMediator('Answers')") Abrir
+
+        el-button(icon="el-icon-search" circle).p-0
+
 </template>
 
 <script>
