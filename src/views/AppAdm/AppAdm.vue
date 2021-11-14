@@ -22,6 +22,7 @@ import ChangePassword from '@/components/AppAdm/Configurations/ChangePassword/Ch
 import EditQuestions from '@/components/AppAdm/EditQuestions/EditQuestions.vue';
 import ChangeQuestion from '@/components/AppAdm/ChangeQuestion/ChangeQuestion.vue';
 import CreateQuestion from '@/components/AppAdm/CreateQuestions/CreateQuestion.vue';
+import Notices from '@/components/AppAdm/Notices/Notices.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -37,7 +38,8 @@ export default {
     ChangePassword,
     EditQuestions,
     ChangeQuestion,
-    CreateQuestion
+    CreateQuestion,
+    Notices
   },
   data() {
     return {
@@ -53,7 +55,8 @@ export default {
         'EditQuestions',
         'ChangeQuestion',
         'Answers',
-        'CreateQuestion'
+        'CreateQuestion',
+        'Notices'
       ],
       whereTo: null
     };

@@ -3,40 +3,18 @@ button {
   font-family: $main-font;
 }
 
-.login-group {
+.register-group {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   margin: 15px 0;
-  flex-direction: column;
 }
 
 .buttonsContainer {
   margin: 15px 0;
   display: flex;
   justify-content: flex-start;
-}
-
-.cardTitle {
-  font-weight: 900;
-  color:$orange;
-  margin-bottom: 30px;
-}
-
-.goBackIcon {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.recoverPasswordTitleContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-
-  h3 {
-    margin-bottom: 20px;
-    max-width: 400px;
-  }
 }
 
 .footNote {

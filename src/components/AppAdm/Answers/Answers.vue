@@ -45,7 +45,7 @@
       div(class="goBackIcon")
         chevron-left-icon(
           size="2x"
-          @click="screenMediator('Dashboard')")
+          @click="screenMediator('QuizAnswers')")
       div.mx-auto
         h1(class="quizAnswerTitle") Questionário 1
 

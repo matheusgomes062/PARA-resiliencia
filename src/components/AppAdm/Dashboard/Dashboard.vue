@@ -6,7 +6,7 @@
       div(class="optionsContainer")
         div
           div(@click="screenMediator('Profile')") Perfil
-          div(@click="screenMediator('QuizAnswers')") Editais
+          div(@click="screenMediator('Notices')") Editais
           div(@click="screenMediator('RegisterRestaurant')") Cadastrar restaurante
         div.justify-content-start
           div(@click="screenMediator('Configurations')") Configuração
@@ -21,9 +21,7 @@ export default {
   name: 'dashboard',
   components: {},
   data() {
-    return {
-      // whereTo: null
-    };
+    return {};
   },
   computed: {
     ...mapGetters(['getWhereTo'])
