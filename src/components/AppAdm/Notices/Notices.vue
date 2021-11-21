@@ -14,6 +14,7 @@
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import { api } from '@/services/index';
 import Header from '@/components/Header/Header.vue';
 
 export default {
@@ -28,9 +29,21 @@ export default {
   computed: {
     ...mapGetters(['getWhereTo'])
   },
-  created() {},
+  created() {
+    getQuestionaries();
+  },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo']),
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'setAllQuestionaries']),
+    // getQuestionaries() {
+    //   api
+    //   .get('/questionnaire')
+    //   .then((response) => {
+    //       this.setAllQuestionaries(response.data)
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response);
+    //     });
+    // },
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    Header(routeToGo="Notices" title="Editais")
+    Header(routeToGo="Dashboard" title="Editais")
 
     h4.d-flex.justify-content-start.px-0.w-100 Questionários
 
@@ -58,6 +58,7 @@ export default {
   },
   created() {
     this.getAllQuestionaries();
+    this.getQuestionaries();
   },
   methods: {
     ...mapActions([
@@ -70,8 +71,15 @@ export default {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
-    getAllQuestionaries() {
-      this.Questionaries = this.getQuestionaries;
+    getQuestionaries() {
+      api
+      .get('/questionnaire')
+      .then((response) => {
+          this.setAllQuestionaries(response.data)
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     },
     setQuestionary(questionaryId) {
       this.resetSelectedQuestionary();

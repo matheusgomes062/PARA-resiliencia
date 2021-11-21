@@ -70,7 +70,7 @@ export default {
       this.$v.$touch();
       if (!this.$v.login.$invalid) {
         api
-          .post('/login', this.login)
+          .post('/session/login', this.login)
           .then((response) => {
             if (response.status == 200) {
               const route = 'owner'; // request.data.userType
