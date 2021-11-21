@@ -1,50 +1,37 @@
-<template>
-  <div>
-    <div class="header">
-      <div class="goBackIcon">
-        <chevron-left-icon
-          size="2x"
-          class="btn"
-          @click="screenMediator('Dashboard')"
-        ></chevron-left-icon>
-      </div>
-    </div>
-    <div>
-      <h1>Questionários</h1>
-    </div>
-    <div v-for="(questionay, index) in questionaries" :key="index" class="questionariesContainer">
-      <div class="questionary">
-        <div class="title">
-            <h2>{{questionay.id}}.</h2>
-            <h2>{{questionay.title}}</h2>
-        </div>
-        <button class="openBtn" @click="screenMediator('AnswerQuestions')">
-          Abrir
-        </button>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div
+    Header(routeToGo="Dashboard" title="Questionários")
+    div(v-for="(questionaries, index) in questionaries" :key="index" class="questionariesContainer")
+      div(class="questionary")
+        div(class="questionaryTitle")
+          h5 {{questionaries.title}}
+        
+        div.d-flex.flex-row.justify-content-between
+
+          el-button(icon="el-icon-view" @click="screenMediator('AnswerQuestions'), setQuestionary(questionaries.id)" circle)
 </template>
 
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'Questionaries',
   components: {
-    ChevronLeftIcon
+    ChevronLeftIcon,
+    Header
   },
   data() {
     return {
       questionaries: [
         {
           id: 1,
-          title: 'TITLE0'
+          title: 'Questionário 0'
         },
         {
           id: 2,
-          title: 'TITLE1'
+          title: 'Questionário 1'
         }
       ]
     };
@@ -54,6 +41,10 @@ export default {
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo']),
+    setQuestionary(questionary) {
+      this.resetSelectedQuestionary();
+      this.setSelectedQuestionary(questionary);
+    },
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);

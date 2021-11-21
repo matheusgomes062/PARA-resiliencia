@@ -1,14 +1,7 @@
 <template>
   <div class="otherOptionsContainer">
-    <div class="goBackIcon">
-      <chevron-left-icon
-        size="2x"
-        class="btn"
-        @click="screenMediator('Dashboard')"
-      ></chevron-left-icon>
-    </div>
+    <Header routeToGo="Dashboard" title="Outras Opções"></Header>
     <div class="subtitleContentContainer">
-      <h2>Outras Opções</h2>
       <div class="otherOptionsGroupContainer">
         <button @click="screenMediator('Profile')">Perfil</button>
         <button @click="screenMediator('Configurations')">Configuração</button>
@@ -21,11 +14,13 @@
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'OtherOptions',
   components: {
-    ChevronLeftIcon
+    ChevronLeftIcon,
+    Header
   },
   data() {
     return {};

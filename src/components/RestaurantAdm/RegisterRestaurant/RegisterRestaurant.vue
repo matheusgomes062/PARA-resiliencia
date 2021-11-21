@@ -1,119 +1,67 @@
-<template>
-  <div class="registerRestaurantContainer">
-    <div class="goBackIcon">
-      <chevron-left-icon
-        size="2x"
-        class="btn"
-        @click="resetState(), screenMediator('Dashboard')"
-      ></chevron-left-icon>
-    </div>
-    <div class="registerRestaurantPictureContainer">
-      <h2>Cadastrar Restaurante</h2>
-    </div>
-    <div class="registerRestaurantGroupContainer">
-      <div class="registerRestaurant-group">
-        <label class="form-label" for="restaurantName"
-          >Nome do Restaurante</label
-        >
-        <input
+<template lang="pug">
+  div.d-flex.flex-column.w-100
+    Header(routeToGo="Dashboard" title="Cadastrar Restaurante")
+
+    el-form.d-flex.flex-column.w-100.my-3(ref="form" :model="registerRestaurant")
+      el-form-item(label="Nome do Restaurante")
+        el-input(
           v-model="registerRestaurant.restaurantName"
           type="text"
           class="registerRestaurant-control"
-          id="restaurantName"
-        />
-        <div
+          id="restaurantName")
+        div(
             v-if="$v.registerRestaurant.restaurantName.$error && !$v.registerRestaurant.restaurantName.required"
-            class="error"
-          >
-            Nome do Restaurante é necessário!
-          </div>
-      </div>
-      <div class="registerRestaurant-group">
-        <label class="form-label" for="owner">Proprietário</label>
-        <input
+            class="error") Nome do Restaurante é necessário!
+      el-form-item(label="Proprietário")
+        el-input(
           v-model="registerRestaurant.owner"
           type="text"
           class="registerRestaurant-control"
-          id="owner"
-        />
-        <div
+          id="owner")
+        div(
             v-if="$v.registerRestaurant.owner.$error && !$v.registerRestaurant.owner.required"
-            class="error"
-          >
-            Nome do Proprietário é necessário!
-        </div>
-      </div>
-      <hr />
-      <div class="addressRestaurant-group">
-        <h3 class="form-label">Localização</h3>
-        <div class="registerRestaurant-group">
-          <label class="form-label" for="addressStreet">Rua</label>
-          <input
-            v-model="registerRestaurant.addressStreet"
+            class="error") Nome do Proprietário é necessário!
+      hr
+      div.d-flex.flex-column
+        h3(class="form-label") Localização
+        el-form-item(label="Rua")
+          el-input(v-model="registerRestaurant.addressStreet"
             type="text"
             class="registerRestaurant-control"
-            id="addressStreet"
-          />
-          <div
+            id="addressStreet")
+          div(
               v-if="$v.registerRestaurant.addressStreet.$error && !$v.registerRestaurant.addressStreet.required"
-              class="error"
-            >
-              Nome da Rua é necessário!
-          </div>
-        </div>
-        <div class="numberDistrictContainer">
-          <div class="registerRestaurant-group" id="addressNumberContainer">
-            <label class="form-label" for="addressNumber">Número</label>
-            <input
+              class="error") Nome da Rua é necessário!
+        div.d-flex.flex-row.w-100.justify-content-between
+          el-form-item(label="Número").col-3
+            el-input(
               v-model="registerRestaurant.addressNumber"
               type="number"
               class="registerRestaurant-control"
-              id="addressNumber"
-            />
-            <div
+              id="addressNumber")
+            div(
                 v-if="$v.registerRestaurant.addressNumber.$error && !$v.registerRestaurant.addressNumber.required"
-                class="error"
-              >
-                Número da Rua é necessário!
-            </div>
-          </div>
-          <div class="registerRestaurant-group">
-            <label class="form-label" for="addressDistrict">Bairro</label>
-            <input
+                class="error") Número da Rua é necessário!
+          el-form-item(label="Bairro").col-8
+            el-input(
               v-model="registerRestaurant.addressDistrict"
               type="text"
               class="registerRestaurant-control"
-              id="addressDistrict"
-            />
-            <div
+              id="addressDistrict")
+            div(
                 v-if="$v.registerRestaurant.addressDistrict.$error && !$v.registerRestaurant.addressDistrict.required"
-                class="error"
-              >
-                Nome do Bairro é necessário!
-            </div>
-          </div>
-        </div>
-        <div class="registerRestaurant-group">
-          <label class="form-label" for="addressCity">Cidade</label>
-          <input
+                class="error") Nome do Bairro é necessário!
+        el-form-item(label="Cidade")
+          el-input(
             v-model="registerRestaurant.addressCity"
             type="text"
             class="registerRestaurant-control"
-            id="addressCity"
-          />
-          <div
+            id="addressCity")
+          div(
             v-if="$v.registerRestaurant.addressCity.$error && !$v.registerRestaurant.addressCity.required"
-            class="error"
-            >
-            Nome da Cidade é necessário!
-          </div>
-        </div>
-      </div>
-      <button class="main-btn" @click="isFormValid">
-        FINALIZAR
-      </button>
-    </div>
-  </div>
+            class="error") Nome da Cidade é necessário!
+      
+    el-button(class="main-btn" @click="isFormValid") FINALIZAR
 </template>
 
 <script>
@@ -121,11 +69,13 @@ import { required } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'RegisterRestaurant',
   components: {
-    ChevronLeftIcon
+    ChevronLeftIcon,
+    Header
   },
   data() {
     return {
@@ -147,7 +97,7 @@ export default {
       addressNumber: { required },
       addressDistrict: { required },
       addressCity: { required }
-    },
+    }
   },
   computed: {
     ...mapGetters(['getWhereTo'])
@@ -159,7 +109,7 @@ export default {
       this.setWhereTo(whereTo);
     },
     isFormValid() {
-      this.$v.$touch()
+      this.$v.$touch();
       if (!this.$v.registerRestaurant.$invalid) {
         api
           .post('/registerRestaurant', this.registerRestaurant)
@@ -171,7 +121,9 @@ export default {
               );
               this.$router.push(this.routes['RestaurantAdm']);
             } else {
-              this.$vToastify.error('Não foi possível cadastrar restaurante...');
+              this.$vToastify.error(
+                'Não foi possível cadastrar restaurante...'
+              );
             }
           })
           .catch((error) => {
@@ -182,12 +134,12 @@ export default {
     },
     resetState() {
       this.$v.$reset();
-      this.registerRestaurant.restaurantName = null
-      this.registerRestaurant.owner = null
-      this.registerRestaurant.addressStreet = null
-      this.registerRestaurant.addressNumber = null
-      this.registerRestaurant.addressDistrict = null
-      this.registerRestaurant.addressCity = null
+      this.registerRestaurant.restaurantName = null;
+      this.registerRestaurant.owner = null;
+      this.registerRestaurant.addressStreet = null;
+      this.registerRestaurant.addressNumber = null;
+      this.registerRestaurant.addressDistrict = null;
+      this.registerRestaurant.addressCity = null;
     }
   }
 };
