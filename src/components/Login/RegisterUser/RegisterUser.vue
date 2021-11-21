@@ -58,22 +58,51 @@
         div(
           v-if="$v.user.passwordConfirm.$error && !$v.user.passwordConfirm.sameAsPassword"
           class="error")  Senhas diferentes!
+
       el-button(
         @click="createUser"
-        class="btn-outlined heavyTextButton main-btn") CADASTRAR
+        class=" main-btn") CADASTRAR
+        
       section(class="footNote") Já é cadastrado?
         p(style="cursor: pointer; text-decoration: underline"
           @click="screenMediator('loginScreen')") Entrar
+
+    el-dialog(
+      :visible.sync="dialogVisible"
+      width="70%"
+      :before-close="handleClose")
+      span
+        //- pdf(src="./pra-front.pdf" :page="1")
+        //-   template(slot="loading") loading content here...
+        //- object(data="./pra-front.pdf" type="application/pdf")
+        //-   div No PDF viewer available
+        pdf(src="./TCLE_emenda.pdf")
+        //- embed(src="pra-front.pdf" width="500" height="375" type="application/pdf")
+
+      el-checkbox( v-model="user.readTerms")
+        h4 Aceita os termos de serviço
+        div(
+          v-if="$v.user.readTerms.$error && !$v.user.readTerms.required"
+          class="error checkboxErrorRegister")  Aceite de termos necessário!
+      span.d-flex.justify-content-between(slot="footer" class="dialog-footer")
+        el-button(@click="dialogVisible = false") Cancel
+        el-button(type="primary" @click="dialogVisible = false") Confirm
 </template>
 
 <script>
 import { required, email, sameAs } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
 import { mapActions } from 'vuex';
+// import VuePdfApp from 'vue-pdf-app';
+// import this to use default icons for buttons
+// import 'vue-pdf-app/dist/icons/main.css';
+import pdf from 'vue-pdf';
 
 export default {
   name: 'RegisterUser',
-  components: {},
+  components: {
+    pdf
+  },
   data() {
     return {
       user: {
@@ -101,7 +130,9 @@ export default {
         admin: 'restaurantAdm',
         employee: 'worker',
         owner: 'appAdm'
-      }
+      },
+
+      dialogVisible: true
     };
   },
   validations: {
@@ -110,7 +141,8 @@ export default {
       email: { required, email },
       type: { required },
       password: { required },
-      passwordConfirm: { required, sameAsPassword: sameAs('password') }
+      passwordConfirm: { required, sameAsPassword: sameAs('password') },
+      readTerms: { required }
     }
   },
   computed: {},
@@ -130,6 +162,8 @@ export default {
     createUser() {
       this.$v.$touch();
       if (!this.$v.user.$invalid) {
+        this.dialogVisible = true;
+
         api
           .post('/users', this.user)
           .then((response) => {
@@ -146,6 +180,8 @@ export default {
             console.log(error.response);
             this.$vToastify.error('Não foi possível criar usuário...');
           });
+      } else {
+        this.openPdf = false;
       }
     },
 
@@ -153,6 +189,13 @@ export default {
       this.reset();
       this.setWhereTo(whereTo);
       this.$emit('screenMediator');
+    },
+    handleClose(done) {
+      this.$confirm('Are you sure to close this dialog?')
+        .then((_) => {
+          done();
+        })
+        .catch((_) => {});
     }
   }
 };

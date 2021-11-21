@@ -1,6 +1,6 @@
 <template lang="pug">
   div.d-flex.flex-column.justify-content-between(style="min-height: 270px;")
-    Header(routeToGo="Dashboard" title="Mudar Senha")
+    Header(routeToGo="Configurations" title="Mudar Senha")
 
     el-form.my-3
       el-form-item(label="Senha anterior")

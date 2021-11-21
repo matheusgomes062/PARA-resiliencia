@@ -11,12 +11,6 @@ button {
   margin: 15px 0;
 }
 
-.buttonsContainer {
-  margin: 15px 0;
-  display: flex;
-  justify-content: flex-start;
-}
-
 .footNote {
   font-size: 0.95em;
   margin-top: 20px;
@@ -26,4 +20,14 @@ button {
   p {
     margin-left: 5px;
   }
+}
+
+.checkboxErrorRegister {
+  margin: -10px 0;
+  padding-bottom: 30px;
+}
+
+.el-checkbox__inner {
+  width: 20px !important;
+  height: 20px !important;
 }
