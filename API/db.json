@@ -1,0 +1,47 @@
+{
+  "login": [
+    {
+      "id": "1",
+      "name": "Siqueira Gambis",
+      "type": "owner",
+      "email": "siqueira@gmail.com",
+      "password": "123"
+    }
+  ],
+  "users": [
+    {
+      "name": "Matheus Gomes de Paula",
+      "email": "matheusgomes062@gmail.com",
+      "type": "admin",
+      "password": "123",
+      "passwordConfirm": "123",
+      "id": "3Ehx7jv"
+    }
+  ],
+  "restaurant": [
+    {
+      "name": "Restaurante Rambo",
+      "address": "rambo street",
+      "ownerId": "3Ehx7jv"
+    }
+  ],
+  "questionnaire": [
+    {
+      "id": "1",
+      "title": "Titulo",
+      "questions": [
+        "teste questao"
+      ]
+    }
+  ],
+  "notice": {
+    "ownerId": "3Ehx7jv",
+    "restaurantId": "3Ehx7jv",
+    "questionnaireId": "3Ehx7jv",
+    "answerGroupIds": [
+      "answerGroupIds123"
+    ],
+    "startDate": "2021-11-21T19:26:15.422Z",
+    "endDate": "2021-11-21T19:26:15.422Z"
+  }
+}

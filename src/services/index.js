@@ -3,7 +3,7 @@ import axios from 'axios';
 const url = 'http://localhost:3000'; //process.env.VUE_APP_API_BASE_URL
 
 const axiosInstance = axios.create({
-  baseURL: url + '/api'
+  baseURL: url //colocar o api novamente
 });
 
 axiosInstance.interceptors.request.use(
