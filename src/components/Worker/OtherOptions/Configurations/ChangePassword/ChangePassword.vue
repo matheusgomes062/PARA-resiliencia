@@ -1,60 +1,40 @@
-<template>
-  <div class="changePasswordContainer">
-    <div class="goBackIcon">
-      <chevron-left-icon
-        size="2x"
-        class="btn"
-        @click="screenMediator('Configurations')"
-      ></chevron-left-icon>
-    </div>
-    <div class="changePasswordPictureContainer">
-      <h2>Mudar Senha</h2>
-    </div>
-    <div class="changePasswordGroupContainer">
-      <div class="changePassword-group">
-        <label class="form-label" for="previousPassword">Senha anterior</label>
-        <input
+<template lang="pug">
+  div.d-flex.flex-column.justify-content-between(style="min-height: 270px;")
+    Header(routeToGo="Configurations" title="Mudar Senha")
+
+    el-form.my-3
+      el-form-item(label="Senha anterior")
+        el-input(
           v-model="changePassword.previousPassword"
           type="text"
           class="changePassword-control"
-          id="previousPassword"
-        />
-      </div>
-      <div class="changePassword-group">
-        <label class="form-label" for="newPassword">Nova Senha</label>
-        <input
+          id="previousPassword")
+      el-form-item(label="Nova Senha")
+        el-input(
           v-model="changePassword.newPassword"
           type="text"
           class="changePassword-control"
-          id="newPassword"
-        />
-      </div>
-      <div class="changePassword-group">
-        <label class="form-label" for="confirmNewPassword"
-          >Confirmar nova senha</label
-        >
-        <input
+          id="newPassword")
+      el-form-item(label="Confirmar nova senha")
+        el-input(
           v-model="changePassword.confirmNewPassword"
           type="text"
           class="changePassword-control"
-          id="confirmNewPassword"
-        />
-      </div>
-      <button class="main-btn" @click="screenMediator('Dashboard')">
-        FINALIZAR
-      </button>
-    </div>
-  </div>
+          id="confirmNewPassword")
+    
+    el-button(class="main-btn" @click="screenMediator('Dashboard')") FINALIZAR
 </template>
 
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'ChangePassword',
   components: {
-    ChevronLeftIcon
+    ChevronLeftIcon,
+    Header
   },
   data() {
     return {

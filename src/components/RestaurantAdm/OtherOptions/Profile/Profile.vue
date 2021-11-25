@@ -1,56 +1,44 @@
-<template>
-  <div>
-    <div class="goBackIcon">
-      <chevron-left-icon
-        size="2x"
-        class="btn"
-        @click="screenMediator('OtherOptions')"
-      ></chevron-left-icon>
-    </div>
-    <div class="profilePictureContainer">
-      <div></div>
-      <p>Alterar foto do perfil</p>
-    </div>
-    <div class="profileGroupContainer">
-      <div class="profile-group">
-        <label class="form-label" for="profileFullName">Nome completo</label>
-        <input
+<template lang="pug">
+  div
+    Header(routeToGo="OtherOptions")
+    
+    .profilePictureContainer
+      div
+      | Alterar foto do perfil
+    el-form(ref="form" :model="profile")
+      el-form-item(
+          label="Nome completo")
+        el-input(
           v-model="profile.fullName"
           type="text"
           class="profile-control"
-          id="profileFullName"
-        />
-      </div>
-      <div class="profile-group">
-        <label class="form-label" for="profileEmail">E-mail</label>
-        <input
+          id="profileFullName")
+      el-form-item(
+          label="E-mail")
+        el-input(
           v-model="profile.email"
           type="email"
           class="profile-control"
-          id="profileEmail"
-        />
-      </div>
-      <div class="profile-group">
-        <label class="form-label" for="profilePassword">Senha</label>
-        <input
+          id="profileEmail")
+      el-form-item(
+          label="Senha")
+        el-input(
           v-model="profile.password"
           type="password"
           class="profile-control"
-          id="profilePassword"
-        />
-      </div>
-    </div>
-  </div>
+          id="profilePassword")
 </template>
 
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'Profile',
   components: {
-    ChevronLeftIcon
+    ChevronLeftIcon,
+    Header
   },
   data() {
     return {

@@ -1,16 +1,10 @@
 <template>
   <div>
+    <Header routeToGo="Questionaries" title="Teste piloto 5: Administração"></Header>
     <div class="header">
-      <div class="goBackIcon">
-      <chevron-left-icon
-        size="2x"
-        class="btn"
-        @click="screenMediator('Questionaries')"
-      ></chevron-left-icon>
+      <div></div>
+      <button @click="isFormValid">Enviar</button>
     </div>
-    <button @click="isFormValid">Enviar</button>
-    </div>
-    <h1 class="title">Teste piloto 5: Administração</h1>
     <p class="description">{{ description }}</p>
     <div class="mainContainer">
       <div class="questionContainer">
@@ -41,10 +35,12 @@
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'AnswerQuestions',
   components: {
+    Header,
     ChevronLeftIcon
   },
   data() {
