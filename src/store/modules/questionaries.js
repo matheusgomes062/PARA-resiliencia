@@ -1,7 +1,7 @@
 export default {
   state: {
     questionaries: [],
-    selectedQuestionary: []
+    selectedQuestionary: null
   },
   getters: {
     getQuestionaries: (state) => {
@@ -27,7 +27,7 @@ export default {
       commit('SET_ALL_QUESTIONARIES', payload);
     },
     setSelectedQuestionary: ({ commit }, payload) => {
-      commit('SET_SELECTED_QUESTIONARY');
+      commit('SET_SELECTED_QUESTIONARY', payload);
     },
     resetSelectedQuestionary: ({ commit }) => {
       commit('RESET_SELECTED_QUESTIONARY');

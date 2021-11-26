@@ -2,6 +2,6 @@
 @import "setup/variables";
 @import "setup/mixins";
 @import "setup/grid";
-@import "setup/default.scss";
+@import "setup/default";
 
-@import "setup/_element.scss"
+@import "setup/element";

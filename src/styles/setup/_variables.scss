@@ -1,17 +1,18 @@
-$orange: #FD7E14;
-$gray: #eeeeee;
-$default-gray: #cecece;
-$default-gray2: #C4C4C4;
-$dark-gray: #d4d4d4;
-$light-gray: #F5F5F5;
-$black: #000000;
-$black2: #031633;
-$gray-overlay: transparentize($black, 0.12);
-$red: #ef476f;
-$yellow: #ffd166;
-$green: #06d6a0;
-$blue: #118ab2;
-$dark-blue: #073b4c;
-$darker-blue: #052C65;
+/* Cores do tema do sistema */
+$orange:          #FD7E14 !default;
+$gray:            #eeeeee !default;
+$default-gray:    #cecece !default;
+$default-gray2:   #C4C4C4 !default;
+$dark-gray:       #d4d4d4 !default;
+$light-gray:      #F5F5F5 !default;
+$black:           #000000 !default;
+$black2:          #031633 !default;
+$gray-overlay:      transparentize($black, 0.12) !default;
+$red:             #ef476f !default;
+$yellow:          #ffd166 !default;
+$green:           #06d6a0 !default;
+$blue:            #118ab2 !default;
+$dark-blue:       #073b4c !default;
+$darker-blue:     #052C65 !default;
 
-$main-font: Avenir, Helvetica, Arial, sans-serif;
+$main-font: Avenir, Helvetica, Arial, sans-serif !default;

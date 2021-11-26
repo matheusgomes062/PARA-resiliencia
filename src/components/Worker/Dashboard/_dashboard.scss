@@ -11,12 +11,14 @@
 .optionsContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;align-items: center;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+
     div {
-      display: flex;
       margin: 10px;
-      width: 100px;
-      height: 100px;
+      width: 130px;
+      height: 130px;
       padding: 15px;
       background-color: $gray;
       border-radius: 10px;
@@ -25,8 +27,18 @@
       cursor: pointer;
       font-weight: 700;
       transition: 0.3s;
+      display: flex;
+      
     }
-    :hover{
+    span {
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      padding: 15px;
+      background-color: white;
+      text-align: center;
+    }
+    div:hover{
       box-shadow: 0px 0px 15px $default-gray2;
     }
 }

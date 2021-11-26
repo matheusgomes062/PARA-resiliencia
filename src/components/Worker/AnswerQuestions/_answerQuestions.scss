@@ -8,67 +8,9 @@ button:hover {
   cursor: pointer;
 }
 
-.goBackIcon {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.questionContainer {
-  overflow:auto;
-  height: 500px;
-  display: flex;
-  padding: 10px;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
-  .title {
-    margin: 10px;
-  }
-  .questionary{
-    margin: 10px 0px 10px 0px;
-    width: 100%;
-  }
-  justify-content: space-between;
-  .questionContent {
-    width: 100%;
-    .titleContainer {
-      display: flex;
-      max-width: 830px;
-    }
-    h3{
-      display: flex;
-      align-items: initial;
-      margin-right: 20px;
-    }
-    p {
-      text-align: left;
-      max-width: 800px;
-      margin: auto;
-    }
-    .optionsContainer{
-      width: 300px;
-      align-items: initial;
-      
-      .toggles-container{
-        display: flex;
-        width: 100px;
-        margin: 10px 0px 10px 30px;
-      }
-    }
-  }
-  .options {
-    // width: 100%;
-    max-width: 750px;
-    height: 100px;
-    display: flex;
-    margin: 10px auto;
-    textarea {
-      width: 100%;
-    }
-    p {
-      margin: auto 30px auto 0;
-    }
-  }
+.questionsContainer{
+  padding: 10px 30px;
+  width: 100%;
 }
 
 .questionary:hover { 
