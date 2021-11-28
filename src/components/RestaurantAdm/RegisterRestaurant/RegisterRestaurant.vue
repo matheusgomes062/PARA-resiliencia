@@ -92,11 +92,11 @@ export default {
   validations: {
     registerRestaurant: {
       restaurantName: { required },
-      owner: { required },
-      addressStreet: { required },
-      addressNumber: { required },
-      addressDistrict: { required },
-      addressCity: { required }
+      owner: { required }
+      // addressStreet: { required },
+      // addressNumber: { required },
+      // addressDistrict: { required },
+      // addressCity: { required }
     }
   },
   computed: {
@@ -112,7 +112,7 @@ export default {
       this.$v.$touch();
       if (!this.$v.registerRestaurant.$invalid) {
         api
-          .post('/registerRestaurant', this.registerRestaurant)
+          .post('/restaurant', this.registerRestaurant)
           .then((response) => {
             if (response.status == 200) {
               this.$vToastify.success(

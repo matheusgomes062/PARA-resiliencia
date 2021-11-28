@@ -24,7 +24,7 @@
         v-if="$v.login.password.$error && !$v.login.password.required"
         class="error")  Senha necessária!
     el-button(
-      @click="loginUser"
+      @click="loginUserMethod"
       class="btn-outlined heavyTextButton main-btn")  VAMOS LÁ!
     div(class="buttonsContainer")
       el-button(
@@ -66,23 +66,30 @@ export default {
   methods: {
     ...mapActions(['loginUser', 'setWhereTo']),
 
-    loginUser() {
+    loginUserMethod() {
       this.$v.$touch();
       if (!this.$v.login.$invalid) {
         api
           .post('/session/login', this.login)
           .then((response) => {
-            if (response.status == 200) {
-              const route = 'owner'; // request.data.userType
-              this.loginUser(response.data);
+            if (response.status == 201) {
+              let route;
+              if (response.data.userInfo.type === 'employee') {
+                route = 'worker';
+              } else if (response.data.userInfo.type === 'owner') {
+                route = 'restaurantAdm';
+              } else if (response.data.userInfo.type === 'admin') {
+                route = 'restaurantAdm';
+              }
+              this.loginUser(response.data.token);
               this.$vToastify.success('Bem vindo!', 'Sucesso!');
-              this.$router.push(this.routes[route]);
+              this.$router.push(route);
             } else {
               this.$vToastify.error('Não foi possível fazer Login...');
             }
           })
           .catch((error) => {
-            console.log(error.response);
+            console.log(error);
             this.$vToastify.error('Não foi possível fazer Login...');
           });
       }

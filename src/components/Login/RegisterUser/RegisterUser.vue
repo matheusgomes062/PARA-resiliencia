@@ -108,7 +108,7 @@ export default {
       userTypes: {
         restaurantAdm: {
           name: 'Administrador de restaurante',
-          value: 'admin' // restaurantAdm
+          value: 'owner' // restaurantAdm
         },
         worker: {
           name: 'Funcionário',
@@ -116,7 +116,7 @@ export default {
         }
         // appAdm: {
         //   name: 'Administrador da aplicação',
-        //   value: 'owner' //appAdm
+        //   value: 'admin' //appAdm
         // }
       },
       routes: {
@@ -163,23 +163,18 @@ export default {
         this.openPdf = false;
       }
     },
-    createUser() {
+    async createUser() {
       this.$v.$touch();
       if (!this.$v.user.$invalid && !this.$v.readTerms.$invalid) {
-        api
+        await api
           .post('/users', this.user)
           .then((response) => {
             if (response.status == 201) {
-              const route = 'owner'; // request.data.userType
-              this.loginUser(response.data);
-              this.$vToastify.success('Bem vindo!');
-              this.$router.push(this.routes[route]);
-            } else {
-              this.$vToastify.error('Não foi possível criar usuário...');
+              this.$router.go();
             }
           })
           .catch((error) => {
-            console.log(error.response);
+            console.log(error);
             this.$vToastify.error('Não foi possível criar usuário...');
           });
       }
