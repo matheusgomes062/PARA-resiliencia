@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    Header(routeToGo="Dashboard" title="Editais")
+    Header(routeToGo="Notices" title="Editais")
 
     h4.d-flex.justify-content-start.px-0.w-100 Questionários
 
@@ -73,9 +73,9 @@ export default {
     },
     getQuestionaries() {
       api
-      .get('/questionnaire')
-      .then((response) => {
-          this.setAllQuestionaries(response.data)
+        .get('/questionnaire')
+        .then((response) => {
+          this.setAllQuestionaries(response.data);
         })
         .catch((error) => {
           console.log(error.response);

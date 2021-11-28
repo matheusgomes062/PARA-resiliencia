@@ -1,45 +1,4 @@
 <template lang="pug">
-  //- <div>
-  //-   <div class="header">
-  //-     <div class="goBackIcon">
-  //-     <chevron-left-icon
-  //-       size="2x"
-  //-       class="btn"
-  //-       @click="resetQuestionary, screenMediator('QuizAnswers')"
-  //-     ></chevron-left-icon>
-  //-   </div>
-  //-   </div>
-  //-   <div>
-  //-     <h1 class="title">Título</h1>
-  //-   </div>
-  //-   <div class="mainContainer">
-  //-     <div class="questionContainer">
-  //-       <div class="questionContent" v-for="(question, index) in QuestionsList" :key="index">
-  //-         <div>
-  //-           <div class="titleContainer">
-  //-             <h3>{{question.id}}.</h3>
-  //-             <p>{{question.title}}</p>
-  //-           </div>
-  //-           <div class="answersTitle">
-  //-             <p>Respostas:</p>
-  //-           </div>
-  //-           <div class="optionsContainer" v-if="question.type === 'options'">
-  //-             <div v-for="(options, index) in question.options" :key="index" class="toggles-container">
-  //-               <li>{{ options.option }} - {{ options.percentage }}</li>
-  //-             </div>
-  //-           </div>
-  //-           <div v-else class="answersContainer">
-  //-             <div v-for="(answers, index) in question.answers" :key="index" class="answersContent">
-  //-               <p>{{index + 1}} -</p>
-  //-               <p>{{ answers.answer }}</p>
-  //-             </div>
-  //-           </div>
-  //-         </div>
-  //-       </div>
-  //-     </div>
-  //-   </div>
-  //- </div>
-
   div
     div.d-flex.flex-direction-row.pb-3
       div(class="goBackIcon")

@@ -1,5 +1,9 @@
 import Vue from 'vue';
 import 'element-ui/lib/theme-chalk/index.css';
+import lang from 'element-ui/lib/locale/lang/pt-br';
+import locale from 'element-ui/lib/locale';
+
+locale.use(lang);
 
 import {
   Collapse,
@@ -11,7 +15,8 @@ import {
   Select,
   Option,
   Checkbox,
-  Dialog
+  Dialog,
+  DatePicker
 } from 'element-ui';
 
 import Loading from 'element-ui/lib/loading';
@@ -29,7 +34,7 @@ export default {
     Vue.use(Option);
     Vue.use(Checkbox);
     Vue.use(Dialog);
-
+    Vue.use(DatePicker);
     Vue.prototype.$loading = Loading.service;
     Vue.prototype.$notify = Notification;
   }
