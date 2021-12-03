@@ -82,6 +82,7 @@ export default {
                 route = 'restaurantAdm';
               }
               this.loginUser(response.data.token);
+              console.log(response.data.token);
               this.$vToastify.success('Bem vindo!', 'Sucesso!');
               this.$router.push(route);
             } else {

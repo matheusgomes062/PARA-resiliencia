@@ -5,12 +5,12 @@
     el-form.d-flex.flex-column.w-100.my-3(ref="form" :model="registerRestaurant")
       el-form-item(label="Nome do Restaurante")
         el-input(
-          v-model="registerRestaurant.restaurantName"
+          v-model="registerRestaurant.name"
           type="text"
           class="registerRestaurant-control"
-          id="restaurantName")
+          id="name")
         div(
-            v-if="$v.registerRestaurant.restaurantName.$error && !$v.registerRestaurant.restaurantName.required"
+            v-if="$v.registerRestaurant.name.$error && !$v.registerRestaurant.name.required"
             class="error") Nome do Restaurante é necessário!
       el-form-item(label="Proprietário")
         el-input(
@@ -25,41 +25,50 @@
       div.d-flex.flex-column
         h3(class="form-label") Localização
         el-form-item(label="Rua")
-          el-input(v-model="registerRestaurant.addressStreet"
+          el-input(v-model="registerRestaurant.street"
             type="text"
             class="registerRestaurant-control"
-            id="addressStreet")
+            id="street")
           div(
-              v-if="$v.registerRestaurant.addressStreet.$error && !$v.registerRestaurant.addressStreet.required"
+              v-if="$v.registerRestaurant.street.$error && !$v.registerRestaurant.street.required"
               class="error") Nome da Rua é necessário!
         div.d-flex.flex-row.w-100.justify-content-between
           el-form-item(label="Número").col-3
             el-input(
-              v-model="registerRestaurant.addressNumber"
+              v-model="registerRestaurant.streetNumber"
               type="number"
               class="registerRestaurant-control"
-              id="addressNumber")
+              id="streetNumber")
             div(
-                v-if="$v.registerRestaurant.addressNumber.$error && !$v.registerRestaurant.addressNumber.required"
+                v-if="$v.registerRestaurant.streetNumber.$error && !$v.registerRestaurant.streetNumber.required"
                 class="error") Número da Rua é necessário!
           el-form-item(label="Bairro").col-8
             el-input(
-              v-model="registerRestaurant.addressDistrict"
+              v-model="registerRestaurant.neighborhood"
               type="text"
               class="registerRestaurant-control"
-              id="addressDistrict")
+              id="neighborhood")
             div(
-                v-if="$v.registerRestaurant.addressDistrict.$error && !$v.registerRestaurant.addressDistrict.required"
+                v-if="$v.registerRestaurant.neighborhood.$error && !$v.registerRestaurant.neighborhood.required"
                 class="error") Nome do Bairro é necessário!
         el-form-item(label="Cidade")
           el-input(
-            v-model="registerRestaurant.addressCity"
+            v-model="registerRestaurant.city"
             type="text"
             class="registerRestaurant-control"
-            id="addressCity")
+            id="city")
           div(
-            v-if="$v.registerRestaurant.addressCity.$error && !$v.registerRestaurant.addressCity.required"
+            v-if="$v.registerRestaurant.city.$error && !$v.registerRestaurant.city.required"
             class="error") Nome da Cidade é necessário!
+        el-form-item(label="Estado")
+          el-input(
+            v-model="registerRestaurant.state"
+            type="text"
+            class="registerRestaurant-control"
+            id="state")
+          div(
+            v-if="$v.registerRestaurant.state.$error && !$v.registerRestaurant.state.required"
+            class="error") Nome da Estado é necessário!
       
     el-button(class="main-btn" @click="isFormValid") FINALIZAR
 </template>
@@ -80,23 +89,25 @@ export default {
   data() {
     return {
       registerRestaurant: {
-        restaurantName: null,
+        name: null,
         owner: null,
-        addressStreet: null,
-        addressNumber: null,
-        addressDistrict: null,
-        addressCity: null
+        street: null,
+        streetNumber: null,
+        neighborhood: null,
+        city: null,
+        state: null
       }
     };
   },
   validations: {
     registerRestaurant: {
-      restaurantName: { required },
-      owner: { required }
-      // addressStreet: { required },
-      // addressNumber: { required },
-      // addressDistrict: { required },
-      // addressCity: { required }
+      name: { required },
+      owner: { required },
+      street: { required },
+      streetNumber: { required },
+      neighborhood: { required },
+      city: { required },
+      state: { required }
     }
   },
   computed: {
@@ -134,12 +145,13 @@ export default {
     },
     resetState() {
       this.$v.$reset();
-      this.registerRestaurant.restaurantName = null;
+      this.registerRestaurant.name = null;
       this.registerRestaurant.owner = null;
-      this.registerRestaurant.addressStreet = null;
-      this.registerRestaurant.addressNumber = null;
-      this.registerRestaurant.addressDistrict = null;
-      this.registerRestaurant.addressCity = null;
+      this.registerRestaurant.street = null;
+      this.registerRestaurant.streetNumber = null;
+      this.registerRestaurant.neighborhood = null;
+      this.registerRestaurant.city = null;
+      this.registerRestaurant.state = null;
     }
   }
 };
