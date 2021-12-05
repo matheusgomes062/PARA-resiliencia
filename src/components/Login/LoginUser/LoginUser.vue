@@ -79,7 +79,7 @@ export default {
               } else if (response.data.userInfo.type === 'owner') {
                 route = 'restaurantAdm';
               } else if (response.data.userInfo.type === 'admin') {
-                route = 'restaurantAdm';
+                route = 'appAdm';
               }
               this.loginUser(response.data.token);
               console.log(response.data.token);

@@ -12,15 +12,6 @@
         div(
             v-if="$v.registerRestaurant.name.$error && !$v.registerRestaurant.name.required"
             class="error") Nome do Restaurante é necessário!
-      el-form-item(label="Proprietário")
-        el-input(
-          v-model="registerRestaurant.owner"
-          type="text"
-          class="registerRestaurant-control"
-          id="owner")
-        div(
-            v-if="$v.registerRestaurant.owner.$error && !$v.registerRestaurant.owner.required"
-            class="error") Nome do Proprietário é necessário!
       hr
       div.d-flex.flex-column
         h3(class="form-label") Localização
@@ -90,7 +81,6 @@ export default {
     return {
       registerRestaurant: {
         name: null,
-        owner: null,
         street: null,
         streetNumber: null,
         neighborhood: null,
@@ -102,7 +92,6 @@ export default {
   validations: {
     registerRestaurant: {
       name: { required },
-      owner: { required },
       street: { required },
       streetNumber: { required },
       neighborhood: { required },
@@ -125,12 +114,14 @@ export default {
         api
           .post('/restaurant', this.registerRestaurant)
           .then((response) => {
-            if (response.status == 200) {
+            if (response.status == 201) {
               this.$vToastify.success(
                 'Restaurante Cadastrado com sucesso!',
                 'Sucesso!'
               );
-              this.$router.push(this.routes['RestaurantAdm']);
+              // this.$router.push(this.routes['RestaurantAdm']);
+              // this.$router.push('Dashboard');
+              this.screenMediator('Dashboard')
             } else {
               this.$vToastify.error(
                 'Não foi possível cadastrar restaurante...'
@@ -146,7 +137,6 @@ export default {
     resetState() {
       this.$v.$reset();
       this.registerRestaurant.name = null;
-      this.registerRestaurant.owner = null;
       this.registerRestaurant.street = null;
       this.registerRestaurant.streetNumber = null;
       this.registerRestaurant.neighborhood = null;
