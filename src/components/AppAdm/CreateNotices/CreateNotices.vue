@@ -87,12 +87,7 @@ export default {
       .get('/restaurant')
       .then((response) => {
         if (response.status == 200) {
-          this.$vToastify.success(
-            'Restaurantes recebidos',
-            'Sucesso!'
-          );
           this.restaurants = response.data
-          console.log(this.restaurants)
         } else {
           this.$vToastify.error(
             'Não foi possível receber os restaurantes'
@@ -108,10 +103,6 @@ export default {
       .get('/questionnaire')
       .then((response) => {
         if (response.status == 200) {
-          this.$vToastify.success(
-            'Questionários recebidos',
-            'Sucesso!'
-          );
           this.questionnaires = response.data
         } else {
           this.$vToastify.error(
@@ -126,7 +117,6 @@ export default {
     },
     createNotice() {
       this.$v.$touch();
-      console.log(this.date)
       let registerNotice = {
         restaurantId: this.restaurant,
         questionnaireId: this.questionnaire,

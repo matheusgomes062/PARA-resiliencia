@@ -38,7 +38,7 @@ export default {
     ]),
     getQuestionaries() {
       api
-        .get('/questionary')
+        .get('/questionnaire')
         .then((response) => {
           if (response.status == 200) {
             this.setAllQuestionaries(response.data);

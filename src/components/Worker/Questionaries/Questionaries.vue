@@ -9,7 +9,7 @@
           
           div.d-flex.flex-row.justify-content-between
 
-            el-button(icon="el-icon-view" @click="screenMediator('AnswerQuestions'), setQuestionary(questionaries.id)" circle)
+            el-button(icon="el-icon-view" @click="setQuestionary(questionaries), screenMediator('AnswerQuestions')" circle)
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
     this.requestQuestionnaires();
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo']),
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'resetSelectedQuestionary','setSelectedQuestionary']),
     setQuestionary(questionary) {
       this.resetSelectedQuestionary();
       this.setSelectedQuestionary(questionary);
@@ -46,7 +46,6 @@ export default {
       this.setWhereTo(whereTo);
     },
     requestQuestionnaires() {
-      //TODO: id do usuário ou id do questionário?
       api
         .get('/questionnaire')
         .then((response) => {

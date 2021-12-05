@@ -14,7 +14,6 @@
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
-import { api } from '@/services/index';
 import Header from '@/components/Header/Header.vue';
 
 export default {

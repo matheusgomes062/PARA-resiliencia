@@ -30,6 +30,7 @@
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 import Header from '@/components/Header/Header.vue';
+import { api } from '@/services/index';
 
 export default {
   name: 'QuizAnswers',
@@ -40,25 +41,14 @@ export default {
   data() {
     return {
       Questionaries: '',
-      questionaries: [
-        {
-          id: 1,
-          title: 'Questionário 1'
-        },
-        {
-          id: 2,
-          title: 'Questionário 2'
-        }
-      ],
-      activeQuestion: ''
+      questionaries: []
     };
   },
   computed: {
     ...mapGetters(['getWhereTo', 'getQuestionaries'])
   },
   created() {
-    this.getAllQuestionaries();
-    this.getQuestionaries();
+    this.getAllQuestionaries()
   },
   methods: {
     ...mapActions([
@@ -71,15 +61,8 @@ export default {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
-    getQuestionaries() {
-      api
-        .get('/questionnaire')
-        .then((response) => {
-          this.setAllQuestionaries(response.data);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+    getAllQuestionaries() {
+      this.questionaries = this.getQuestionaries
     },
     setQuestionary(questionaryId) {
       this.resetSelectedQuestionary();
