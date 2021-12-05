@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const url = 'http://localhost:3000'; //process.env.VUE_APP_API_BASE_URL
-const url = 'https://860d-2804-431-e7ce-1484-7545-8af9-f4a0-f1fb.ngrok.io/';
+const url = 'http://localhost:3000'; //process.env.VUE_APP_API_BASE_URL
+// const url = 'https://860d-2804-431-e7ce-1484-7545-8af9-f4a0-f1fb.ngrok.io/';
 
 const axiosInstance = axios.create({
   baseURL: url //colocar o api novamente
