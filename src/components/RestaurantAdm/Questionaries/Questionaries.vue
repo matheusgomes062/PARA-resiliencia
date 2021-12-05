@@ -2,14 +2,14 @@
   div
     Header(routeToGo="Dashboard" title="Questionários")
     div(style=" height: 250px; overflow-y:auto;")
-      div(v-for="(questionnaires, index) in questionnaires" :key="index" class="questionariesContainer")
+      div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
         div(class="questionary")
           div(class="questionaryTitle")
-            h5 {{questionnaires.title}}
+            h5 {{questionnaire.title}}
           
           div.d-flex.flex-row.justify-content-between
 
-            el-button(icon="el-icon-view" @click="screenMediator('AnswerQuestions'), setQuestionary(questionnaires.id)" circle)
+            el-button(icon="el-icon-view" @click="setQuestionary(questionnaire), screenMediator('AnswerQuestions')" circle)
 </template>
 
 <script>

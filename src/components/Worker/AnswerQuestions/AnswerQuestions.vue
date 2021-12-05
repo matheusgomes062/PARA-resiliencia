@@ -1,6 +1,8 @@
 <template lang="pug">
   div(style="width: 700px; height: 500px; overflow-y: auto;")
-    Header(routeToGo="Questionaries" title="Título")
+    Header(routeToGo="Questionaries" :title="getSelectedQuestionary.title")
+    div.p-2.d-flex.flex-column.my-12
+      p {{getSelectedQuestionary.description}}
     
     div.p-2.d-flex.flex-column.my-3
       div.py-3(v-for="(question, index) in questions" :key="index")
