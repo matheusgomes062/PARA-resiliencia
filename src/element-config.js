@@ -15,8 +15,10 @@ import {
   Select,
   Option,
   Checkbox,
+  CheckboxGroup,
   Dialog,
-  DatePicker
+  DatePicker,
+  Radio
 } from 'element-ui';
 
 import Loading from 'element-ui/lib/loading';
@@ -33,8 +35,10 @@ export default {
     Vue.use(Select);
     Vue.use(Option);
     Vue.use(Checkbox);
+    Vue.use(CheckboxGroup);
     Vue.use(Dialog);
     Vue.use(DatePicker);
+    Vue.use(Radio);
     Vue.prototype.$loading = Loading.service;
     Vue.prototype.$notify = Notification;
   }
