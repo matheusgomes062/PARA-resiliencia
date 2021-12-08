@@ -63,9 +63,11 @@ export default {
             this.questions.forEach((question) => {
               if (question.id === item.questionId) {
                 question.questionOptions.forEach((option, index) => {
-                  if (option.value === item.value[index]) {
-                    optionsToInsert.push(option.id);
-                  }
+                  item.value.forEach((value) => {
+                    if (option.value === value) {
+                      optionsToInsert.push(option.id);
+                    }
+                  })
                 });
               }
             });
