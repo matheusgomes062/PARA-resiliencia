@@ -15,9 +15,11 @@ import Dashboard from '@/components/RestaurantAdm/Dashboard/Dashboard.vue';
 import RegisterRestaurant from '@/components/RestaurantAdm/RegisterRestaurant/RegisterRestaurant.vue';
 import OtherOptions from '@/components/RestaurantAdm/OtherOptions/OtherOptions.vue';
 import Questionaries from '@/components/RestaurantAdm/Questionaries/Questionaries.vue';
+import Notices from '@/components/RestaurantAdm/Notices/Notices.vue';
 import AnswerQuestions from '@/components/RestaurantAdm/AnswerQuestions/AnswerQuestions.vue';
 import Profile from '@/components/RestaurantAdm/OtherOptions/Profile/Profile.vue';
 import Configurations from '@/components/RestaurantAdm/OtherOptions/Configurations/Configurations.vue';
+import CreateNotices from '@/components/AppAdm/CreateNotices/CreateNotices.vue';
 import ChangePassword from '@/components/RestaurantAdm/OtherOptions/Configurations/ChangePassword/ChangePassword.vue';
 import { mapGetters } from 'vuex';
 
@@ -28,7 +30,9 @@ export default {
     RegisterRestaurant,
     OtherOptions,
     Questionaries,
+    Notices,
     Profile,
+    CreateNotices,
     Configurations,
     ChangePassword,
     AnswerQuestions
@@ -41,6 +45,8 @@ export default {
         'RegisterRestaurant',
         'OtherOptions',
         'Questionaries',
+        'Notices',
+        'CreateNotices',
         'Profile',
         'Configurations',
         'ChangePassword',

@@ -11,10 +11,10 @@
           Cadastre seu restaurante
         </div>
         <div
-          @click="screenMediator('Questionaries')"
+          @click="screenMediator('Notices')"
           id="AnswerQuizDashboardButton"
         >
-          Responder questionário
+          Editais
         </div>
         <div @click="screenMediator('OtherOptions')">Outras opções</div>
       </div>

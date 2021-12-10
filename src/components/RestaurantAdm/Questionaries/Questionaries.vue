@@ -1,22 +1,21 @@
 <template lang="pug">
   div
-    Header(routeToGo="Dashboard" title="Questionários")
+    Header(routeToGo="Notices" title="Questionários")
     div(style=" height: 250px; overflow-y:auto;")
-      div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
+      div(v-for="(questionnaire, index) in getNoticesQuestionaries" :key="index" class="questionariesContainer")
         div(class="questionary")
           div(class="questionaryTitle")
             h5 {{questionnaire.title}}
           
           div.d-flex.flex-row.justify-content-between
 
-            el-button(icon="el-icon-view" @click="setQuestionary(questionnaire), screenMediator('AnswerQuestions')" circle)
+            el-button(icon="el-icon-view" @click="setQuestionary(questionnaire.id), screenMediator('AnswerQuestions')" circle)
 </template>
 
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 import Header from '@/components/Header/Header.vue';
-import { api } from '@/services/index';
 
 export default {
   name: 'Questionaries',
@@ -30,10 +29,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getWhereTo'])
+    ...mapGetters(['getWhereTo', 'getNoticesQuestionaries'])
   },
   created() {
-    this.requestQuestionnaires();
+
   },
   methods: {
     ...mapActions([
@@ -50,24 +49,6 @@ export default {
       this.$destroy();
       this.resetWhereTo();
       this.setWhereTo(whereTo);
-    },
-    requestQuestionnaires() {
-      //TODO: id do usuário ou id do questionário?
-      api
-        .get('/questionnaire')
-        .then((response) => {
-          if (response.status == 200) {
-            this.questionnaires = response.data;
-          } else {
-            this.$vToastify.error(
-              'Não foi possível buscar os questionários...'
-            );
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-          this.$vToastify.error('Não foi possível buscar os questionários...');
-        });
     }
   }
 };

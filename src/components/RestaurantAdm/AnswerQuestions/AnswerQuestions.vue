@@ -1,8 +1,8 @@
 <template lang="pug">
   div(style="width: 700px; height: 500px; overflow-y: auto;")
-    Header(routeToGo="Questionaries" :title="getSelectedQuestionary.title")
+    Header(routeToGo="Questionaries" :title="questionary.title")
     div.p-2.d-flex.flex-column.my-12
-      p {{getSelectedQuestionary.description}}
+      p {{questionary.description}}
     
     div.p-2.d-flex.flex-column.my-3
       div.py-3(v-for="(question, indexMaster) in questions" :key="indexMaster")
@@ -47,6 +47,7 @@ export default {
     return {
       selectedQuestion: false,
       questions: [],
+      questionary: [],
       textarea: null,
       test: null,
       answerObject: {
@@ -60,7 +61,7 @@ export default {
     ...mapGetters(['getWhereTo', 'getSelectedQuestionary'])
   },
   created() {
-    this.setQuestions();
+    this.getQuestionary();
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo']),
@@ -72,7 +73,8 @@ export default {
       this.$vToastify.success('Respostas enviadas!');
     },
     setQuestions() {
-      this.questions = this.getSelectedQuestionary.questions;
+      this.questions = this.questionary.questions
+      console.log(this.questions)
       this.questions.forEach((item) => {
         this.answerObject.partialAnswersToSave.push({
           questionId: item.id,
@@ -80,6 +82,25 @@ export default {
           value: []
         });
       });
+    },
+    getQuestionary() {
+      api
+        .get('/questionnaire/' + this.getSelectedQuestionary)
+        .then((response) => {
+          if (response.status == 200) {
+            this.questionary = response.data 
+            console.log(this.questionary)
+            this.setQuestions(); 
+          } else {
+            this.$vToastify.error(
+              'Não foi possível buscar os questionários...'
+            );
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+          this.$vToastify.error('Não foi possível buscar os questionários...');
+        });
     },
     sendAnswers() {
       api
