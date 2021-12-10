@@ -12,7 +12,7 @@
           
         div(v-if="question.questionType === 'multipleChoice'" class="questionsContainer")
           el-checkbox-group.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" v-model="answerObject.partialAnswersToSave[indexMaster].value")
-            el-checkbox(:label="option.value")
+            el-checkbox(:label="option.value" @change="addOptionsId(indexMaster, option.id)")
         
         div(v-if="question.questionType === 'boolean'" class="questionsContainer")
           div.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" :key="index + option.value")
@@ -28,13 +28,14 @@
               id="streetNumber" v-model="answerObject.partialAnswersToSave[indexMaster].value")
     
     div.d-flex.justify-content-end.my-3.px-3
-      el-button(@click="isFormValid" type="primary") Enviar
+      el-button(@click="sendAnswers" type="primary") Enviar
 </template>
 
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 import Header from '@/components/Header/Header.vue';
+import { api } from '@/services/index';
 
 export default {
   name: 'AnswerQuestions',
@@ -49,34 +50,11 @@ export default {
       textarea: null,
       test: null,
       answerObject: {
-        noticeId: '',
+        noticeId: '5ef0e72f-2df2-442f-82e0-d0ada3ccdc7e',
         partialAnswersToSave: []
-      }
-    };
-  },
-  watch: {
-    'answerObject.partialAnswersToSave': {
-      handler(val) {
-        let optionsToInsert = [];
-        this.answerObject.partialAnswersToSave.forEach((item) => {
-          if (item.value.length != 0) {
-            this.questions.forEach((question) => {
-              if (question.id === item.questionId) {
-                question.questionOptions.forEach((option, index) => {
-                  item.value.forEach((value) => {
-                    if (option.value === value) {
-                      optionsToInsert.push(option.id);
-                    }
-                  })
-                });
-              }
-            });
-          }
-        });
-        console.log(optionsToInsert);
       },
-      deep: true
-    }
+      optionsToInsert: []
+    };
   },
   computed: {
     ...mapGetters(['getWhereTo', 'getSelectedQuestionary'])
@@ -98,10 +76,34 @@ export default {
       this.questions.forEach((item) => {
         this.answerObject.partialAnswersToSave.push({
           questionId: item.id,
-          questionOptionId: [],
+          questionOptionIds: [],
           value: []
         });
       });
+    },
+    sendAnswers() {
+      api
+        .post('/answer', this.answerObject)
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    addOptionsId(index, id) {
+      let questionOptionIds =
+        this.answerObject.partialAnswersToSave[index].questionOptionIds;
+      console.log(questionOptionIds);
+      if (questionOptionIds.includes(id)) {
+        questionOptionIds = questionOptionIds.filter((item) => {
+          return item !== id;
+        });
+      } else {
+        questionOptionIds.push(id);
+      }
+      this.answerObject.partialAnswersToSave[index].questionOptionIds =
+        questionOptionIds;
     }
   }
 };
