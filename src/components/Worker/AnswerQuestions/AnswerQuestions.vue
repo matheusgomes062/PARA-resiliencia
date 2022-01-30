@@ -78,7 +78,8 @@ export default {
         .get('/questionnaire/' + this.getSelectedQuestionary.id)
         .then((response) => {
           if (response.status == 200) {
-            this.questions = response.data.questions
+            this.questions = response.data.questions;
+            this.questions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
             this.setQuestions();
           } else {
             this.$vToastify.error(

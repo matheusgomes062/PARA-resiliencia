@@ -8,7 +8,9 @@
 
           Responder questionário
           
-        //-  <div @click="screenMediator('OtherOptions')">Outras opções</div> 
+        //-  <div @click="screenMediator('OtherOptions')">Outras opções</div>
+      router-link(to="/appAdm")
+        p Logar como administrador
 </template>
 
 <script>

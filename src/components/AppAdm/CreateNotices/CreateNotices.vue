@@ -69,7 +69,7 @@ export default {
   computed: {
     ...mapGetters(['getWhereTo'])
   },
-  created() {
+  mounted() {
     this.getRestaurants(),
     this.getQuestionaries()
   },
