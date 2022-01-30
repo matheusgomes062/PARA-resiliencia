@@ -16,7 +16,7 @@
         
         div(v-if="question.questionType === 'boolean'" class="questionsContainer")
           div.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" :key="index + option.value")
-            el-radio(:label="option.value" v-model="answerObject.partialAnswersToSave[indexMaster].value")
+            el-radio(:label="option.value" v-model="answerObject.partialAnswersToSave[indexMaster].value" @change="addOptionsId(indexMaster, option.id)")
             
         div(v-if="question.questionType === 'text'" style="padding: 20px 10px 20px 30px")
           el-input(type="textarea" :rows="3" placeholder="Campo de texto" v-model="answerObject.partialAnswersToSave[indexMaster].value")
@@ -50,7 +50,8 @@ export default {
       textarea: null,
       test: null,
       answerObject: {
-        noticeId: '5ef0e72f-2df2-442f-82e0-d0ada3ccdc7e',
+        noticeId: '',
+        termAccepted: true,
         partialAnswersToSave: []
       },
       optionsToInsert: [],
@@ -78,6 +79,7 @@ export default {
         .get('/questionnaire/' + this.getSelectedQuestionary.id)
         .then((response) => {
           if (response.status == 200) {
+            this.answerObject.noticeId = this.getSelectedQuestionary.noticeId;
             this.questions = response.data.questions;
             this.questions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
             this.setQuestions();
@@ -86,6 +88,7 @@ export default {
               'Não foi possível receber os questionários'
             );
           }
+          return this.fullscreenLoading = false;
         })
         .catch((error) => {
           console.log(error.response);
@@ -104,15 +107,19 @@ export default {
         return this.fullscreenLoading = false;
       });
     },
-    sendAnswers() {
+    async sendAnswers() {
       this.fullscreenLoading = true;
-      api
+      await api
         .post('/answer', this.answerObject)
         .then(({ data }) => {
           console.log(data);
+          this.$vToastify.success('Respostas enviadas!');
+          this.fullscreenLoading = false;
         })
         .catch((error) => {
           console.log(error);
+          this.$vToastify.error('Houve um problema ao enviar respostas!');
+          this.fullscreenLoading = false;
         });
       this.fullscreenLoading = false;
     },

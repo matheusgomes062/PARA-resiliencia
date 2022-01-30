@@ -21,10 +21,26 @@
             h5 {{questionnaire.title}}
           
           div.d-flex.flex-row.justify-content-between
-
-            el-button(icon="el-icon-view" @click="setQuestionary(questionnaire), screenMediator('AnswerQuestions')" circle)
+            el-button(icon="el-icon-view" @click="setQuestionary(questionnaire)" circle)
       div(v-if="questionnaires.length === 0")
         el-empty(description="Sem Questionários")
+    
+    el-dialog(
+      :visible.sync="dialogVisible"
+      width="70%"
+      :before-close="handleClose")
+      span
+        pdf(src="./TCLE_emenda.pdf")
+
+      .d-flex.flex-column.align-items-center
+        el-checkbox(v-model="termAccepted")
+          h4 Aceita os termos de serviço
+        div.mt-2(
+          v-if="$v.termAccepted.$error && !$v.termAccepted.required"
+          class="error checkboxErrorRegister")  Aceite de termos necessário!
+      span.d-flex.justify-content-between(slot="footer" class="dialog-footer")
+        el-button(@click="dialogVisible = false") Cancelar
+        el-button(type="primary" :disabled="!termAccepted" @click="screenMediator('AnswerQuestions')") Confirma
 </template>
 
 <script>
@@ -33,23 +49,31 @@ import { mapActions, mapGetters } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import Header from '@/components/Header/Header.vue';
 import { api } from '@/services/index';
+import pdf from 'vue-pdf';
 
 export default {
   name: 'Questionaries',
   components: {
     ChevronLeftIcon,
-    Header
+    Header,
+    pdf
   },
   data() {
     return {
       questionnaires: [],
       fullscreenLoading: false,
       restaurant: null,
-      restaurants: []
+      restaurants: [],
+      dialogVisible: false,
+      readTerms: false,
+      termAccepted: false
     };
   },
   validations: {
-    restaurant: { required }
+    restaurant: { required },
+    termAccepted: {
+      checked: (value) => value === true
+    }
   },
   computed: {
     ...mapGetters(['getWhereTo'])
@@ -57,16 +81,21 @@ export default {
   watch: {
     restaurant: function (value) {
       this.getQuestionnaires(value)
+    },
+    readTerms: function (value) {
+      if(value === true)
+        this.screenMediator('AnswerQuestions')
     }
   },
   created() {
     this.getRestaurants()
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo', 'resetSelectedQuestionary','setSelectedQuestionary']),
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'resetSelectedQuestionary','setSelectedQuestionary', 'setNoticeId']),
     setQuestionary(questionary) {
       this.resetSelectedQuestionary();
       this.setSelectedQuestionary(questionary);
+      this.openModal();
     },
     screenMediator(whereTo) {
       this.resetWhereTo();
@@ -79,7 +108,10 @@ export default {
       .get(`/notice/restaurant/` + restaurantId)
       .then((response) => {
         if (response.status == 200) {
-          this.questionnaires = [response.data[0].questionnaire]
+          response.data.forEach((element) => {
+            element.questionnaire.noticeId = element.id;
+            this.questionnaires.push(element.questionnaire)
+          });
         } else {
           this.$vToastify.error(
             'Não foi possível receber os questionários'
@@ -110,6 +142,16 @@ export default {
       });
       this.fullscreenLoading = false;
     },
+    openModal() {
+      this.dialogVisible = true;
+    },
+    handleClose(done) {
+      this.$confirm('Are you sure to close this dialog?')
+        .then((_) => {
+          done();
+        })
+        .catch((_) => {});
+    }
   }
 };
 </script>
