@@ -18,7 +18,6 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -27,8 +26,10 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('assets/Background.svg');
-  // padding: 40px 0;
+  background-image: url('assets/orange-wallpaper.jpg');
+  background-repeat: repeat-y;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
 }
 
 #logo {

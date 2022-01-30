@@ -64,7 +64,7 @@ export default {
     this.reset();
   },
   methods: {
-    ...mapActions(['loginUser', 'setWhereTo']),
+    ...mapActions(['loginUser', 'setWhereTo', 'setUserInfo']),
 
     loginUserMethod() {
       this.$v.$touch();
@@ -82,6 +82,7 @@ export default {
                 route = 'appAdm';
               }
               this.loginUser(response.data.token);
+              this.setUserInfo(response.data.userInfo);
               this.$vToastify.success('Bem vindo!', 'Sucesso!');
               this.$router.push(route);
             } else {

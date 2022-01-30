@@ -1,9 +1,11 @@
 export default {
   state: {
-    token: ''
+    token: '',
+    fullscreenLoading: false,
+    userInfo: {}
   },
   getters: {
-
+    getUserInfo: (state) => state.userInfo
   },
   mutations: {
     RESET_USER_TOKEN: (state) => {
@@ -11,7 +13,16 @@ export default {
     },
     SET_USER_TOKEN: (state, payload) => {
       state.token = payload;
-    }
+    },
+    SET_FULLSCREEN_LOADING: (state, payload) => {
+      state.fullscreenLoading = payload;
+    },
+    RESET_USER_INFO: (state) => {
+      state.userInfo = {};
+    },
+    SET_USER_INFO: (state, payload) => {
+      state.userInfo = payload;
+    },
   },
   actions: {
     loginUser: ({ commit }, payload) => {
@@ -25,6 +36,13 @@ export default {
       commit('RESET_USER_TOKEN');
       localStorage.removeItem('token');
       localStorage.clear();
+    },
+    setFullscreenLoading: ({ commit }, payload) => {
+      commit('SET_FULLSCREEN_LOADING', payload);
+    },
+    setUserInfo: ({commit}, payload) => {
+      commit('RESET_USER_INFO');
+      commit('SET_USER_INFO', payload);
     }
   }
 };

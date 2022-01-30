@@ -1,19 +1,14 @@
-<template>
-  <div>
-    <h1 class="cardTitle">PARA Resiliência</h1>
-    <div>
-      <h3 class="subtitle">Seja bem vindo(a)!</h3>
-      <div class="optionsContainer">
-        <div
-          @click="screenMediator('Questionaries')"
-          id="AnswerQuizDashboardButton"
-        >
+<template lang="pug">
+  div
+    h1.cardTitle PARA Resiliência
+    div
+      h3.subtitle Seja bem vindo(a)!
+      .optionsContainer
+        #AnswerQuizDashboardButton(@click="screenMediator('Questionaries')").
+
           Responder questionário
-        </div>
-        <div @click="screenMediator('OtherOptions')">Outras opções</div>
-      </div>
-    </div>
-  </div>
+          
+        //-  <div @click="screenMediator('OtherOptions')">Outras opções</div> 
 </template>
 
 <script>

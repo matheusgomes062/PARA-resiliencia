@@ -18,11 +18,16 @@ import {
   CheckboxGroup,
   Dialog,
   DatePicker,
-  Radio
+  Radio,
+  Loading,
+  Empty
 } from 'element-ui';
 
-import Loading from 'element-ui/lib/loading';
-import Notification from 'element-ui/lib/notification';
+Vue.use(Loading.directive);
+
+Vue.prototype.$loading = Loading.service;
+// import Loading from 'element-ui/lib/loading';
+// import Notification from 'element-ui/lib/notification';
 
 export default {
   config() {
@@ -39,6 +44,7 @@ export default {
     Vue.use(Dialog);
     Vue.use(DatePicker);
     Vue.use(Radio);
+    Vue.use(Empty);
     Vue.prototype.$loading = Loading.service;
     Vue.prototype.$notify = Notification;
   }

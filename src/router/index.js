@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () =>
       import(/* webpackChunkName: "Login" */ '../views/Login.vue')
@@ -16,16 +16,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "AppAdm" */ '../views/AppAdm/AppAdm.vue')
   },
+  // {
+  //   path: '/restaurantAdm',
+  //   name: 'RestaurantAdm',
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "RestaurantAdm" */ '../views/RestaurantAdm/RestaurantAdm.vue'
+  //     )
+  // },
   {
-    path: '/restaurantAdm',
-    name: 'RestaurantAdm',
-    component: () =>
-      import(
-        /* webpackChunkName: "RestaurantAdm" */ '../views/RestaurantAdm/RestaurantAdm.vue'
-      )
-  },
-  {
-    path: '/worker',
+    path: '/',
     name: 'Worker',
     component: () =>
       import(/* webpackChunkName: "Worker" */ '../views/Worker/Worker.vue')
@@ -37,5 +37,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.beforeEach((to, from, next) => {
+  const token = window.localStorage.token;
+  if (to.name === 'AppAdm' && !token) next({ name: 'Login' })
+  else next()
+})
 
 export default router;

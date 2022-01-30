@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="width: 700px; height: 500px; overflow-y: auto;")
+  div(style="width: 700px; height: 500px; overflow-y: auto;" v-loading.fullscreen.lock="fullscreenLoading")
     Header(routeToGo="Questionaries" :title="getSelectedQuestionary.title")
     div.p-2.d-flex.flex-column.my-12
       p {{getSelectedQuestionary.description}}
@@ -53,14 +53,15 @@ export default {
         noticeId: '5ef0e72f-2df2-442f-82e0-d0ada3ccdc7e',
         partialAnswersToSave: []
       },
-      optionsToInsert: []
+      optionsToInsert: [],
+      fullscreenLoading: false
     };
   },
   computed: {
     ...mapGetters(['getWhereTo', 'getSelectedQuestionary'])
   },
   created() {
-    this.setQuestions();
+    this.getQuestions();
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo']),
@@ -71,17 +72,39 @@ export default {
     isFormValid() {
       this.$vToastify.success('Respostas enviadas!');
     },
-    setQuestions() {
-      this.questions = this.getSelectedQuestionary.questions;
+    async getQuestions() {
+      this.fullscreenLoading = true;
+      await api
+        .get('/questionnaire/' + this.getSelectedQuestionary.id)
+        .then((response) => {
+          if (response.status == 200) {
+            this.questions = response.data.questions
+            this.setQuestions();
+          } else {
+            this.$vToastify.error(
+              'Não foi possível receber os questionários'
+            );
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+          this.$vToastify.error('Não foi possível receber os questionários');
+        });
+        return this.fullscreenLoading = false;
+    },
+    async setQuestions() {
       this.questions.forEach((item) => {
+        this.fullscreenLoading = true;
         this.answerObject.partialAnswersToSave.push({
           questionId: item.id,
           questionOptionIds: [],
           value: []
         });
+        return this.fullscreenLoading = false;
       });
     },
     sendAnswers() {
+      this.fullscreenLoading = true;
       api
         .post('/answer', this.answerObject)
         .then(({ data }) => {
@@ -90,6 +113,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+      this.fullscreenLoading = false;
     },
     addOptionsId(index, id) {
       let questionOptionIds =

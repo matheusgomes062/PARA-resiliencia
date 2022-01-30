@@ -3,8 +3,10 @@
     Header(routeToGo="Dashboard")
     
     .profilePictureContainer
-      div
-      | Alterar foto do perfil
+      i(class="el-icon-user-solid")
+
+      //- div
+      //- | Alterar foto do perfil
     el-form(ref="form" :model="profile")
       el-form-item(
           label="Nome completo")
@@ -20,13 +22,13 @@
           type="email"
           class="profile-control"
           id="profileEmail")
-      el-form-item(
-          label="Senha")
-        el-input(
-          v-model="profile.password"
-          type="password"
-          class="profile-control"
-          id="profilePassword")
+      //- el-form-item(
+      //-     label="Senha")
+      //-   el-input(
+      //-     v-model="profile.password"
+      //-     type="password"
+      //-     class="profile-control"
+      //-     id="profilePassword")
 </template>
 
 <script>
@@ -50,7 +52,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getWhereTo'])
+    ...mapGetters(['getWhereTo', 'getUserInfo'])
+  },
+  created() {
+    this.profile.email = this.getUserInfo.email;
+    this.profile.fullName = this.getUserInfo.name;
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo']),

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // const url = 'https://7e96-2804-431-e7cf-e6b0-6599-3364-7f7-5b28.ngrok.io/'; //process.env.VUE_APP_API_BASE_URL
 const url = 'https://backend-resiliencia.herokuapp.com/';
+// const url = 'http://localhost:3000/'
 
 const axiosInstance = axios.create({
   baseURL: url //colocar o api novamente

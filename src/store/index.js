@@ -10,6 +10,6 @@ export default new Vuex.Store({
   modules: {
     dashboard: Dashboard,
     user: User,
-    questionaries: Questionaries,
+    questionaries: Questionaries
   }
 });

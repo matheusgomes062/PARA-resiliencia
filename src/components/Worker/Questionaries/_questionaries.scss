@@ -32,10 +32,18 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 1em;
+  font-size: 1em; 
 
   h5:first-child {
     margin-right: 10px;
+  }
+
+  h5 {
+    white-space: nowrap;
+    width: 90%;                   /* IE6 needs any width */
+    overflow: hidden;              /* "overflow" value must be different from  visible"*/ 
+    -o-text-overflow: ellipsis;    /* Opera < 11*/
+    text-overflow:    ellipsis; 
   }
 }
 

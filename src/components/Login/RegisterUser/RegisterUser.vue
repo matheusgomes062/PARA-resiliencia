@@ -113,11 +113,11 @@ export default {
         worker: {
           name: 'Funcionário',
           value: 'employee' // worker
+        },
+        appAdm: {
+          name: 'Administrador da aplicação',
+          value: 'admin' //appAdm
         }
-        // appAdm: {
-        //   name: 'Administrador da aplicação',
-        //   value: 'admin' //appAdm
-        // }
       },
       routes: {
         admin: 'restaurantAdm',

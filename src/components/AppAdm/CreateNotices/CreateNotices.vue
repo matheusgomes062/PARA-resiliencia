@@ -2,18 +2,8 @@
 	div
 		div
 			Header(routeToGo="Notices" title="Criar Edital")
-		
+
 		el-form.d-flex.flex-column.w-100(ref="form" :model="$v.notice")
-			el-form-item(class="register-group" label="Questionário")
-					el-select(v-model="questionnaire" placeholder="Selecione o questionário" id="questionnaire").w-100
-						el-option(
-							v-for="(questionnaire, index) in questionnaires"
-							:value="questionnaire.id"
-							:label="questionnaire.title"
-							:key="questionnaire + '-' + index").px-3 {{ questionnaire.title }}
-					div(
-						v-if="$v.questionnaire.$error && !$v.questionnaire.required"
-						class="error")  Necessário selecionar!
 			el-form-item(class="register-group" label="Restaurante")
 				el-select(v-model="restaurant" placeholder="Restaurante" id="restaurant").w-100
 					el-option(
@@ -22,9 +12,17 @@
 						:label="restaurant.name"
 						:key="restaurant + '-' + index").px-3 {{ restaurant.name }}
 				div(
-					v-if="$v.restaurant.$error && !$v.restaurant.required"
-					class="error")  Necessário selecionar!
-				
+					v-if="$v.restaurant.$error && !$v.restaurant.required" class="error")  Necessário selecionar!
+			el-form-item(class="register-group" label="Questionário")
+					el-select(v-model="questionnaire" placeholder="Selecione o questionário" id="questionnaire").w-100
+						el-option(
+							v-for="(questionnaire, index) in questionnaires"
+							:value="questionnaire.id"
+							:label="questionnaire.title"
+							:key="questionnaire + '-' + index").px-3 {{ questionnaire.title }}
+					div(
+						v-if="$v.questionnaire.$error && !$v.questionnaire.required" class="error")  Necessário selecionar!
+
 			el-form-item(class="register-group" label="Data de início")
 				el-date-picker.w-100.justify-content-between(
 					v-model="date"
@@ -40,7 +38,6 @@
 <script>
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
-// import { api } from '@/services/index';
 import Header from '@/components/Header/Header.vue';
 import { required } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
