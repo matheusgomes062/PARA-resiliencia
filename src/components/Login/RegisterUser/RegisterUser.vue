@@ -106,14 +106,14 @@ export default {
         passwordConfirm: null
       },
       userTypes: {
-        restaurantAdm: {
-          name: 'Administrador de restaurante',
-          value: 'owner' // restaurantAdm
-        },
-        worker: {
-          name: 'Funcionário',
-          value: 'employee' // worker
-        },
+        // restaurantAdm: {
+        //   name: 'Administrador de restaurante',
+        //   value: 'owner' // restaurantAdm
+        // },
+        // worker: {
+        //   name: 'Funcionário',
+        //   value: 'employee' // worker
+        // },
         appAdm: {
           name: 'Administrador da aplicação',
           value: 'admin' //appAdm
