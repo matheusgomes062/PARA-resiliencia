@@ -115,6 +115,7 @@ export default {
           console.log(data);
           this.$vToastify.success('Respostas enviadas!');
           this.fullscreenLoading = false;
+          document.location.reload(true);
         })
         .catch((error) => {
           console.log(error);
