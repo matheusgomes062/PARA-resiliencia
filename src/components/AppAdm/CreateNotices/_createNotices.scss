@@ -2,6 +2,12 @@
   width: 10% !important;
 }
 
+.el-select-dropdown__item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 @media only screen and (max-width: 600px) {
   .el-select-dropdown__item {
     width: 350px;

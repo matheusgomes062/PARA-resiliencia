@@ -1,12 +1,10 @@
 <template>
   <div class="mainContent">
-    <keep-alive>
-      <component
-        :whereTo="whereTo"
-        ref="currentScreen"
-        :is="currentScreen"
-      ></component>
-    </keep-alive>
+    <component
+      :whereTo="whereTo"
+      ref="currentScreen"
+      :is="currentScreen"
+    ></component>
   </div>
 </template>
 
