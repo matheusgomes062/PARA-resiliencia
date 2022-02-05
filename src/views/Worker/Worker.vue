@@ -1,5 +1,5 @@
 <template lang="pug">
-.mainContent
+b-container.mainContent
   component(:whereto='whereTo' ref='currentScreen' :is='currentScreen')
 </template>
 

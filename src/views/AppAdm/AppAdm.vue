@@ -25,6 +25,7 @@ import CreateQuestion from '@/components/AppAdm/CreateQuestions/CreateQuestion.v
 import Notices from '@/components/AppAdm/Notices/Notices.vue';
 import CreateNotices from '@/components/AppAdm/CreateNotices/CreateNotices.vue';
 import Metrics from '@/components/AppAdm/Metrics/Metrics.vue';
+import RegisterUserScreen from '@/components/Login/RegisterUser/RegisterUser.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -43,7 +44,8 @@ export default {
     CreateQuestion,
     Notices,
     CreateNotices,
-    Metrics
+    Metrics,
+    RegisterUserScreen
   },
   data() {
     return {
@@ -62,7 +64,8 @@ export default {
         'CreateQuestion',
         'Notices',
         'CreateNotices',
-        'Metrics'
+        'Metrics',
+        'RegisterUserScreen'
       ],
       whereTo: null
     };

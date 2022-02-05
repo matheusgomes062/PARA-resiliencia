@@ -2,13 +2,13 @@
   .answerQuestionContainer(v-loading.fullscreen.lock="fullscreenLoading")
     Header(routeToGo="Questionaries" :title="getSelectedQuestionary.title")
     .p-2.d-flex.flex-column
-      p.text-justify {{getSelectedQuestionary.description}}
+      p.text-justify.text-break {{getSelectedQuestionary.description}}
     
     .p-2.d-flex.flex-column.my-3
       .py-3(v-for="(question, indexMaster) in questions" :key="indexMaster")
-        .d-flex(style="max-width: 630px;")
+        .d-flex
           h3(style="margin-right: 10px;") {{indexMaster + 1}}.
-          p(style="max-width: 800px; text-align: left; font-size: 25px;") {{question.title}}
+          p(style="text-align: left; font-size: 1em;") {{question.title}}
           
         div(v-if="question.questionType === 'multipleChoice'" class="questionsContainer")
           el-checkbox-group.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" v-model="answerObject.partialAnswersToSave[indexMaster].value")

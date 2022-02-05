@@ -1,16 +1,16 @@
 <template lang="pug">
   div
     h1(class="cardTitle") PARA Resiliência
-    div.d-flex.flex-column.justify-content-center
+    b-col.justify-content-center
       h3(class="subtitle") Seja bem vindo(a)!
-      div(class="optionsContainer")
-        div
-          div(@click="screenMediator('Profile')") Perfil
-          div(@click="screenMediator('Notices')") Editais
-          div(@click="screenMediator('RegisterRestaurant')") Cadastrar restaurante
-        div.justify-content-start
-          div(@click="screenMediator('Configurations')") Configuração
-          div(@click="logout") Sair
+      b-col
+        b-row.justify-content-around
+          .buttonDiv(@click="screenMediator('Profile')") Perfil
+          .buttonDiv(@click="screenMediator('Notices')") Editais
+          .buttonDiv(@click="screenMediator('RegisterRestaurant')") Cadastrar restaurante
+          .buttonDiv(@click="screenMediator('Configurations')") Configuração
+          .buttonDiv(@click="screenMediator('RegisterUserScreen')") Cadastrar usuário ADM
+          .buttonDiv(@click="logout") Sair
 </template>
 
 <script>

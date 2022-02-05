@@ -16,25 +16,23 @@
     
     div(v-if="restaurant" style="height: 250px; overflow-y: auto;")
       div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
-        div(class="questionary")
-          div(class="questionaryTitle")
-            h5 {{questionnaire.title}}
-          
-          div.d-flex.flex-row.justify-content-between
-            el-button(icon="el-icon-view" @click="setQuestionary(questionnaire)" circle)
+        h5 {{questionnaire.title}}
+        el-button(icon="el-icon-view" @click="setQuestionary(questionnaire)" circle)
       div(v-if="questionnaires.length === 0")
         el-empty(description="Sem Questionários")
     
     el-dialog(
       :visible.sync="dialogVisible"
-      width="70%"
-      :before-close="handleClose")
-      span
-        pdf(src="./TCLE_emenda.pdf")
+      center
+      close-on-press-escape="true"
+      close-on-click-modal="true"
+      destroy-on-close="true")
+      pdf(src="./TCLE_emenda.pdf")
 
-      .d-flex.flex-column.align-items-center
-        el-checkbox(v-model="termAccepted")
-          h4 Aceita os termos de serviço
+      b-col.align-items-center
+        .d-flex.flex-row.justify-content-center.align-items-center
+          el-checkbox(v-model="termAccepted")
+            h4 Aceita os termos de serviço
         div.mt-2(
           v-if="$v.termAccepted.$error && !$v.termAccepted.required"
           class="error checkboxErrorRegister")  Aceite de termos necessário!

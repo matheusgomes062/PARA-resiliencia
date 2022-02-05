@@ -14,37 +14,21 @@ button:hover {
 
 .questionariesContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 10px;
   align-items: center;
   margin-top: 10px;
   border-radius: 10px;
   background: $default-gray;
-}
-
-.questionary{
-  width: 100%;
-  display: flex;
   justify-content: space-between;
 }
 
-.questionaryTitle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 1em; 
-
-  h5:first-child {
-    margin-right: 10px;
-  }
-
-  h5 {
-    white-space: nowrap;
-    width: 90%;                   /* IE6 needs any width */
-    overflow: hidden;              /* "overflow" value must be different from  visible"*/ 
-    -o-text-overflow: ellipsis;    /* Opera < 11*/
-    text-overflow:    ellipsis; 
-  }
+h5 {
+  white-space: nowrap;
+  width: 90%;                   /* IE6 needs any width */
+  overflow: hidden;              /* "overflow" value must be different from  visible"*/ 
+  -o-text-overflow: ellipsis;    /* Opera < 11*/
+  text-overflow:    ellipsis; 
 }
 
 .openBtn {

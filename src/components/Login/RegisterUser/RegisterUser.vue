@@ -1,6 +1,8 @@
 <template lang="pug">
   div
-    el-form.d-flex.flex-column.w-100(ref="form" :model="$v.user")
+    Header(routeToGo="Dashboard")
+    
+    el-form.d-flex.flex-column(ref="form" :model="$v.user")
       el-form-item(class="register-group")
         el-input(
           v-model="user.name"
@@ -63,9 +65,9 @@
         @click="openModal"
         class=" main-btn") CADASTRAR
         
-      section(class="footNote") Já é cadastrado?
-        p(style="cursor: pointer; text-decoration: underline"
-          @click="screenMediator('loginScreen')") Entrar
+      //- section(class="footNote") Já é cadastrado?
+      //-   p(style="cursor: pointer; text-decoration: underline"
+      //-     @click="$router.push({ name: 'Login' })") Entrar
 
     el-dialog(
       :visible.sync="dialogVisible"
@@ -90,11 +92,13 @@ import { required, email, sameAs } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
 import { mapActions } from 'vuex';
 import pdf from 'vue-pdf';
+import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'RegisterUser',
   components: {
-    pdf
+    pdf,
+    Header
   },
   data() {
     return {
