@@ -1,7 +1,6 @@
-<template>
-  <div class="container">
-    <Login class="mainContent" />
-  </div>
+<template lang="pug">
+  div
+    Login(class="mainContent")
 </template>
 
 <script>

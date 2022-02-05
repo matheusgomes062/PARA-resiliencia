@@ -26,16 +26,14 @@
     el-button(
       @click="loginUserMethod"
       class="btn-outlined heavyTextButton main-btn")  VAMOS LÁ!
-    div(class="buttonsContainer")
-      el-button(
-        @click="screenMediator('recoverPasswordScreen')"
-        class="btn-outlined"
-        style="margin-right: 10px") Recuperar Senha
-      el-button(
-        class="btn-outlined"
-        @click="screenMediator('registerUserScreen')")  Cadastrar
-    
-    
+    //- div(class="buttonsContainer")
+    //-   el-button(
+    //-     @click="screenMediator('recoverPasswordScreen')"
+    //-     class="btn-outlined"
+    //-     style="margin-right: 10px") Recuperar Senha
+    //-   el-button(
+    //-     class="btn-outlined"
+    //-     @click="screenMediator('registerUserScreen')")  Cadastrar
 </template>
 
 <script>
