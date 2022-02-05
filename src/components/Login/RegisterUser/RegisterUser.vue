@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    Header(routeToGo="Dashboard")
+    Header(routeToGo="Dashboard" title="Cadastrar Usuário ADM")
     
     el-form.d-flex.flex-column(ref="form" :model="$v.user")
       el-form-item(class="register-group")

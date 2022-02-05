@@ -81,6 +81,7 @@ export default {
               }
               this.loginUser(response.data.token);
               this.setUserInfo(response.data.userInfo);
+              localStorage.setItem('userInfo', JSON.stringify(response.data.userInfo));
               this.$vToastify.success('Bem vindo!', 'Sucesso!');
               this.$router.push(route);
             } else {

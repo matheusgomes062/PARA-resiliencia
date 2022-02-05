@@ -23,10 +23,12 @@
     
     el-dialog(
       :visible.sync="dialogVisible"
+      :before-close="() => termAccepted = false"
       center
-      close-on-press-escape="true"
-      close-on-click-modal="true"
-      destroy-on-close="true")
+      width="100%"
+      close-on-press-escape
+      close-on-click-modal
+      destroy-on-close)
       pdf(src="./TCLE_emenda.pdf")
 
       b-col.align-items-center
@@ -37,7 +39,7 @@
           v-if="$v.termAccepted.$error && !$v.termAccepted.required"
           class="error checkboxErrorRegister")  Aceite de termos necessário!
       span.d-flex.justify-content-between(slot="footer" class="dialog-footer")
-        el-button(@click="dialogVisible = false") Cancelar
+        el-button(@click="termAccepted = dialogVisible = false") Cancelar
         el-button(type="primary" :disabled="!termAccepted" @click="screenMediator('AnswerQuestions')") Confirma
 </template>
 

@@ -35,6 +35,7 @@ export default {
     logoutUser: ({ commit }) => {
       commit('RESET_USER_TOKEN');
       localStorage.removeItem('token');
+      localStorage.removeItem('userInfo');
       localStorage.clear();
     },
     setFullscreenLoading: ({ commit }, payload) => {

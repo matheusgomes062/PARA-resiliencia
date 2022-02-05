@@ -6,9 +6,9 @@
     
     .p-2.d-flex.flex-column.my-3
       .py-3(v-for="(question, indexMaster) in questions" :key="indexMaster")
-        .d-flex
-          h3(style="margin-right: 10px;") {{indexMaster + 1}}.
-          p(style="text-align: left; font-size: 1em;") {{question.title}}
+        .d-flex.align-items-baseline
+          h3(style="margin-right: 10px") {{indexMaster + 1}}.
+          h5.text-start {{question.title}}
           
         div(v-if="question.questionType === 'multipleChoice'" class="questionsContainer")
           el-checkbox-group.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" v-model="answerObject.partialAnswersToSave[indexMaster].value")

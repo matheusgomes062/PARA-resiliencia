@@ -55,8 +55,9 @@ export default {
     ...mapGetters(['getWhereTo', 'getUserInfo'])
   },
   created() {
-    this.profile.email = this.getUserInfo.email;
-    this.profile.fullName = this.getUserInfo.name;
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    this.profile.email = userInfo.email;
+    this.profile.fullName = userInfo.name;
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo']),
