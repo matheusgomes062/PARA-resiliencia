@@ -112,6 +112,7 @@ export default {
             element.questionnaire.noticeId = element.id;
             this.questionnaires.push(element.questionnaire)
           });
+          this.sortQuestionnaires();
         } else {
           this.$vToastify.error(
             'Não foi possível receber os questionários'
@@ -124,6 +125,12 @@ export default {
       });
       this.fullscreenLoading = false;
     },
+    sortRestaurants() {
+      this.restaurants.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+    },
+    sortQuestionnaires() {
+      this.questionnaires.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+    },
     getRestaurants() {
       this.fullscreenLoading = true;
       api
@@ -131,6 +138,7 @@ export default {
       .then((response) => {
         if (response.status == 200) {
           this.restaurants = response.data
+          this.sortRestaurants();
         } else {
           this.$vToastify.error(
             'Não foi possível receber os restaurantes'
