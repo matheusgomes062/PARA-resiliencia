@@ -1,12 +1,12 @@
 <template lang="pug">
-  div(style="width: 700px; height: 500px; overflow-y: auto;" v-loading.fullscreen.lock="fullscreenLoading")
+  .answerQuestionContainer(v-loading.fullscreen.lock="fullscreenLoading")
     Header(routeToGo="Questionaries" :title="getSelectedQuestionary.title")
-    div.p-2.d-flex.flex-column.my-12
-      p {{getSelectedQuestionary.description}}
+    .p-2.d-flex.flex-column
+      p.text-justify {{getSelectedQuestionary.description}}
     
-    div.p-2.d-flex.flex-column.my-3
-      div.py-3(v-for="(question, indexMaster) in questions" :key="indexMaster")
-        div.d-flex(style="max-width: 630px;")
+    .p-2.d-flex.flex-column.my-3
+      .py-3(v-for="(question, indexMaster) in questions" :key="indexMaster")
+        .d-flex(style="max-width: 630px;")
           h3(style="margin-right: 10px;") {{indexMaster + 1}}.
           p(style="max-width: 800px; text-align: left; font-size: 25px;") {{question.title}}
           
@@ -15,7 +15,7 @@
             el-checkbox(:label="option.value" @change="addOptionsId(indexMaster, option.id)")
         
         div(v-if="question.questionType === 'boolean'" class="questionsContainer")
-          div.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" :key="index + option.value")
+          .d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" :key="index + option.value")
             el-radio(:label="option.value" v-model="answerObject.partialAnswersToSave[indexMaster].value" @change="addOptionsId(indexMaster, option.id)")
             
         div(v-if="question.questionType === 'text'" style="padding: 20px 10px 20px 30px")
@@ -27,7 +27,7 @@
               class="registerRestaurant-control"
               id="streetNumber" v-model="answerObject.partialAnswersToSave[indexMaster].value")
     
-    div.d-flex.justify-content-end.my-3.px-3
+    .d-flex.justify-content-end.my-3.px-3
       el-button(@click="sendAnswers" type="primary") Enviar
 </template>
 

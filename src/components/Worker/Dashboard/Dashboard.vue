@@ -4,8 +4,7 @@
     div
       h3.subtitle Seja bem vindo(a)!
       .optionsContainer
-        #AnswerQuizDashboardButton(@click="screenMediator('Questionaries')").
-
+        .answerQuizDashboardButton(@click="screenMediator('Questionaries')").
           Responder questionário
           
         //-  <div @click="screenMediator('OtherOptions')">Outras opções</div>

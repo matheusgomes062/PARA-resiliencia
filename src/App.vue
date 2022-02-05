@@ -1,9 +1,7 @@
-<template>
-  <div id="app">
-    <div class="content">
-      <router-view />
-    </div>
-  </div>
+<template lang="pug">
+#app
+  b-container.d-flex.justify-content-center
+    router-view
 </template>
 
 <script>
@@ -30,10 +28,5 @@ export default {
   background-repeat: repeat-y;
   background-size: cover;
   box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
-}
-
-#logo {
-  font-size: 3em;
-  padding: 30px;
 }
 </style>

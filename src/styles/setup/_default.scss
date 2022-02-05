@@ -60,13 +60,13 @@ input, select {
 }
 
 .mainContent {
-  min-width: 500px;
+  // min-width: 500px;
+  width: fit-content;
   min-height: 306px;
   padding: 30px;
   background-color: white;
   // box-shadow: 0px 5px 15px $default-gray;
   border-radius: 10px;
-  margin: auto;
   outline-style: none;
   border-style: none;
   display: flex;
@@ -170,4 +170,8 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.text-justify {
+  text-align: justify;
 }

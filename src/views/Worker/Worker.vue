@@ -1,11 +1,6 @@
-<template>
-  <div class="mainContent">
-    <component
-      :whereTo="whereTo"
-      ref="currentScreen"
-      :is="currentScreen"
-    ></component>
-  </div>
+<template lang="pug">
+.mainContent
+  component(:whereto='whereTo' ref='currentScreen' :is='currentScreen')
 </template>
 
 <script>

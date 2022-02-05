@@ -8,6 +8,11 @@ button:hover {
   cursor: pointer;
 }
 
+.answerQuestionContainer {
+  height: 500px;
+  overflow-y: auto;
+}
+
 .questionsContainer{
   padding: 10px 30px;
   width: 100%;
