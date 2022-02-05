@@ -23,12 +23,11 @@
     
     el-dialog(
       :visible.sync="dialogVisible"
-      :before-close="() => termAccepted = false"
       center
       width="100%"
-      close-on-press-escape
-      close-on-click-modal
-      destroy-on-close)
+      close-on-press-escape="true"
+      close-on-click-modal="true"
+      destroy-on-close="true")
       pdf(src="./TCLE_emenda.pdf")
 
       b-col.align-items-center
@@ -152,6 +151,7 @@ export default {
     },
     openModal() {
       this.dialogVisible = true;
+      this.termAccepted = false;
     },
     handleClose(done) {
       this.$confirm('Are you sure to close this dialog?')
