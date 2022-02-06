@@ -1,130 +1,103 @@
 <template lang="pug">
-  div
-    div.d-flex.flex-direction-row.pb-3
-      div(class="goBackIcon")
-        chevron-left-icon(
-          size="2x"
-          @click="screenMediator('QuizAnswers')")
-      div.mx-auto
-        h1(class="quizAnswerTitle") Questionário 1
-
-    h4.d-flex.justify-content-start.px-0.w-100 Questões
+  .answerQuestionContainer(v-loading.fullscreen.lock="fullscreenLoading")
+    Header(routeToGo="QuizAnswers" :title="getSelectedQuestionary.title")
+    .p-2.d-flex.flex-column
+      p.text-justify.text-break {{getSelectedQuestionary.description}}
     
-    el-collapse(accordion v-model="activeQuestion" v-for="(question, index) in QuestionsList" :key="index")
-      el-collapse-item(name="1")
-        template(slot='title')
-          div(class='question-container')
-            Consistent Questão {{question.id}} 
+    .p-2.d-flex.flex-column.my-3
+      .py-3(v-for="(question, indexMaster) in questions" :key="indexMaster")
+        .d-flex.align-items-baseline
+          h3(style="margin-right: 10px") {{indexMaster + 1}}.
+          h5.text-start {{question.title}}
+          
+        div(v-if="question.questionType === 'multipleChoice'" class="questionsContainer")
+          el-checkbox-group.d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" v-model="answerObject.partialAnswersToSave[indexMaster].value")
+            el-checkbox(:label="option.value")
+        
+        div(v-if="question.questionType === 'boolean'" class="questionsContainer")
+          .d-flex.align-items-center.my-2(v-for="(option, index) in question.questionOptions" :key="index + option.value")
+            el-radio(:label="option.value" v-model="answerObject.partialAnswersToSave[indexMaster].value")
             
-            Consistent 
-              b {{question.metrics}}
-        .questionData Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;
-
+        div(v-if="question.questionType === 'text'" style="padding: 20px 10px 20px 30px")
+          el-input(type="textarea" :rows="3" placeholder="Campo de texto" v-model="answerObject.partialAnswersToSave[indexMaster].value")
+        
+        div(v-if="question.questionType === 'number'" style="padding: 20px 10px 20px 30px")
+          el-input(
+              type="number"
+              class="registerRestaurant-control"
+              id="streetNumber" v-model="answerObject.partialAnswersToSave[indexMaster].value")
 </template>
 
 <script>
-import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
+import Header from '@/components/Header/Header.vue';
+import { api } from '@/services/index';
 
 export default {
-  name: 'Answers',
+  name: 'Answer',
   components: {
-    ChevronLeftIcon
+    Header
   },
   data() {
     return {
       selectedQuestion: false,
-      test: 'Questionário 1',
-      QuestionsList: [
-        {
-          id: 1,
-          title:
-            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta) e o conteúdo ensinado nesses treinamentos mudou o seu pensamento em  e o conteúdo ensinado nesses treinamentos mudou o seu pensamento em ',
-          type: 'options',
-          metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
-          options: [
-            {
-              option: 'sim',
-              percentage: '70%'
-            },
-            {
-              option: 'não',
-              percentage: '30%'
-            }
-          ]
-        },
-        {
-          id: 2,
-          title:
-            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
-          type: 'options',
-          metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
-          options: [
-            {
-              option: 'sim',
-              percentage: '50%'
-            },
-            {
-              option: 'não',
-              percentage: '50%'
-            }
-          ]
-        },
-        {
-          id: 3,
-          title:
-            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
-          type: 'normal',
-          metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
-          answers: [
-            {
-              answer:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-            },
-            {
-              answer:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-            },
-            {
-              answer:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-            }
-          ]
-        },
-        {
-          id: 4,
-          title:
-            'Você achou que o conteúdo ensinado nesses treinamentos mudou o seu pensamento em relação ao seu trabalho? (se você for o responsável por efetuaros treinamentos, não responder esta pergunta)',
-          type: 'normal',
-          metrics: 'A: 10 | B: 10 | C: 5 | D: 25',
-          answers: [
-            {
-              answer:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-            },
-            {
-              answer:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-            }
-          ]
-        }
-      ]
+      questions: [],
+      textarea: null,
+      test: null,
+      answerObject: {
+        noticeId: '',
+        termAccepted: true,
+        partialAnswersToSave: []
+      },
+      optionsToInsert: [],
+      fullscreenLoading: false
     };
   },
   computed: {
-    ...mapGetters(['getWhereTo'])
+    ...mapGetters(['getWhereTo', 'getSelectedQuestionary'])
+  },
+  created() {
+    this.getQuestions();
   },
   methods: {
-    ...mapActions(['setWhereTo', 'resetWhereTo', 'resetSelectedQuestionary']),
-    metrics() {
-      return 'Questionário 1';
-    },
+    ...mapActions(['setWhereTo', 'resetWhereTo']),
     screenMediator(whereTo) {
       this.resetWhereTo();
       this.setWhereTo(whereTo);
     },
-    resetQuestionary() {
-      this.resetSelectedQuestionary();
+    async getQuestions() {
+      this.fullscreenLoading = true;
+      await api
+        .get('/questionnaire/' + this.getSelectedQuestionary.id)
+        .then((response) => {
+          if (response.status == 200) {
+            this.answerObject.noticeId = this.getSelectedQuestionary.noticeId;
+            this.questions = response.data.questions;
+            this.questions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
+            this.setQuestions();
+          } else {
+            this.$vToastify.error(
+              'Não foi possível receber os questionários'
+            );
+          }
+          return this.fullscreenLoading = false;
+        })
+        .catch((error) => {
+          console.log(error.response);
+          this.$vToastify.error('Não foi possível receber os questionários');
+        });
+        return this.fullscreenLoading = false;
+    },
+    async setQuestions() {
+      this.questions.forEach((item) => {
+        this.fullscreenLoading = true;
+        this.answerObject.partialAnswersToSave.push({
+          questionId: item.id,
+          questionOptionIds: [],
+          value: []
+        });
+        return this.fullscreenLoading = false;
+      });
     }
   }
 };

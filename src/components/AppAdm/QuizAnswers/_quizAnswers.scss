@@ -1,81 +1,11 @@
-button:hover { 
-  box-shadow: 0px 0px 15px $default-gray2;
-  cursor: pointer;
-}
-
-.goBackIcon {
-  display: flex;
-  justify-content: flex-start;
-
-  svg {
-    cursor: pointer;
-  }
-}
-
 .questionariesContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 10px;
   align-items: center;
   margin-top: 10px;
   border-radius: 10px;
   background: $default-gray;
-}
-
-.questionary{
-  width: 100%;
-  display: flex;
   justify-content: space-between;
-}
-
-.questionaryTitle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 1em;
-
-  h5:first-child {
-    margin-right: 10px;
-  }
-}
-
-.openBtn {
-  width: 100px;
-}
-
-.quizAnswerSubTitle {
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px 0;
-  width: 100%;
-}
-
-.questionarySummary {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100%;
-
-  div {
-    display: inherit;
-    flex-direction: column;
-    font-weight: bold;
-    width: 50px;
-
-    p {
-      font-size: 1.1em;
-    }
-
-    p:first-child {
-      font-size: 0.5em;
-    }
-  }
-}
-
-#bar {
-  width: 2px;
-  height: 20px;
-  margin-bottom: 3px;
-  align-self: flex-end;
-  background-color: black;
+  text-align: start;
 }

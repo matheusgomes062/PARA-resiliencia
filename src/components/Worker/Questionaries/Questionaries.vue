@@ -17,7 +17,7 @@
     div(v-if="restaurant" style="height: 250px; overflow-y: auto;")
       div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
         h5 {{questionnaire.title}}
-        el-button(icon="el-icon-view" @click="setQuestionary(questionnaire)" circle)
+        el-button(icon="el-icon-view" @click="setQuestionnaire(questionnaire)" circle)
       div(v-if="questionnaires.length === 0")
         el-empty(description="Sem Questionários")
     
@@ -25,9 +25,9 @@
       :visible.sync="dialogVisible"
       center
       width="100%"
-      close-on-press-escape="true"
-      close-on-click-modal="true"
-      destroy-on-close="true")
+      :close-on-press-escape="true"
+      :close-on-click-modal="true"
+      :destroy-on-close="true")
       pdf(src="./TCLE_emenda.pdf")
 
       b-col.align-items-center
@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import Header from '@/components/Header/Header.vue';
@@ -53,7 +52,6 @@ import pdf from 'vue-pdf';
 export default {
   name: 'Questionaries',
   components: {
-    ChevronLeftIcon,
     Header,
     pdf
   },
@@ -91,9 +89,9 @@ export default {
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo', 'resetSelectedQuestionary','setSelectedQuestionary', 'setNoticeId']),
-    setQuestionary(questionary) {
+    setQuestionnaire(questionnaire) {
       this.resetSelectedQuestionary();
-      this.setSelectedQuestionary(questionary);
+      this.setSelectedQuestionary(questionnaire);
       this.openModal();
     },
     screenMediator(whereTo) {
@@ -145,6 +143,7 @@ export default {
         }
       })
       .catch((error) => {
+        console.log(error);
         this.$vToastify.error('Não foi possível receber os restaurantes');
       });
       this.fullscreenLoading = false;

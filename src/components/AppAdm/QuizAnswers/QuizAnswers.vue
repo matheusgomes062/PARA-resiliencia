@@ -2,27 +2,14 @@
   div
     Header(routeToGo="Notices" title="Editais")
 
-    h4.d-flex.justify-content-start.px-0.w-100 Questionários
+    h5.d-flex.justify-content-start.w-100 Questionários
 
-    div(v-for="(questionaries, index) in questionaries" :key="index" class="questionariesContainer")
-      div(class="questionary")
-        div(class="questionaryTitle")
-          h5 {{questionaries.title}}
-        
-        div.d-flex.flex-row.justify-content-between
-          div(class="questionarySummary")
-            div
-              p Respondidos
-              p 50
-            
-            div(id="bar")
-            
-            div
-              p Total
-              p 53
-          //- button(class="openBtn" @click="setQuestionary(questionaries.id), screenMediator('Answers')") Abrir
-
-          el-button(icon="el-icon-view" @click="setQuestionary(questionaries.id), screenMediator('Answers')" circle)
+    div(style="height: 250px; overflow-y: auto;")
+      div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
+        h5 {{questionnaire.title}}
+        el-button(icon="el-icon-view" @click="setQuestionnaire(questionnaire)" circle)
+      div(v-if="questionnaires.length === 0")
+        el-empty(description="Sem Questionários")
 
 </template>
 
@@ -30,7 +17,6 @@
 import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 import Header from '@/components/Header/Header.vue';
-import { api } from '@/services/index';
 
 export default {
   name: 'QuizAnswers',
@@ -40,8 +26,7 @@ export default {
   },
   data() {
     return {
-      Questionaries: '',
-      questionaries: []
+      questionnaires: []
     };
   },
   computed: {
@@ -62,11 +47,20 @@ export default {
       this.setWhereTo(whereTo);
     },
     getAllQuestionaries() {
-      this.questionaries = this.getQuestionaries
+      this.questionnaires = this.getQuestionaries;
+      this.sortQuestionnaires();
     },
     setQuestionary(questionaryId) {
       this.resetSelectedQuestionary();
       this.setSelectedQuestionary(questionaryId);
+    },
+    sortQuestionnaires() {
+      this.questionnaires.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+    },
+    setQuestionnaire(questionnaire) {
+      this.resetSelectedQuestionary();
+      this.setSelectedQuestionary(questionnaire);
+      this.screenMediator('Answers')
     }
   }
 };

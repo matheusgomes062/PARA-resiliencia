@@ -8,100 +8,14 @@ button:hover {
   cursor: pointer;
 }
 
-.question-container {
+.answerQuestionContainer {
+  height: 700px;
+  overflow-y: auto;
+}
+
+.questionsContainer{
+  padding: 10px 30px;
   width: 100%;
-  display: flex;
-  justify-content: space-between !important;
-  margin-right: 100px;
-}
-
-.goBackIcon {
-  display: flex;
-  justify-content: flex-start;
-  cursor: pointer;
-}
-
-.questionContainer {
-  display: flex;
-  overflow:auto; 
-  padding: 10px;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
-  height: 500px;
-  .title {
-    margin: 10px;
-  }
-  .questionary{
-    margin: 10px 0px 10px 0px;
-    width: 100%;
-  }
-  justify-content: space-between;
-  .questionContent {
-    width: 100%;
-    margin-bottom: 20px;
-    .titleContainer {
-      display: flex;
-    }
-    h3{
-      display: flex;
-      align-items: initial;
-      margin-right: 20px;
-    }
-    p {
-      text-align: left;
-      max-width: 750px;
-      margin: auto;
-    }
-    .answersTitle {
-      margin-left: 36px;
-      margin-top: 10px;
-    }
-    .optionsContainer{
-      margin-left: 36px;
-      margin-top: 10px;
-      max-width: 750px;
-      align-items: initial;
-      
-      .toggles-container{
-        display: flex;
-        width: 100px;
-        margin: 10px 0px 10px 30px;
-      }
-    }
-  }
-  .options {
-    width: 100%;
-    display: flex;
-    margin: 10px 0px 10px 0px;
-    textarea {
-      width: 100%;
-    }
-    p {
-      margin: auto 30px auto 0;
-    }
-  }
-}
-
-.answersContainer {
-  overflow:auto; 
-  height: 300px;
-  border: 1px solid black;
-  margin-left: 36px;
-  margin-top: 10px;
-  max-width: 750px;
-  .answersContent {
-    p:first-child {
-      margin: 0px 10px;
-      min-width: 30px
-    }
-    p:nth-child(2) {
-      margin-right: 10px;
-    }
-    display: flex;
-    max-width: 750px;
-    margin: 10px 0px 30px 0px;
-  }
 }
 
 .questionary:hover { 
@@ -128,14 +42,9 @@ button:hover {
 .questionOptions {
   width: 100%;
 }
-
 .question {
   display: flex;
   p {
     margin: auto 10px auto 0;
   }
-}
-
-.questionData {
-  width: 440px;
 }
