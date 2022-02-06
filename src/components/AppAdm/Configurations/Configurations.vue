@@ -9,14 +9,12 @@
 </template>
 
 <script>
-import { ChevronLeftIcon } from 'vue-feather-icons';
 import { mapActions, mapGetters } from 'vuex';
 import Header from '@/components/Header/Header.vue';
 
 export default {
   name: 'Configurations',
   components: {
-    ChevronLeftIcon,
     Header
   },
   data() {
