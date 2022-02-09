@@ -81,10 +81,9 @@ export default {
             this.questions = response.data.questions;
             this.questions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
             this.questions.forEach((question) => {
-              // if(question.questionOption.order < 1) question.questionOption.order = Math.random() * (10 - 3) + 3;
               question.questionOptions.forEach(option => {
                 if(option.order < 1) {
-                  option.order = Math.random() * (10 - 3) + 3;
+                  option.order = Math.random() * (10 - 4) + 4;
                 }
               });
               question.questionOptions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
