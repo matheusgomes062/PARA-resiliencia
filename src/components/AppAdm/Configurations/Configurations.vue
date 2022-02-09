@@ -1,11 +1,11 @@
 <template lang="pug">
-  div.d-flex.flex-column.justify-content-between(style="min-height: 270px;")
-    Header(routeToGo="Dashboard" title="Configuração")
-    div.d-flex.flex-column.justify-content-around.w-100(style="height: 150px")
-      el-button.mx-1(type="primary" @click="screenMediator('ChangePassword')") Alterar senha
-      el-button.mx-1(
-        @click="changeButtonColor"
-        :class="isNotificationActive ? 'active' : 'disable'") {{ isNotificationActive ? 'Ativar nofiticação' : 'Desativar notificação' }}
+div.d-flex.flex-column.justify-content-between(style="min-height: 270px;")
+  Header(routeToGo="Dashboard" title="Configuração")
+  div.d-flex.flex-column.justify-content-around.w-100(style="height: 150px")
+    el-button.mx-1(type="primary" @click="screenMediator('ChangePassword')") Alterar senha
+    el-button.mx-1(
+      @click="changeButtonColor"
+      :class="isNotificationActive ? 'active' : 'disable'") {{ isNotificationActive ? 'Ativar nofiticação' : 'Desativar notificação' }}
 </template>
 
 <script>
