@@ -35,6 +35,8 @@
 import { mapActions, mapGetters } from 'vuex';
 import Header from '@/components/Header/Header.vue';
 import { api } from '@/services/index';
+// import q1mockup from './AnswersMockup/q1';
+import { debounce } from '@/helpers/helpers.js';
 
 export default {
   name: 'AnswerQuestions',
@@ -113,12 +115,11 @@ export default {
         return this.fullscreenLoading = false;
       });
     },
-    async sendAnswers() {
+    sendAnswers: debounce(function() {
       this.fullscreenLoading = true;
-      await api
+      api
         .post('/answer', this.answerObject)
-        .then(({ data }) => {
-          console.log(data);
+        .then(() => {
           this.$vToastify.success('Respostas enviadas!');
           this.fullscreenLoading = false;
           document.location.reload(true);
@@ -127,13 +128,12 @@ export default {
           console.log(error);
           this.$vToastify.error('Houve um problema ao enviar respostas!');
           this.fullscreenLoading = false;
-        });
+        })
       this.fullscreenLoading = false;
-    },
+    }, 500),
     addOptionsId(index, id) {
       let questionOptionIds =
         this.answerObject.partialAnswersToSave[index].questionOptionIds;
-      console.log(questionOptionIds);
       if (questionOptionIds.includes(id)) {
         questionOptionIds = questionOptionIds.filter((item) => {
           return item !== id;

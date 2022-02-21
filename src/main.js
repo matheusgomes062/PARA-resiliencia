@@ -28,6 +28,7 @@ Vue.use(VueToastify, {
   theme: 'light'
 });
 
+
 Vue.config.productionTip = false;
 
 Vue.directive('clickOutside', {
@@ -43,6 +44,7 @@ Vue.directive('clickOutside', {
     document.body.removeEventListener('click', el.__ClickOutsideHandler__);
   }
 });
+
 
 new Vue({
   router,
