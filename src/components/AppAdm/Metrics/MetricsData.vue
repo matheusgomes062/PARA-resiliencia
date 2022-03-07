@@ -18,11 +18,11 @@ div
         label(for="questionnaireTitle" style="font-size: 0.9rem;") Data de início
         p.fw-bold.fs-5 {{ this.majorMetrics.noticeStartDate }}
 
-  el-table(:data='tableData' stripe style='width: 100%' height="250")
-    el-table-column(prop='question' label='Questão' width='180')
-    el-table-column(prop='answers' label='N°. de Respostas' width='180' align="center")
-    el-table-column(prop='score' label='Pontuação Total' width='180' align="center")
-    el-table-column(label='Mais informações' width='180' align="center")
+  el-table(:data='questionnaires' stripe style='width: 100%' height="250")
+    el-table-column(prop='description' label='Questão' width='500')
+    el-table-column(prop='totalAnswerer' label='N°. de Respostas' width='150' align="center")
+    //- el-table-column(prop='totalQuestion' label='Pontuação Total' width='150' align="center")
+    el-table-column(label='Mais informações' width='150' align="center")
       template(slot-scope="scope")
         el-button(@click="handleClick" type="text" class="fs-3" icon="el-icon-s-data")
 
@@ -47,42 +47,8 @@ export default {
   },
   data() {
     return {
-      majorMetrics: {
-      },
-      tableData: [{
-        question: 'Teste',
-        answers: '42',
-        score: '100'
-      }, {
-        question: 'Teste',
-        answers: '42',
-        score: '100'
-      }, {
-        question: 'Teste',
-        answers: '42',
-        score: '100'
-      }, {
-        question: 'Teste',
-        answers: '42',
-        score: '100'
-      }],
-      answerOptions: [{
-        option: 'Opção 1',
-        points: '5',
-        answers: '13'
-      }, {
-        option: 'Opção 2',
-        points: '5',
-        answers: '13'
-      }, {
-        option: 'Opção 3',
-        points: '5',
-        answers: '13'
-      }, {
-        option: 'Opção 4',
-        points: '5',
-        answers: '13'
-      }],
+      majorMetrics: {},
+      questionnaires: [],
       dialogVisible: false
     }
   },
@@ -107,6 +73,15 @@ export default {
           let date_new = new Date(this.majorMetrics.noticeStartDate);
           let br_date = new Intl.DateTimeFormat('pt-BR').format(date_new)
           this.majorMetrics.noticeStartDate = br_date
+          this.getQuestionsMetrics()
+        })
+    },
+    async getQuestionsMetrics() {
+      await api
+        .get('/notice/analytics/general/detailed/' + this.getNoticeId)
+        .then(({data}) => {
+          console.log(data)
+          this.questionnaires = data.questionnaire.questions
         })
     }
   }
