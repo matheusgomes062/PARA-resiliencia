@@ -4,16 +4,6 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
     Header(routeToGo="Notices" title="Indicadores")
   
   el-form.d-flex.flex-column.w-100(ref="form" :model="$v.notice")
-    el-form-item(class="register-group" label="Questionário")
-        el-select(v-model="questionnaire" placeholder="Selecione o questionário" id="questionnaire").w-100
-          el-option(
-            v-for="(questionnaire, index) in questionnaires"
-            :value="questionnaire.id"
-            :label="questionnaire.title"
-            :key="questionnaire + '-' + index").px-3 {{ questionnaire.title }}
-        div(
-          v-if="$v.questionnaire.$error && !$v.questionnaire.required"
-          class="error")  Necessário selecionar!
     el-form-item(class="register-group" label="Restaurante")
       el-select(v-model="restaurant" placeholder="Restaurante" id="restaurant").w-100
         el-option(
@@ -24,7 +14,19 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
       div(
         v-if="$v.restaurant.$error && !$v.restaurant.required"
         class="error")  Necessário selecionar!
-      
+    el-form-item(class="register-group" label="Edital")
+        el-select(v-model="questionnaire" placeholder="Selecione o edital" id="questionnaire" :disabled="!restaurant" @change="setQuestionnaire(questionnaire)").w-100
+          el-option(
+            v-for="(questionnaire, index) in questionnaires"
+            :value="questionnaire.noticeId"
+            :label="questionnaire.title"
+            :key="questionnaire + '-' + index").px-3 {{ questionnaire.title }}
+        div(
+          v-if="$v.questionnaire.$error && !$v.questionnaire.required"
+          class="error")  Necessário selecionar!
+  
+  .d-flex.justify-content-center.my-3.px-3
+    el-button(@click="screenMediator('MetricsData')" type="primary") Verificar Métricas
   
 </template>
 
@@ -32,7 +34,7 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
 import { required } from 'vuelidate/lib/validators';
 import { api } from '@/services/index';
 import Header from '@/components/Header/Header.vue';
-// import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Metrics',
@@ -52,11 +54,20 @@ export default {
     questionnaire: { required },
     restaurant: { required }
   },
+  watch: {
+    restaurant() {
+      this.getQuestionnaires();
+    }
+  },
   created() {
-    this.getRestaurants(),
-    this.getQuestionaries()
+    this.getRestaurants()
   },
   methods: {
+    ...mapActions(['setWhereTo', 'resetWhereTo', 'setNoticeId']),
+    screenMediator(whereTo) {
+      this.resetWhereTo();
+      this.setWhereTo(whereTo);
+    },
     getRestaurants() {
       this.fullscreenLoading = true;
       api
@@ -75,13 +86,18 @@ export default {
       });
       this.fullscreenLoading = false;
     },
-    getQuestionaries() {
+    async getQuestionnaires() {
       this.fullscreenLoading = true;
-      api
-      .get('/questionnaire')
+      this.questionnaires = [];
+      await api
+      .get(`/notice/restaurant/` + this.restaurant)
       .then((response) => {
         if (response.status == 200) {
-          this.questionnaires = response.data
+          response.data.forEach((element) => {
+            element.questionnaire.noticeId = element.id;
+            this.questionnaires.push(element.questionnaire)
+          });
+          this.sortQuestionnaires();
         } else {
           this.$vToastify.error(
             'Não foi possível receber os questionários'
@@ -93,6 +109,16 @@ export default {
         this.$vToastify.error('Não foi possível receber os questionários');
       });
       this.fullscreenLoading = false;
+    },
+
+    sortQuestionnaires() {
+      this.questionnaires.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+    },
+
+    setQuestionnaire(questionnaire) {
+      console.log(questionnaire)
+      this.setNoticeId(questionnaire);
+
     }
   }
 }

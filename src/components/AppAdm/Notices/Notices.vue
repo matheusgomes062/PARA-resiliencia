@@ -1,13 +1,12 @@
 <template lang="pug">
-  div
-    Header(routeToGo="Dashboard" title="Editais")
+div
+  Header(routeToGo="Dashboard" title="Editais")
 
-    b-col.justify-content-center
-      b-row.justify-content-around
-        .buttonDiv(@click="screenMediator('CreateNotices')") Criar Edital
-        .buttonDiv(@click="screenMediator('QuizAnswers')") Selecionar Edital
-        .buttonDiv(@click="screenMediator('Metrics')") Métricas
-
+  b-col.justify-content-center
+    b-row.justify-content-around
+      .buttonDiv(@click="screenMediator('CreateNotices')") Criar Edital
+      .buttonDiv(@click="screenMediator('QuizAnswers')") Selecionar Edital
+      .buttonDiv(@click="screenMediator('Metrics')") Métricas
 </template>
 
 <script>

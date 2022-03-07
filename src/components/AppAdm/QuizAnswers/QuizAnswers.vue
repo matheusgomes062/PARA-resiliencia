@@ -1,15 +1,15 @@
 <template lang="pug">
-  div
-    Header(routeToGo="Notices" title="Editais")
+div
+  Header(routeToGo="Notices" title="Editais")
 
-    h5.d-flex.justify-content-start.w-100 Questionários
+  h5.d-flex.justify-content-start.w-100 Questionários
 
-    div(style="height: 250px; overflow-y: auto;")
-      div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
-        h5 {{questionnaire.title}}
-        el-button(icon="el-icon-view" @click="setQuestionnaire(questionnaire)" circle)
-      div(v-if="questionnaires.length === 0")
-        el-empty(description="Sem Questionários")
+  div(style="height: 250px; overflow-y: auto;")
+    div(v-for="(questionnaire, index) in questionnaires" :key="index" class="questionariesContainer")
+      h5 {{questionnaire.title}}
+      el-button(icon="el-icon-view" @click="setQuestionnaire(questionnaire)" circle)
+    div(v-if="questionnaires.length === 0")
+      el-empty(description="Sem Questionários")
 
 </template>
 

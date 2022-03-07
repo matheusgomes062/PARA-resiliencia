@@ -20,6 +20,8 @@ import {
   DatePicker,
   Radio,
   Loading,
+  Table,
+  TableColumn,
   Empty
 } from 'element-ui';
 
@@ -44,6 +46,8 @@ export default {
     Vue.use(Dialog);
     Vue.use(DatePicker);
     Vue.use(Radio);
+    Vue.use(Table);
+    Vue.use(TableColumn);
     Vue.use(Empty);
     Vue.prototype.$loading = Loading.service;
     Vue.prototype.$notify = Notification;

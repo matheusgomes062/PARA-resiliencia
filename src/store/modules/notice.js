@@ -8,7 +8,7 @@ export default {
         return state.notices;
       },
       getNoticeId: (state) => {
-        return state.notices;
+        return state.noticeId;
       }
     },
     mutations: {
