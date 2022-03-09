@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div(v-loading.fullscreen.lock="fullscreenLoading")
   Header(routeToGo="Metrics" title="Indicadores")
   
   div.flex.flex-column.w-100.mb-5.p-2
@@ -19,19 +19,18 @@ div
         p.fw-bold.fs-5 {{ this.majorMetrics.noticeStartDate }}
 
   el-table(:data='questionnaires' stripe style='width: 100%' height="250")
-    el-table-column(prop='description' label='Questão' width='500')
+    el-table-column(prop='title' label='Questão' width='500')
     el-table-column(prop='totalAnswerer' label='N°. de Respostas' width='150' align="center")
     //- el-table-column(prop='totalQuestion' label='Pontuação Total' width='150' align="center")
     el-table-column(label='Mais informações' width='150' align="center")
       template(slot-scope="scope")
-        el-button(@click="handleClick" type="text" class="fs-3" icon="el-icon-s-data")
+        el-button(@click="openDialog(scope.row)" type="text" class="fs-3" icon="el-icon-s-data")
 
-  el-dialog(title='Informações avançadas' :visible.sync='dialogVisible' width='50%')
-    p.py-3 Texto lorem ipsum pergunta 1 lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-    el-table(:data='answerOptions' stripe style='width: 100%' height="250")
-      el-table-column(prop='option' label='Opção' width='180')
-      el-table-column(prop='points' label='Pontuação' width='180' align="center")
-      el-table-column(prop='answers' label='N°. de Respostas' width='180' align="center")
+  el-dialog(title='Informações avançadas' :visible.sync='dialogVisible' v-loading="dialogLoading")
+    el-table(:data='optionsMetrics' stripe style='width: 100%' height="250")
+      el-table-column(prop='value' label='Opção')
+      el-table-column(prop='points' label='Pontuação' align="center")
+      el-table-column(prop='totalAnswererOption' label='N°. de Respostas' align="center")
 
 </template>
 
@@ -49,7 +48,10 @@ export default {
     return {
       majorMetrics: {},
       questionnaires: [],
-      dialogVisible: false
+      dialogVisible: false,
+      optionsMetrics: [],
+      fullscreenLoading: true,
+      dialogLoading: false
     }
   },
   validations: {
@@ -61,9 +63,23 @@ export default {
     this.getMajorMetrics();
   },
   methods: {
-    handleClick() {
-      console.log('click');
+    openDialog(row) {
       this.dialogVisible = true;
+      this.getOptionsMetrics(row)
+    },
+    async getOptionsMetrics(row) {
+      this.dialogLoading = true
+      await api
+        .get(
+          'notice/analytics/option/' + 
+          '?noticeId=' + this.getNoticeId +
+          '&&questionId=' + row.id
+        )
+        .then(({data}) => {
+          this.optionsMetrics = data
+          this.sortOptions()
+          this.dialogLoading = false
+        })
     },
     async getMajorMetrics() {
       await api
@@ -80,10 +96,13 @@ export default {
       await api
         .get('/notice/analytics/general/detailed/' + this.getNoticeId)
         .then(({data}) => {
-          console.log(data)
-          this.questionnaires = data.questionnaire.questions
+          this.questionnaires = data.questionnaire.questions  
+          this.fullscreenLoading = false
         })
-    }
+    },
+    sortOptions() {
+      this.optionsMetrics.sort((a,b) => (a.value > b.value) ? -1 : ((b.value > a.value) ? 1 : 0))
+    },
   }
 }
 </script>

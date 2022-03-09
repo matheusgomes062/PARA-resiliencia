@@ -26,7 +26,7 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
           class="error")  Necessário selecionar!
   
   .d-flex.justify-content-center.my-3.px-3
-    el-button(@click="screenMediator('MetricsData')" type="primary") Verificar Métricas
+    el-button(type="primary" @click="screenMediator('MetricsData')") Verificar Métricas
   
 </template>
 
@@ -60,7 +60,9 @@ export default {
     }
   },
   created() {
+    this.fullscreenLoading = true
     this.getRestaurants()
+    this.fullscreenLoading = false
   },
   methods: {
     ...mapActions(['setWhereTo', 'resetWhereTo', 'setNoticeId']),

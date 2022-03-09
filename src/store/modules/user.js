@@ -5,7 +5,8 @@ export default {
     userInfo: {}
   },
   getters: {
-    getUserInfo: (state) => state.userInfo
+    getUserInfo: (state) => state.userInfo,
+    getToken: (state) => state.token
   },
   mutations: {
     RESET_USER_TOKEN: (state) => {

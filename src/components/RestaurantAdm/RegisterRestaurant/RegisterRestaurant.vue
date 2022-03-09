@@ -1,67 +1,67 @@
 <template lang="pug">
-  div.d-flex.flex-column.w-100
-    Header(routeToGo="Dashboard" title="Cadastrar Restaurante")
+div.d-flex.flex-column.w-100
+  Header(routeToGo="Dashboard" title="Cadastrar Restaurante")
 
-    el-form.d-flex.flex-column.w-100.my-3(ref="form" :model="registerRestaurant")
-      el-form-item(label="Nome do Restaurante")
-        el-input(
-          v-model="registerRestaurant.name"
+  el-form.d-flex.flex-column.w-100.my-3(ref="form" :model="registerRestaurant")
+    el-form-item(label="Nome do Restaurante")
+      el-input(
+        v-model="registerRestaurant.name"
+        type="text"
+        class="registerRestaurant-control"
+        id="name")
+      div(
+          v-if="$v.registerRestaurant.name.$error && !$v.registerRestaurant.name.required"
+          class="error") Nome do Restaurante é necessário!
+    hr
+    div.d-flex.flex-column
+      h3(class="form-label") Localização
+      el-form-item(label="Rua")
+        el-input(v-model="registerRestaurant.street"
           type="text"
           class="registerRestaurant-control"
-          id="name")
+          id="street")
         div(
-            v-if="$v.registerRestaurant.name.$error && !$v.registerRestaurant.name.required"
-            class="error") Nome do Restaurante é necessário!
-      hr
-      div.d-flex.flex-column
-        h3(class="form-label") Localização
-        el-form-item(label="Rua")
-          el-input(v-model="registerRestaurant.street"
-            type="text"
-            class="registerRestaurant-control"
-            id="street")
-          div(
-              v-if="$v.registerRestaurant.street.$error && !$v.registerRestaurant.street.required"
-              class="error") Nome da Rua é necessário!
-        div.d-flex.flex-row.w-100.justify-content-between
-          el-form-item(label="Número").col-3
-            el-input(
-              v-model="registerRestaurant.streetNumber"
-              type="number"
-              class="registerRestaurant-control"
-              id="streetNumber")
-            div(
-                v-if="$v.registerRestaurant.streetNumber.$error && !$v.registerRestaurant.streetNumber.required"
-                class="error") Número da Rua é necessário!
-          el-form-item(label="Bairro").col-8
-            el-input(
-              v-model="registerRestaurant.neighborhood"
-              type="text"
-              class="registerRestaurant-control"
-              id="neighborhood")
-            div(
-                v-if="$v.registerRestaurant.neighborhood.$error && !$v.registerRestaurant.neighborhood.required"
-                class="error") Nome do Bairro é necessário!
-        el-form-item(label="Cidade")
+            v-if="$v.registerRestaurant.street.$error && !$v.registerRestaurant.street.required"
+            class="error") Nome da Rua é necessário!
+      div.d-flex.flex-row.w-100.justify-content-between
+        el-form-item(label="Número").col-3
           el-input(
-            v-model="registerRestaurant.city"
-            type="text"
+            v-model="registerRestaurant.streetNumber"
+            type="number"
             class="registerRestaurant-control"
-            id="city")
+            id="streetNumber")
           div(
-            v-if="$v.registerRestaurant.city.$error && !$v.registerRestaurant.city.required"
-            class="error") Nome da Cidade é necessário!
-        el-form-item(label="Estado")
+              v-if="$v.registerRestaurant.streetNumber.$error && !$v.registerRestaurant.streetNumber.required"
+              class="error") Número da Rua é necessário!
+        el-form-item(label="Bairro").col-8
           el-input(
-            v-model="registerRestaurant.state"
+            v-model="registerRestaurant.neighborhood"
             type="text"
             class="registerRestaurant-control"
-            id="state")
+            id="neighborhood")
           div(
-            v-if="$v.registerRestaurant.state.$error && !$v.registerRestaurant.state.required"
-            class="error") Nome da Estado é necessário!
-      
-    el-button(class="main-btn" @click="isFormValid") FINALIZAR
+              v-if="$v.registerRestaurant.neighborhood.$error && !$v.registerRestaurant.neighborhood.required"
+              class="error") Nome do Bairro é necessário!
+      el-form-item(label="Cidade")
+        el-input(
+          v-model="registerRestaurant.city"
+          type="text"
+          class="registerRestaurant-control"
+          id="city")
+        div(
+          v-if="$v.registerRestaurant.city.$error && !$v.registerRestaurant.city.required"
+          class="error") Nome da Cidade é necessário!
+      el-form-item(label="Estado")
+        el-input(
+          v-model="registerRestaurant.state"
+          type="text"
+          class="registerRestaurant-control"
+          id="state")
+        div(
+          v-if="$v.registerRestaurant.state.$error && !$v.registerRestaurant.state.required"
+          class="error") Nome da Estado é necessário!
+    
+  el-button(class="main-btn" @click="isFormValid") FINALIZAR
 </template>
 
 <script>

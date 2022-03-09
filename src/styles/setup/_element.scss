@@ -11,5 +11,6 @@
 }
 
 .el-button--primary {
-  background-color: $orange;
+  background-color: $orange !important;
+  border: none !important;
 }

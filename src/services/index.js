@@ -34,12 +34,12 @@ export const api = {
   delete(endpoint) {
     return axiosInstance.delete(endpoint);
   },
-  login(body) {
-    return axios.post(url + '/jwt-auth/v1/token', body);
-  },
-  validateToken() {
-    return axiosInstance.post(url + '/jwt-auth/v1/token/validate');
-  }
+  // login(body) {
+  //   return axios.post(url + '/jwt-auth/v1/token', body);
+  // },
+  // validateToken() {
+  //   return axiosInstance.post(url + '/jwt-auth/v1/token/validate');
+  // }
 };
 
 // export function getCep(cep) {
