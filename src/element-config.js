@@ -19,6 +19,7 @@ import {
   Dialog,
   DatePicker,
   Radio,
+  RadioGroup,
   Loading,
   Table,
   TableColumn,
@@ -46,6 +47,7 @@ export default {
     Vue.use(Dialog);
     Vue.use(DatePicker);
     Vue.use(Radio);
+    Vue.use(RadioGroup);
     Vue.use(Table);
     Vue.use(TableColumn);
     Vue.use(Empty);
