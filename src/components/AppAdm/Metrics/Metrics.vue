@@ -27,6 +27,7 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
   
   .d-flex.justify-content-center.my-3.px-3
     el-button(type="primary" @click="screenMediator('MetricsData')") Verificar Métricas
+    //- el-button(@click='exportExcelDB' type="primary") Exportar DB
   
 </template>
 
@@ -111,6 +112,14 @@ export default {
         this.$vToastify.error('Não foi possível receber os questionários');
       });
       this.fullscreenLoading = false;
+    },
+
+    async exportExcelDB() {
+      await api
+        .get('restaurant/analitycs/' + this.restaurant)
+        .then(({data}) => {
+          console.log('data: ' + data)
+        })
     },
 
     sortQuestionnaires() {

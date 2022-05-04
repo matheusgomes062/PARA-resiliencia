@@ -23,14 +23,14 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
     el-radio-group(v-model='exportType')
       el-radio(v-for='(item, index) in supportType' :key='index' :label='item' border) {{item}}
     div(style='margin-left: 20px')
-      el-button(@click='print' type="primary") Imprimir
+      //- el-button(@click='print' type="primary") Imprimir
       el-button(@click='exportExcel' type="primary") Exportar
 
   el-table(:data='questionnaires' stripe style='width: 100%' ref="elTable" id="table")
     el-table-column(prop='title' label='Questão' width='500')
     el-table-column(prop='totalAnswerer' label='N°. de Respostas' width='150' align="center")
     el-table-column(prop='yesOption' label='Sim' width='150' align="center")
-    el-table-column(prop='yesOption' label='Sim(%)' width='150' align="center")
+    el-table-column(prop='yesOptionPercentage' label='Sim(%)' width='150' align="center")
     el-table-column(prop='noOption' label='Não' width='150' align="center")
     el-table-column(prop='noOption' label='Não(%)' width='150' align="center")
     el-table-column(prop='unknownOption' label='Não entendi a pergunta' width='150' align="center")
@@ -114,17 +114,18 @@ export default {
         .get('/notice/analytics/general/detailed/' + this.getNoticeId)
         .then(({data}) => {
           this.questionnaires = data.questionnaire.questions
+            this.questionnaires.forEach(item => {
+              item.questionOptions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
+            })
           this.questionnaires.forEach(item => {
             if(item.questionOptions[0] !== undefined)
               item.yesOption = item.questionOptions[0].totalOption
+              item.yesOptionPercentage = (item.yesOption / item.totalAnswerer) * 100
             if(item.questionOptions[1] !== undefined)
               item.noOption = item.questionOptions[1].totalOption
             if(item.questionOptions[2] !== undefined)
               item.unknownOption = item.questionOptions[2].totalOption
           })
-          // this.questionnaires.forEach(item => {
-          //   item.questionOptions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
-          // })
           this.fullscreenLoading = false
         })
     },
