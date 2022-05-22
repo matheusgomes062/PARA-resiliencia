@@ -26,24 +26,30 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
       //- el-button(@click='print' type="primary") Imprimir
       el-button(@click='exportExcel' type="primary") Exportar
 
-  el-table(:data='questionnaires' stripe style='width: 100%' ref="elTable" id="table")
-    el-table-column(prop='title' label='Questão' width='500')
-    el-table-column(prop='totalAnswerer' label='N°. de Respostas' width='150' align="center")
-    el-table-column(prop='yesOption' label='Sim' width='150' align="center")
-    el-table-column(prop='yesOptionPercentage' label='Sim(%)' width='150' align="center")
-    el-table-column(prop='noOption' label='Não' width='150' align="center")
-    el-table-column(prop='noOption' label='Não(%)' width='150' align="center")
-    el-table-column(prop='unknownOption' label='Não entendi a pergunta' width='150' align="center")
-    el-table-column(prop='unknownOption' label='Não entendi a pergunta(%)' width='150' align="center")
-    //- el-table-column(label='Mais informações' width='150' align="center")
-    //-   template(slot-scope="scope")
-    //-     el-button(@click="openDialog(scope.row)" type="text" class="fs-3" icon="el-icon-s-data")
+  div
+    el-table(:data='questionnaires' stripe  height="500" style='width: 1200px; overflow: auto;' ref="elTable" id="table")
+      el-table-column(prop='title' label='Questão' width='500')
+      el-table-column(prop='totalAnswerer' label='N°. de Respostas' width='150' align="center")
+      el-table-column(prop='yesOption' label='Sim' width='150' align="center")
+      el-table-column(prop='yesOptionPercentage' label='Sim(%)' width='150' align="center")
+      el-table-column(prop='noOption' label='Não' width='150' align="center")
+      el-table-column(prop='noOptionPercentage' label='Não(%)' width='150' align="center")
+      el-table-column(prop='unknownOption' label='Não entendi a pergunta' width='150' align="center")
+      el-table-column(prop='unknownOptionPercentage' label='Não entendi a pergunta(%)' width='150' align="center")
+      el-table-column(v-for="column, index in columns" 
+                          :key="column.value"
+                          :label="column.value"
+                          min-width='150')
+        template(slot-scope="prop") {{ column.totalOption }}
+      //- el-table-column(label='Mais informações' width='150' align="center")
+      //-   template(slot-scope="scope")
+      //-     el-button(@click="openDialog(scope.row)" type="text" class="fs-3" icon="el-icon-s-data")
 
-  el-dialog(title='Informações avançadas' :visible.sync='dialogVisible' v-loading="dialogLoading")
-    el-table(:data='optionsMetrics' stripe style='width: 100%' height="250")
-      el-table-column(prop='value' label='Opção')
-      el-table-column(prop='points' label='Pontuação' align="center")
-      el-table-column(prop='totalAnswererOption' label='N°. de Respostas' align="center")
+  //- el-dialog(title='Informações avançadas' :visible.sync='dialogVisible' v-loading="dialogLoading")
+  //-   el-table(:data='optionsMetrics' stripe style='width: 100%' height="250")
+  //-     el-table-column(prop='value' label='Opção')
+  //-     el-table-column(prop='points' label='Pontuação' align="center")
+  //-     el-table-column(prop='totalAnswererOption' label='N°. de Respostas' align="center")
 
 </template>
 
@@ -68,7 +74,8 @@ export default {
       dialogVisible: false,
       optionsMetrics: [],
       fullscreenLoading: true,
-      dialogLoading: false
+      dialogLoading: false,
+      columns: []
     }
   },
   validations: {
@@ -114,23 +121,54 @@ export default {
         .get('/notice/analytics/general/detailed/' + this.getNoticeId)
         .then(({data}) => {
           this.questionnaires = data.questionnaire.questions
-            this.questionnaires.forEach(item => {
-              item.questionOptions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
-            })
           this.questionnaires.forEach(item => {
-            if(item.questionOptions[0] !== undefined)
-              item.yesOption = item.questionOptions[0].totalOption
-              item.yesOptionPercentage = (item.yesOption / item.totalAnswerer) * 100
-            if(item.questionOptions[1] !== undefined)
-              item.noOption = item.questionOptions[1].totalOption
-            if(item.questionOptions[2] !== undefined)
-              item.unknownOption = item.questionOptions[2].totalOption
+            item.questionOptions.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
           })
+          this.sortQuestionnaires()
+          this.questionnaires.forEach(item => {
+            item.questionOptions.forEach((option, index) => {
+              if(option !== undefined) {
+                if(option.value === "Sim"){
+                  item.yesOption = option.totalOption ? option.totalOption : 0
+                  item.yesOptionPercentage = (item.yesOption / item.totalAnswerer) * 100
+                }
+                if(option.value === "Não"){
+                  item.noOption = option.totalOption ? option.totalOption : 0
+                  item.noOptionPercentage = (item.noOption / item.totalAnswerer) * 100
+                }
+                if(option.value === "Não entendi a pergunta"){
+                  item.unknownOption = option.totalOption ? option.totalOption : 0
+                  item.unknownOptionPercentage = (item.unknownOption / item.totalAnswerer) * 100
+                }
+              }
+              this.columns.push(option)
+            })
+          })
+          // remove colunas duplicadas
+          let allColumns = this.columns.reduce((unique, o) => {
+            if(!unique.some(obj => obj.label === o.label && obj.value === o.value)) {
+              unique.push(o);
+            }
+            return unique;
+          }, []);
+          this.columns = allColumns;
+          this.columns = this.columns.filter(data => data.value != 'Sim' && data.value != 'Não' && data.value != 'Não entendi a pergunta');
+
+          
+          // this.questionnaires.forEach(item => {
+          //   item.questionOptions.forEach((option, index) => {
+          //     if(option.value === this.columns[].value)
+          //       option.totalOption = this.columns[].totalOption
+          //   })
+          // })
           this.fullscreenLoading = false
         })
     },
     sortOptions() {
       this.optionsMetrics.sort((a,b) => (a.value > b.value) ? -1 : ((b.value > a.value) ? 1 : 0))
+    },
+    sortQuestionnaires() {
+      this.questionnaires.sort((a,b) => (a.order < b.order) ? -1 : ((b.order > a.order) ? 1 : 0))
     },
 
     print() {
