@@ -36,15 +36,43 @@ div(v-loading.fullscreen.lock="fullscreenLoading")
       el-table-column(prop='noOptionPercentage' label='Não(%)' width='150' align="center")
       el-table-column(prop='unknownOption' label='Não entendi a pergunta' width='150' align="center")
       el-table-column(prop='unknownOptionPercentage' label='Não entendi a pergunta(%)' width='150' align="center")
-      el-table-column(v-for="column, index in columns" 
-                          :key="column.value"
-                          :label="column.value"
-                          min-width='150')
-        template(slot-scope="prop") {{ column.totalOption }}
+      el-table-column(prop='kitchenChef' label='Chef de cozinha' width='150' align="center")
+      el-table-column(prop='kitchenAux' label='Auxiliar de cozinha' width='150' align="center")
+      el-table-column(prop='kitchenCooker' label='Cozinheiro(a)' width='150' align="center")
+      el-table-column(prop='nobodyAskedMe' label='Não me pediram para modificar nada' width='150' align="center")
+      el-table-column(prop='noNutritionist' label='Não há nutricionista no meu restaurante' width='150' align="center")
+      el-table-column(prop='discomfort' label='Desconforto' width='150' align="center")
+      el-table-column(prop='other' label='Outro' width='150' align="center")
+      el-table-column(prop='dissatisfaction' label='Insatisfação' width='150' align="center")
+      el-table-column(prop='mood' label='Ânimo' width='150' align="center")
+      el-table-column(prop='satisfaction' label='Satisfação' width='150' align="center")
+      el-table-column(prop='curiosity' label='Curiosidade' width='150' align="center")
+      el-table-column(prop='female' label='Feminino' width='150' align="center")
+      el-table-column(prop='preferNotToDeclare' label='Prefiro não declarar' width='150' align="center")
+      el-table-column(prop='male' label='Masculino' width='150' align="center")
+      el-table-column(prop='brown' label='Pardo' width='150' align="center")
+      el-table-column(prop='white' label='Branco' width='150' align="center")
+      el-table-column(prop='yellow' label='Amarelo' width='150' align="center")
+      el-table-column(prop='black' label='Preto' width='150' align="center")
+      el-table-column(prop='indigenous' label='Indígena' width='150' align="center")
+      el-table-column(prop='completeHighSchool' label='Ensino médio completo' width='150' align="center")
+      el-table-column(prop='incompleteHighSchool' label='Ensino médio incompleto' width='150' align="center")
+      el-table-column(prop='incompleteElementarySchool' label='Ensino fundamental incompleto' width='150' align="center")
+      el-table-column(prop='incompleteHigherEducation' label='Ensino superior incompleto' width='150' align="center")
+      el-table-column(prop='completeHigherEducation' label='Ensino superior completo' width='150' align="center")
+      el-table-column(prop='completeElementarySchool' label='Ensino fundamental completo' width='150' align="center")
+      //- Tentativa de Colunas dinamicas (Não funciona para imprimir)
+      //- el-table-column(v-for="column, index in columns" 
+      //-                     :key="column.value"
+      //-                     :label="column.value"
+      //-                     min-width='150')
+      //-   template(slot-scope="prop") {{ column.totalOption }}
+      
       //- el-table-column(label='Mais informações' width='150' align="center")
       //-   template(slot-scope="scope")
       //-     el-button(@click="openDialog(scope.row)" type="text" class="fs-3" icon="el-icon-s-data")
 
+  //- Dialogo que pediram para remover
   //- el-dialog(title='Informações avançadas' :visible.sync='dialogVisible' v-loading="dialogLoading")
   //-   el-table(:data='optionsMetrics' stripe style='width: 100%' height="250")
   //-     el-table-column(prop='value' label='Opção')
@@ -128,6 +156,7 @@ export default {
           this.questionnaires.forEach(item => {
             item.questionOptions.forEach((option, index) => {
               if(option !== undefined) {
+                // Precisa refatorar para algo mais elaborado
                 if(option.value === "Sim"){
                   item.yesOption = option.totalOption ? option.totalOption : 0
                   item.yesOptionPercentage = (item.yesOption / item.totalAnswerer) * 100
@@ -140,6 +169,85 @@ export default {
                   item.unknownOption = option.totalOption ? option.totalOption : 0
                   item.unknownOptionPercentage = (item.unknownOption / item.totalAnswerer) * 100
                 }
+                if(option.value === "Chefe de cozinha"){
+                  item.kitchenChef = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Auxiliar de cozinha"){
+                  item.kitchenAux = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Cozinheiro(a)"){
+                  item.kitchenCooker = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Não me pediram para modificar nada"){
+                  item.nobodyAskedMe = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Não há nutricionista no meu restaurante"){
+                  item.noNutritionist = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Incômodo"){
+                  item.nuisance = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Desconforto"){
+                  item.discomfort = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Outro"){
+                  item.other = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Insatisfação"){
+                  item.dissatisfaction = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ânimo"){
+                  item.mood = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Satisfação"){
+                  item.satisfaction = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Curiosidade"){
+                  item.curiosity = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Feminino"){
+                  item.female = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Prefiro não declarar"){
+                  item.preferNotToDeclare = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Masculino"){
+                  item.male = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Pardo"){
+                  item.brown = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Branco"){
+                  item.white = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Amarelo"){
+                  item.yellow = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Preto"){
+                  item.black = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Indígena"){
+                  item.indigenous = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ensino médio completo"){
+                  item.completeHighSchool = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ensino médio incompleto"){
+                  item.incompleteHighSchool = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ensino fundamental incompleto"){
+                  item.incompleteElementarySchool = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ensino superior incompleto"){
+                  item.incompleteHigherEducation = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ensino superior completo"){
+                  item.completeHigherEducation = option.totalOption ? option.totalOption : 0
+                }
+                if(option.value === "Ensino fundamental completo"){
+                  item.completeElementarySchool = option.totalOption ? option.totalOption : 0
+                }
+                item.totalOption = option.totalOption ? option.totalOption : 0
               }
               this.columns.push(option)
             })
